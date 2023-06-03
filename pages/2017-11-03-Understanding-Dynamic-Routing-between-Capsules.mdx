@@ -273,7 +273,7 @@ vectors of all classes. The total loss is just the sum of the losses of all clas
 
 Computing the margin loss in Keras
 
-```python
+```python copy
 def margin_loss(y_true, y_pred):
     """
     :param y_true: [None, n_classes]
@@ -290,7 +290,7 @@ def margin_loss(y_true, y_pred):
 
 Here is the Keras code in creating the CapsNet model:
 
-```python
+```python copy
 def CapsNet(input_shape, n_class, num_routing):
     """
     :param input_shape: (None, width, height, channels)
@@ -334,7 +334,7 @@ def CapsNet(input_shape, n_class, num_routing):
 
 The length of the capsule's output vector $$ \| v_j \| $$ corresponds to the probability that it belong to the class $$ j $$ . For example, $$ \| v_7 \| $$ is the probability of the input image belongs to 7.
 
-```python
+```python copy
 class Length(layers.Layer):
     def call(self, inputs, **kwargs):
         # L2 length which is the square root
@@ -346,7 +346,7 @@ class Length(layers.Layer):
 
 PrimaryCapsules converts 20x20 256 channels into 32x6x6 8-D capsules.
 
-```python
+```python copy
 def PrimaryCap(inputs, dim_vector, n_channels, kernel_size, strides, padding):
     """
     Apply Conv2D `n_channels` times and concatenate all capsules
@@ -370,7 +370,7 @@ v_{j} & = \frac{\| s_{j} \|^2}{ 1 + \| s_{j} \|^2} \frac{s_{j}}{ \| s_{j} \|}  \
 \end{split}
 $$
 
-```python
+```python copy
 def squash(vectors, axis=-1):
     """
     The non-linear activation used in Capsule. It drives the length of a large vector to near 1 and small vector to 0
@@ -387,7 +387,7 @@ def squash(vectors, axis=-1):
 
 DigiCaps converts the capsules in PrimaryCapsules to 10 capsules each making a prediction for class $$ j $$ . The following is the code in creating 10 (n_class) 16-D (dim_vector) capsules:
 
-```python
+```python copy
 # num_routing is default to 3
 digitcaps = DigiCap(num_capsule=n_class, dim_vector=16,
                   num_routing=num_routing, name='digitcaps')(primarycaps)
@@ -400,7 +400,7 @@ DigiCap is just a simple extension of a dense layer. Instead of taking a scalar 
 
 Here is the DigiCaps and we will detail some part of the code for explanation later.
 
-```python
+```python copy
 class DigiCap(layers.Layer):
     """
     The capsule layer.
@@ -469,7 +469,7 @@ class DigiCap(layers.Layer):
 
 _build_ declares the `self.W` parameters representing the transform matrix $W$ and `self.b` representing the $$ b\_{ij} $$ .
 
-```python
+```python copy
     def build(self, input_shape):
         "The input Tensor should have shape=[None, input_num_capsule, input_dim_vector]"
         assert len(input_shape) >= 3,
@@ -502,7 +502,7 @@ $$
 The code first expand the dimension of $ u_i $ and then multiple it with $ w $.
 Nevertheless, the simple dot product implementation of $ W_{ij} u_i $ (commet out below) is replaced by `tf.scan` for better speed performance.
 
-```python
+```python copy
 class DigiCap(layers.Layer):
     ...
 
@@ -538,7 +538,7 @@ Here is the code to implement the following Iterative dynamic Routing pseudo cod
 
 ![alg](assets/images/capsule/alg.jpg)
 
-```python
+```python copy
 class DigiCap(layers.Layer):
     ...
     def call(self, inputs, training=None):
@@ -564,7 +564,7 @@ We use the true label to select $$ v_j $$ to reconstruct the image during traini
 
 Select $$ v_j $$ in training with Mask
 
-```python
+```python copy
 class Mask(layers.Layer):
     """
     Mask a Tensor with shape=[None, d1, d2] by the max value in axis=1.

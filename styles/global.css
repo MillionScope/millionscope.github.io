@@ -3,3 +3,24 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+blockquote {
+  position: relative;
+  padding: 1rem 1rem 1rem 3rem !important;
+  color: #008ae6 !important;
+  background-color: rgba(0, 138, 230, 0.15) !important;
+  border: none;
+  border-radius: 0.75rem;
+}
+
+blockquote::before {
+  content: "💡";
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1;
+}
+
+blockquote > a {
+  color: #008ae6 !important;
+}

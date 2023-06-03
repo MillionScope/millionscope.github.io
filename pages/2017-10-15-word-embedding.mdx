@@ -303,7 +303,7 @@ After reviewing all the theoretical knowledge above, let's try a little experime
 
 **Step 1: Extract words**
 
-```python
+```python copy
 import sys
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize
@@ -337,7 +337,7 @@ GOT_SENTENCE_WORDS= parse_sentence_words(input_file_names)
 
 **Step 2: Feed a word2vec model**
 
-```python
+```python copy
 from gensim.models import Word2Vec
 
 ## size: the dimensionality of the embedding vectors.

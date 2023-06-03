@@ -306,7 +306,7 @@ Here is the summary of each layer and the shape of their outputs:
 
 For the rest of the article, we will cover a detail implementation using Tensor. Here is the code in building our layers:
 
-```python
+```python copy
 def capsules_net(inputs, num_classes, iterations, batch_size, name='capsule_em'):
     """Define the Capsule Network model
     """
@@ -362,7 +362,7 @@ def capsules_net(inputs, num_classes, iterations, batch_size, name='capsule_em')
 
 ReLU Conv1 is a simple CNN layer. We use the TensorFlow slim API _slim.conv2d_ to create a CNN layer using a 3x3 kernel with stride 2 and ReLU. (We use the slim API so the code is more condense and easier to read.)
 
-```python
+```python copy
 def conv2d(inputs, kernel, out_channels, stride, padding, name, is_train=True, activation_fn=None):
   with slim.arg_scope([slim.conv2d], trainable=is_train):
     with tf.variable_scope(name) as scope:
@@ -379,7 +379,7 @@ def conv2d(inputs, kernel, out_channels, stride, padding, name, is_train=True, a
 
 PrimaryCaps is not much difference from a CNN layer: instead of generating 1 scalar value, we generate 32 capsules with 4 x 4 scalar values for the pose matrices and 1 scalar for the activation:
 
-```python
+```python copy
 def primary_caps(inputs, kernel_size, out_capsules, stride, padding, pose_shape, name):
     """This constructs a primary capsule layer using regular convolution layer.
 
@@ -439,7 +439,7 @@ The code involves 3 major steps:
 - Compute votes: call mat_transform to generate the votes from the children "tiled" pose matrices and the transformation matrices.
 - EM-routing: call matrix_capsules_em_routing to compute the output capsules (pose and activation) of the parent capsule.
 
-```python
+```python copy
 def conv_capsule(inputs, shape, strides, iterations, batch_size, name):
   """This constructs a convolution capsule layer from a primary or convolution capsule layer.
       i: input capsules (32)
@@ -525,7 +525,7 @@ def conv_capsule(inputs, shape, strides, iterations, batch_size, name):
 
 kernel_tile use tiling and convolution to prepare the input pose matrices and the activations to the correct spatial dimension for voting and EM-routing. (The code is pretty hard to understand so readers may simply treat it as a black box if it is too hard.)
 
-```python
+```python copy
 def kernel_tile(input, kernel, stride):
     """This constructs a primary capsule layer using regular convolution layer.
 
@@ -566,7 +566,7 @@ def kernel_tile(input, kernel, stride):
 
 mat_transform extracts the transformation matrices parameters as a TensorFlow trainable variable $$ w $$ . It then multiplies with the "tiled" input pose matrices to generate the votes for the parent capsules.
 
-```python
+```python copy
 def mat_transform(input, output_cap_size, size):
     """Compute the vote.
 
@@ -597,7 +597,7 @@ def mat_transform(input, output_cap_size, size):
 
 Here is the code implementation for the EM routing which calling m*step and e_step alternatively. By default, we ran the iterations 3 times. The main purpose of the EM routing is to compute the pose matrices and the activations of the output capsules. In the last iteration, the m_step already complete the last calculation of those parameters. Therefore we skip the e_step in the last iteration which mainly responsible for re-calculating the routing assignment $$ r*{ij} $$ . The comments contain the tracing of the shape of tensors in ConvCaps1.
 
-```python
+```python copy
 def matrix_capsules_em_routing(votes, i_activations, beta_v, beta_a, iterations, name):
   """The EM routing between input capsules (i) and output capsules (j).
 
@@ -664,7 +664,7 @@ $$
 
 λ is an inverse temperature parameter. In our implementation, we start from 1 and increment it by 1 after each routing iteration. The original paper does not specify how λ is increased and you can experiment different schemes instead. Here is our source code:
 
-```python
+```python copy
 # inverse_temperature schedule (min, max)
 it_min = 1.0
 it_max = min(iterations, 3.0)
@@ -678,7 +678,7 @@ for it in range(iterations):
 
 After the last iteration loop, $$ a_j $$ is output as the final activation of the output capsule $$ j $$ . The mean $$ \mu^h_j $$ is used for the final value of the h-th component of the corresponding pose matrix. We later reshape those 16 components into a 4x4 pose matrix.
 
-```python
+```python copy
 # pose: (N, OH, OW, o 4 x 4) via squeeze o_mean (24, 6, 6, 32, 16)
 poses = tf.squeeze(o_mean, axis=-3)
 
@@ -695,7 +695,7 @@ The algorithm for the m-steps.
 
 The following is the code listing of the m-step method.
 
-```python
+```python copy
 def m_step(rr, votes, i_activations, beta_v, beta_a, inverse_temperature):
   """The M-Step in EM Routing from input capsules i to output capsule j.
   i: input capsules (32)
@@ -762,7 +762,7 @@ The algorithm for the e-steps.
 
 `e_step` is mainly responsible for re-calculating the routing assignment (shape: $24, 6, 6, 288, 32, 1$) after `m_step` updates the output activation $$ a_j $$ and the Gaussian models with new $$ \mu $$ and $$ \sigma $$ .
 
-```python
+```python copy
 def e_step(o_mean, o_stdv, o_activations, votes):
   """The E-Step in EM Routing.
 
@@ -808,7 +808,7 @@ Recall from a couple sections ago, the output of ConvCaps2 is feed into the Clas
 Instead of using a $3 \times 3$ filter in ConvCaps2, Class capsules use a $1 \times 1$ filter. Also, instead of outputting a 2D spatial output ($6 \times 6$ in ConvCaps1 and $4 \times 4$ in ConvCaps2), it outputs $10$ capsules each representing one of the $10$ classes in the MNist.
 The code structure for the class capsules is very similar to the conv_capsule. It makes calls to compute the votes and then use EM routing to compute the capsule outputs.
 
-```python
+```python copy
 def class_capsules(inputs, num_classes, iterations, batch_size, name):
     """
     :param inputs: ((24, 4, 4, 32, 4, 4), (24, 4, 4, 32))
@@ -882,7 +882,7 @@ By retaining the spatial information in the capsule, we move beyond simply check
 
 The pseudo code below illustrates the key idea. The pose matrices for the ConvCaps2 output has the shape of (24, **4, 4**, 32, 4, 4). i.e. a spatial dimension of $4 \times 4$. We use the location of the capsule to locate the corresponding element in c1 below (a 4x4 matrix) which contains the scaled x coordinate of the center of the receptive field of the spatial capsule. We add this element value to $$ v^1_{jk} $$ . For the second element $$ v^2_{jk} $$ of the vote, we repeat the same process using $c_2$.
 
-```python
+```python copy
 # Spatial output of ConvCaps2 is 4x4
 v1 = [[[8.],  [12.], [16.], [20.]],
       [[8.],  [12.], [16.], [20.]],
@@ -902,7 +902,7 @@ c2 = np.array(v2, dtype=np.float32) / 28.0
 
 Here is the final code which looks far more complicated in order to handle any image size.
 
-```python
+```python copy
 def coord_addition(votes, H, W):
     """Coordinate addition.
 
@@ -947,7 +947,7 @@ $$
 
 The value of $$ m $$ starts from 0.1. After each epoch, we increase the value by 0.1 until it reached the maximum of 0.9. This prevents too many dead capsules in the early phase of the training.
 
-```python
+```python copy
 def spread_loss(labels, activations, iterations_per_epoch, global_step, name):
     """Spread loss
 

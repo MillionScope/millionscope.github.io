@@ -17,7 +17,7 @@ Source : http://karpathy.github.io/2019/04/25/recipe
 
 It is allegedly easy to get started with training neural nets. Numerous libraries and frameworks take pride in displaying 30-line miracle snippets that solve your data problems, giving the (false) impression that this stuff is plug and play. It's common see things like:
 
-```python
+```python copy
 >>> your_data = # plug your awesome dataset here
 >>> model = SuperCrossValidator(SuperDuper.fit, your_data, ResNet50, SGDOptimizer)
 # conquer world here
@@ -25,7 +25,7 @@ It is allegedly easy to get started with training neural nets. Numerous librarie
 
 These libraries and examples activate the part of our brain that is familiar with standard software - a place where clean APIs and abstractions are often attainable. [Requests](http://docs.python-requests.org/en/master/) library to demonstrate:
 
-```python
+```python copy
 >>> r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
 >>> r.status_code
 200

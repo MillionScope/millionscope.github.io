@@ -71,7 +71,7 @@ pip install -r requirements.txt ## install required packages.
 
 The [OpenAI Gym](https://gym.openai.com/) toolkit provides a set of physical simulation environments, games, and robot simulators that we can play with and design reinforcement learning agents for. An environment object can be initialized by `gym.make("{environment name}"`:
 
-```python
+```python copy
 import gym
 env = gym.make("MsPacman-v0")
 ```
@@ -107,7 +107,7 @@ $$
 
 In a naive implementation, the Q value for all (s, a) pairs can be simply tracked in a dict. No complicated machine learning model is involved yet.
 
-```python
+```python copy
 from collections import defaultdict
 Q = defaultdict(float)
 gamma = 0.99  ## Discounting factor
@@ -124,7 +124,7 @@ def update_Q(s, r, a, s_next, done):
 
 Most gym environments have a multi-dimensional continuous observation space (`gym.spaces.Box`). To make sure our Q dictionary will not explode by trying to memorize an infinite number of keys, we apply a wrapper to discretize the observation. The concept of [wrappers](https://github.com/openai/gym/tree/master/gym/wrappers) is very powerful, with which we are capable to customize observation, action, step function, etc. of an env. No matter how many wrappers are applied, `env.unwrapped` always gives back the internal original environment object.
 
-```python
+```python copy
 import gym
 
 class DiscretizedObservationWrapper(gym.ObservationWrapper):
@@ -161,7 +161,7 @@ env = DiscretizedObservationWrapper(
 
 Let's plug in the interaction with a gym env and update the Q function every time a new transition is generated. When picking the action, we use ε-greedy to force exploration.
 
-```python
+```python copy
 import gym
 import numpy as np
 n_steps = 100000
@@ -214,7 +214,7 @@ The Q network can be a multi-layer dense neural network, a convolutional network
 
 In the following example, I'm using a 2-layer densely connected neural network to learn Q values for the cart pole balancing problem.
 
-```python
+```python copy
 import gym
 env = gym.make('CartPole-v1')
 ## The observation space is `Box(4,)`, a 4-element vector.
@@ -223,7 +223,7 @@ observation_size = env.observation_space.shape[0]
 
 We have a helper function for creating the networks below:
 
-```python
+```python copy
 import tensorflow as tf
 def dense_nn(inputs, layers_sizes, scope_name):
     """Creates a densely connected multi-layer neural network.
@@ -246,7 +246,7 @@ def dense_nn(inputs, layers_sizes, scope_name):
 
 The Q-network and the target network are updated with a batch of transitions (state, action, reward, state_next, done_flag). The input tensors are:
 
-```python
+```python copy
 batch_size = 32  ## A tunable hyperparameter.
 
 states = tf.placeholder(tf.float32, shape=(batch_size, observation_size), name='state')
@@ -258,14 +258,14 @@ done_flags = tf.placeholder(tf.float32, shape=(batch_size,), name='done')
 
 We have two networks of the same structure. Both have the same network architectures with the state observation as the inputs and Q values over all the actions as the outputs.
 
-```python
+```python copy
 q = dense(states, [32, 32, 2], name='Q_primary')
 q_target = dense(states_next, [32, 32, 2], name='Q_target')
 ```
 
 The target network "Q_target" takes the `states_next` tensor as the input, because we use its prediction to select the optimal next state in the Bellman equation.
 
-```python
+```python copy
 ## The prediction by the primary Q network for the actual actions.
 action_one_hot = tf.one_hot(actions, act_size, 1.0, 0.0, name='action_one_hot')
 pred = tf.reduce_sum(q * action_one_hot, reduction_indices=-1, name='q_acted')
@@ -285,7 +285,7 @@ Note that [tf.stop_gradient()](https://www.tensorflow.org/api_docs/python/tf/sto
 
 The target network is updated by copying the primary Q network parameters over every `C` number of steps ("hard update") or polyak averaging towards the primary network ("soft update")
 
-```python
+```python copy
 ## Get all the variables in the Q primary network.
 q_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope="Q_primary")
 ## Get all the variables in the Q target network.
@@ -322,14 +322,14 @@ $$
 
 In the code, we add a new tensor for getting the action selected by the primary Q network as the input and a tensor operation for selecting this action.
 
-```python
+```python copy
 actions_next = tf.placeholder(tf.int32, shape=(None,), name='action_next')
 actions_selected_by_q = tf.argmax(q, axis=-1, name='action_selected')
 ```
 
 The prediction target y in the loss function becomes:
 
-```python
+```python copy
 actions_next_flatten = actions_next + tf.range(0, batch_size) * q_target.shape[1]
 max_q_next_target = tf.gather(tf.reshape(q_target, [-1]), actions_next_flatten)
 y = rewards + (1. - done_flags) * gamma * max_q_next_by_target
@@ -343,7 +343,7 @@ Here I used [tf.gather()](https://www.tensorflow.org/api_docs/python/tf/gather) 
 
 During the episode rollout, we compute the `actions_next` by feeding the next states' data into the `actions_selected_by_q` operation.
 
-```python
+```python copy
 ## batch_data is a dict with keys, 's', 'a', 'r', 's_next' and 'done', containing a batch of transitions.
 actions_next = sess.run(actions_selected_by_q, {states: batch_data['s_next']})
 ```
@@ -366,7 +366,7 @@ $$
 
 The code change is straightforward:
 
-```python
+```python copy
 q_hidden = dense_nn(states, [32], name='Q_primary_hidden')
 adv = dense_nn(q_hidden, [32, env.action_space.n], name='Q_primary_adv')
 v = dense_nn(q_hidden, [32, 1], name='Q_primary_v')
@@ -387,7 +387,7 @@ I reviewed a number of popular policy gradient methods in my [last post](https:/
 
 The returns are computed during rollouts and then fed into the Tensorflow graph as inputs.
 
-```python
+```python copy
 ## Inputs
 states = tf.placeholder(tf.float32, shape=(None, obs_size), name='state')
 actions = tf.placeholder(tf.int32, shape=(None,), name='action')
@@ -396,7 +396,7 @@ returns = tf.placeholder(tf.float32, shape=(None,), name='return')
 
 The policy network is contructed. We update the policy parameters by minimizing the loss function, $\mathcal{L} = - (G_t - V(s)) \log \pi(a \vert s)$. [tf.nn.sparse_softmax_cross_entropy_with_logits()](https://www.tensorflow.org/api_docs/python/tf/nn/sparse_softmax_cross_entropy_with_logits) asks for the raw logits as inputs, rather then the probabilities after softmax, and that's why we do not have a softmax layer on top of the policy network.
 
-```python
+```python copy
 ## Policy network
 pi = dense_nn(states, [32, 32, env.action_space.n], name='pi_network')
 sampled_actions = tf.squeeze(tf.multinomial(pi, 1))  ## For sampling actions according to probabilities.
@@ -410,7 +410,7 @@ with tf.variable_scope('pi_optimize'):
 
 During the episode rollout, the return is calculated as follows:
 
-```python
+```python copy
 ## env = gym.make(...)
 ## gamma = 0.99
 ## sess = tf.Session(...)
@@ -467,7 +467,7 @@ The [actor-critic](https://lilianweng.github.io/posts/2018-04-08-policy-gradient
 
 Overall the implementation looks pretty similar to REINFORCE with an extra critic network. The full implementation is here.
 
-```python
+```python copy
 ## Inputs
 states = tf.placeholder(tf.float32, shape=(None, observation_size), name='state')
 actions = tf.placeholder(tf.int32, shape=(None,), name='action')
