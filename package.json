@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "debug": "NODE_OPTIONS='--inspect' next",
-    "feed":"node scripts/gen-rss.js",
+    "feed": "node scripts/gen-rss.js",
     "start": "next start"
   },
   "repository": {
@@ -21,7 +21,9 @@
   "homepage": "https://github.com/MillionScope/millionscope.github.io#readme",
   "dependencies": {
     "@vercel/analytics": "^1.0.1",
+    "cobe": "^0.6.3",
     "focus-visible": "^5.2.0",
+    "gray-matter": "4.0.3",
     "intersection-observer": "^0.12.2",
     "next": "^13.4.4",
     "nextra": "latest",
@@ -29,10 +31,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.4",
+    "react-spring": "^9.7.1",
     "rehype-katex": "^6.0.3",
     "remark-math": "^5.1.1",
     "rss": "1.2.2",
-    "gray-matter":"4.0.3",
     "sharp": "^0.32.1"
   },
   "devDependencies": {

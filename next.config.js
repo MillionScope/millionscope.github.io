@@ -5,7 +5,7 @@ const withNextra = require("nextra")({
   output: "export",
   staticImage: true,
   flexsearch: {
-    codeblocks: false,
+    codeblocks: true,
   },
   defaultShowCopyCode: true,
   latex: true,
@@ -19,7 +19,7 @@ const withNextra = require("nextra")({
 // module.exports = withNextra();
 module.exports = withNextra({
   i18n: {
-    locales: ["en-US", "zh-CN", "vi-VI"],
+    locales: ["en-US", "zh-CN", "vi-VN"],
     defaultLocale: "en-US",
   },
   redirects: () => {
