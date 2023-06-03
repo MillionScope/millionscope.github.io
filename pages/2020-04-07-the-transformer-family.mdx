@@ -31,10 +31,10 @@ It has been almost two years since my last post on [attention]. Recent progress 
 | $$ \mathbf{Q} = \mathbf{X}\mathbf{W}^q \in \mathbb{R}^{L \times d_k} $$                                              | The query embedding inputs.                                                                                                                                  |
 | $$ \mathbf{K} = \mathbf{X}\mathbf{W}^k \in \mathbb{R}^{L \times d_k} $$                                              | The key embedding inputs.                                                                                                                                    |
 | $$ \mathbf{V} = \mathbf{X}\mathbf{W}^v \in \mathbb{R}^{L \times d_v} $$                                              | The value embedding inputs.                                                                                                                                  |
-| $$ S_i $$                                                                                                            | A collection of key positions for the $$ i $$ -th query $$ \mathbf{q}\_i $$ to attend to.                                                                    |
+| $$ S_i $$                                                                                                            | A collection of key positions for the $$ i $$ -th query $$ \mathbf{q}_i $$ to attend to.                                                                    |
 | $$ \mathbf{A} \in \mathbb{R}^{L \times L} $$                                                                         | The self-attention matrix between a input sequence of lenght $$ L $$ and itself. $$ \mathbf{A} = \text{softmax}(\mathbf{Q}\mathbf{K}^\top / \sqrt{d_k}) $$ . |
-| $$ a\_{ij} \in \mathbf{A} $$                                                                                         | The scalar attention score between query $$ \mathbf{q}\_i $$ and key $$ \mathbf{k}\_j $$ .                                                                   |
-| $$ \mathbf{P} \in \mathbb{R}^{L \times d} $$                                                                         | position encoding matrix, where the $$ i $$ -th row $$ \mathbf{p}\_i $$ is the positional encoding for input $$ \mathbf{x}\_i $$ .                           |
+| $$ a_{ij} \in \mathbf{A} $$                                                                                         | The scalar attention score between query $$ \mathbf{q}_i $$ and key $$ \mathbf{k}_j $$ .                                                                   |
+| $$ \mathbf{P} \in \mathbb{R}^{L \times d} $$                                                                         | position encoding matrix, where the $$ i $$ -th row $$ \mathbf{p}_i $$ is the positional encoding for input $$ \mathbf{x}_i $$ .                           |
 
 ## Attention and Self-Attention
 
@@ -44,7 +44,7 @@ _Self-attention_ is a type of attention mechanism where the model makes predicti
 
 There are various forms of attention / self-attention, Transformer ([Vaswani et al., 2017](https://arxiv.org/abs/1706.03762)) relies on the _scaled dot-product attention_: given a query matrix $$ \mathbf{Q} $$ , a key matrix $$ \mathbf{K} $$ and a value matrix $$ \mathbf{V} $$ , the output is a weighted sum of the value vectors, where the weight assigned to each value slot is determined by the dot-product of the query with the corresponding key:
 $$ \text{Attention}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{softmax}(\frac{\mathbf{Q} {\mathbf{K}}^\top}{\sqrt{d_k}})\mathbf{V} $$
-And for a query and a key vector $$ \mathbf{q}\_i, \mathbf{k}\_j \in \mathbb{R}^d $$ (row vectors in query and key matrices), we have a scalar score:
+And for a query and a key vector $$ \mathbf{q}_i, \mathbf{k}_j \in \mathbb{R}^d $$ (row vectors in query and key matrices), we have a scalar score:
 
 $$
 a_{ij} = \text{softmax}(\frac{\mathbf{q}_i {\mathbf{k}_j}^\top}{\sqrt{d_k}})
@@ -132,7 +132,7 @@ y_t^n &= W_y s_t^n + b_y
 \end{aligned}
 $$
 
-where $$ \delta\_{n,1} $$ is a binary flag indicating whether the input step has been incremented.
+where $$ \delta_{n,1} $$ is a binary flag indicating whether the input step has been incremented.
 
 The number of steps $$ N(t) $$ is determined by an extra sigmoidal halting unit $$ h $$ , with associated weight matrix $$ W_h $$ and bias $$ b_h $$ , outputting a halting probability $$ p_t^n $$ at immediate step $$ n $$ for $$ t $$ -th input element:
 $$ h_t^n = \sigma(W_h s_t^n + b_h) $$
@@ -153,9 +153,9 @@ where $$ M $$ is an upper limit for the number of immediate steps allowed.
 The final state and output are mean-field updates:
 $$ s*t = \sum*{n=1}^{N(t)} p*t^n s_t^n,\quad y_t = \sum*{n=1}^{N(t)} p*t^n y_t^n $$
 ![ACT computation graph](assets/images/transformer/ACT-computation-graph.png)
-\_Fig. 5. The computation graph of a RNN with ACT mechanism. (Image source: [Graves, 2016](https://arxiv.org/abs/1603.08983))*
+_Fig. 5. The computation graph of a RNN with ACT mechanism. (Image source: [Graves, 2016](https://arxiv.org/abs/1603.08983))*
 
-To avoid unnecessary pondering over each input, ACT adds a _ponder cost_ $$ \mathcal{P}(x) = \sum\_{t=1}^L N(t) + R(t) $$ in the loss function to encourage a smaller number of intermediate computational steps.
+To avoid unnecessary pondering over each input, ACT adds a _ponder cost_ $$ \mathcal{P}(x) = \sum_{t=1}^L N(t) + R(t) $$ in the loss function to encourage a smaller number of intermediate computational steps.
 
 ## Improved Attention Span
 
@@ -183,7 +183,7 @@ The recurrent connection between segments is introduced into the model by contin
 ![Training phrase of Transformer-XL](assets/images/transformer/transformer-XL-training.png)
 _Fig. 6. A comparison between the training phrase of vanilla Transformer & Transformer-XL with a segment length 4. (Image source: left part of Figure 2 in [Dai et al., 2019](https://arxiv.org/abs/1901.02860))._
 
-Let's label the hidden state of the $$ n $$ -th layer for the $$ (\tau + 1) $$ -th segment in the model as $$ \mathbf{h}_{\tau+1}^{(n)} \in \mathbb{R}^{L \times d} $$ . In addition to the hidden state of the last layer for the same segment $$ \mathbf{h}_{\tau+1}^{(n-1)} $$ , it also depends on the hidden state of the same layer for the previous segment $$ \mathbf{h}\_{\tau}^{(n)} $$ . By incorporating information from the previous hidden states, the model extends the attention span much longer in the past, over multiple segments.
+Let's label the hidden state of the $$ n $$ -th layer for the $$ (\tau + 1) $$ -th segment in the model as $$ \mathbf{h}_{\tau+1}^{(n)} \in \mathbb{R}^{L \times d} $$ . In addition to the hidden state of the last layer for the same segment $$ \mathbf{h}_{\tau+1}^{(n-1)} $$ , it also depends on the hidden state of the same layer for the previous segment $$ \mathbf{h}_{\tau}^{(n)} $$ . By incorporating information from the previous hidden states, the model extends the attention span much longer in the past, over multiple segments.
 
 $$
 \begin{aligned}
@@ -224,7 +224,7 @@ a_{ij}^\text{rel} =
 $$
 
 - Replace $$ \mathbf{p}_j $$ with relative positional encoding $$ \mathbf{r}_{i-j} \in \mathbf{R}^{d} $$ ;
-- Replace $$ \mathbf{p}\_i\mathbf{W}^q $$ with two trainable parameters $$ \mathbf{u} $$ (for content) and $$ \mathbf{v} $$ (for location) in two different terms;
+- Replace $$ \mathbf{p}_i\mathbf{W}^q $$ with two trainable parameters $$ \mathbf{u} $$ (for content) and $$ \mathbf{v} $$ (for location) in two different terms;
 - Split $$ \mathbf{W}^k $$ into two matrices, $$ \mathbf{W}^k_E $$ for content information and $$ \mathbf{W}^k_R $$ for location information.
 
 ### Adaptive Attention Span
@@ -255,9 +255,9 @@ _Fig. 8. The soft masking function used in the adaptive attention span. (Image s
 
 The soft mask function is applied to the softmax elements in the attention weights:
 $$ a*{ij} = \frac{m_z(i-j)\exp(s*{ij})}{\sum*{r=i-s}^{i-1}m_z(i-r) \exp(s*{ir})} $$
-In the above equation, $$ z $$ is differentiable so it is trained jointly with other parts of the model. Parameters $$ z^{(i)}, i=1, \dots, h $$ are learned _separately per head_. Moreover, the loss function has an extra L1 penalty on $$ \sum\_{i=1}^h z^{(i)} $$ .
+In the above equation, $$ z $$ is differentiable so it is trained jointly with other parts of the model. Parameters $$ z^{(i)}, i=1, \dots, h $$ are learned _separately per head_. Moreover, the loss function has an extra L1 penalty on $$ \sum_{i=1}^h z^{(i)} $$ .
 
-Using [Adaptive Computation Time](#adaptive-computation-time-act), the approach can be further enhanced to have flexible attention span length, adaptive to the current input dynamically. The span parameter $$ z_t $$ of an attention head at time $$ t $$ is a sigmoidal function, $$ z_t = S \sigma(\mathbf{v} \cdot \mathbf{x}\_t +b) $$ , where the vector $$ \mathbf{v} $$ and the bias scalar $$ b $$ are learned jointly with other parameters.
+Using [Adaptive Computation Time](#adaptive-computation-time-act), the approach can be further enhanced to have flexible attention span length, adaptive to the current input dynamically. The span parameter $$ z_t $$ of an attention head at time $$ t $$ is a sigmoidal function, $$ z_t = S \sigma(\mathbf{v} \cdot \mathbf{x}_t +b) $$ , where the vector $$ \mathbf{v} $$ and the bias scalar $$ b $$ are learned jointly with other parameters.
 
 In the experiments of Transformer with adaptive attention span, [Sukhbaatar, et al. (2019)](https://arxiv.org/abs/1905.07799) found a general tendency that lower layers do not require very long attention spans, while a few attention heads in higher layers may use exceptionally long spans. Adaptive attention span also helps greatly reduce the number of FLOPS, especially in a big model with many attention layers and a large context length.
 
@@ -272,7 +272,7 @@ The encoder-decoder architecture remains for image-conditioned generation:
 - The encoder generates a contextualized, per-pixel-channel representation of the source image;
 - The decoder _autoregressively_ generates an output image, one channel per pixel at each time step.
 
-Let's label the representation of the current pixel to be generated as the query $$ \mathbf{q} $$ . Other positions whose representations will be used for computing $$ \mathbf{q} $$ are key vector $$ \mathbf{k}\_1, \mathbf{k}\_2, \dots $$ and they together form a memory matrix $$ \mathbf{M} $$ . The scope of $$ \mathbf{M} $$ defines the context window for pixel query $$ \mathbf{q} $$ .
+Let's label the representation of the current pixel to be generated as the query $$ \mathbf{q} $$ . Other positions whose representations will be used for computing $$ \mathbf{q} $$ are key vector $$ \mathbf{k}_1, \mathbf{k}_2, \dots $$ and they together form a memory matrix $$ \mathbf{M} $$ . The scope of $$ \mathbf{M} $$ defines the context window for pixel query $$ \mathbf{q} $$ .
 
 Image Transformer introduced two types of localized $$ \mathbf{M} $$ , as illustrated below.
 
@@ -302,13 +302,13 @@ $$
 \end{aligned}
 $$
 
-Note that although the size of $$ S_i $$ is not fixed, $$ a(\mathbf{x}\_i, S_i) $$ is always of size $$ d_v $$ and thus $$ \text{Attend}(\mathbf{X}, \mathcal{S}) \in \mathbb{R}^{L \times d_v} $$ .
+Note that although the size of $$ S_i $$ is not fixed, $$ a(\mathbf{x}_i, S_i) $$ is always of size $$ d_v $$ and thus $$ \text{Attend}(\mathbf{X}, \mathcal{S}) \in \mathbb{R}^{L \times d_v} $$ .
 
 In anto-regressive models, one attention span is defined as $$ S_i = \{j: j \leq i\} $$ as it allows each token to attend to all the positions in the past.
 
-In factorized self-attention, the set $$ S*i $$ is decomposed into a \_tree* of dependencies, such that for every pair of $$ (i, j) $$ where $$ j \leq i $$ , there is a path connecting $$ i $$ back to $$ j $$ and $$ i $$ can attend to $$ j $$ either directly or indirectly.
+In factorized self-attention, the set $$ S*i $$ is decomposed into a _tree* of dependencies, such that for every pair of $$ (i, j) $$ where $$ j \leq i $$ , there is a path connecting $$ i $$ back to $$ j $$ and $$ i $$ can attend to $$ j $$ either directly or indirectly.
 
-Precisely, the set $$ S*i $$ is divided into $$ p $$ \_non-overlapping* subsets, where the $$ m $$ -th subset is denoted as $$ A^{(m)}\_i \subset S_i, m = 1,\dots, p $$ . Therefore the path between the output position $$ i $$ and any $$ j $$ has a maximum length $$ p + 1 $$ . For example, if $$ (j, a, b, c, \dots, i) $$ is a path of indices between $$ i $$ and $$ j $$ , we would have $$ j \in A_a^{(1)}, a \in A_b^{(2)}, b \in A_c^{(3)}, \dots $$ , so on and so forth.
+Precisely, the set $$ S*i $$ is divided into $$ p $$ _non-overlapping* subsets, where the $$ m $$ -th subset is denoted as $$ A^{(m)}_i \subset S_i, m = 1,\dots, p $$ . Therefore the path between the output position $$ i $$ and any $$ j $$ has a maximum length $$ p + 1 $$ . For example, if $$ (j, a, b, c, \dots, i) $$ is a path of indices between $$ i $$ and $$ j $$ , we would have $$ j \in A_a^{(1)}, a \in A_b^{(2)}, b \in A_c^{(3)}, \dots $$ , so on and so forth.
 
 **Sparse Factorized Attention**
 
@@ -344,7 +344,7 @@ There are three ways to use sparse factorized attention patterns in Transformer 
 1. One attention type per residual block and then interleave them, <br/>
    $$ \text{attention}(\mathbf{X}) = \text{Attend}(\mathbf{X}, A^{(n \mod p)}) \mathbf{W}^o $$ , where $$ n $$ is the index of the current residual block.
 2. Set up a single head which attends to locations that all the factorized heads attend to, <br/>
-   $$ \text{attention}(\mathbf{X}) = \text{Attend}(\mathbf{X}, \cup\_{m=1}^p A^{(m)}) \mathbf{W}^o $$ .
+   $$ \text{attention}(\mathbf{X}) = \text{Attend}(\mathbf{X}, \cup_{m=1}^p A^{(m)}) \mathbf{W}^o $$ .
 3. Use a multi-head attention mechanism, but different from vanilla Transformer, each head might adopt a pattern presented above, 1 or 2. => This option often performs the best.
 
 Sparse Transformer also proposed a set of changes so as to train the Transformer up to hundreds of layers, including gradient checkpointing, recomputing attention & FF layers during the backward pass, mixed precision training, efficient block-sparse implementation, etc. Please check the [paper](https://arxiv.org/abs/1904.10509) for more details.
@@ -365,18 +365,18 @@ Reformer proposed two main changes:
 <a name="LSH" />
 **Locality-Sensitive Hashing Attention**
 
-In $$ \mathbf{Q} \mathbf{K}^\top $$ part of the [attention formula](#attention-and-self-attention), we are only interested in the largest elements as only large elements contribute a lot after softmax. For each query $$ \mathbf{q}\_i \in \mathbf{Q} $$ , we are looking for row vectors in $$ \mathbf{K} $$ closest to $$ \mathbf{q}\_i $$ . In order to find nearest neighbors quickly in high-dimensional space, Reformer incorporates [Locality-Sensitive Hashing (LSH)](https://en.wikipedia.org/wiki/Locality-sensitive_hashing) into its attention mechanism.
+In $$ \mathbf{Q} \mathbf{K}^\top $$ part of the [attention formula](#attention-and-self-attention), we are only interested in the largest elements as only large elements contribute a lot after softmax. For each query $$ \mathbf{q}_i \in \mathbf{Q} $$ , we are looking for row vectors in $$ \mathbf{K} $$ closest to $$ \mathbf{q}_i $$ . In order to find nearest neighbors quickly in high-dimensional space, Reformer incorporates [Locality-Sensitive Hashing (LSH)](https://en.wikipedia.org/wiki/Locality-sensitive_hashing) into its attention mechanism.
 
 A hashing scheme $$ x \mapsto h(x) $$ is _locality-sensitive_ if it preserves the distancing information between data points, such that close vectors obtain similar hashes while distant vectors have very different ones. The Reformer adopts a hashing scheme as such, given a fixed random matrix $$ \mathbf{R} \in \mathbb{R}^{d \times b/2} $$ (where $$ b $$ is a hyperparam), the hash function is $$ h(x) = \arg\max([xR; -xR]) $$ .
 
 ![LSH attention matrix](assets/images/transformer/LSH-attention-matrix.png)
 _Fig. 11. Illustration of Locality-Sensitive Hashing (LSH) attention. (Image source: right part of Figure 1 in [Kitaev, et al. 2020](https://arxiv.org/abs/2001.04451))._
 
-In LSH attention, a query can only attend to positions in the same hashing bucket, $$ S_i = \{j: h(\mathbf{q}\_i) = h(\mathbf{k}\_j)\} $$ . It is carried out in the following process, as illustrated in Fig. 11:
+In LSH attention, a query can only attend to positions in the same hashing bucket, $$ S_i = \{j: h(\mathbf{q}_i) = h(\mathbf{k}_j)\} $$ . It is carried out in the following process, as illustrated in Fig. 11:
 
 - (a) The attention matrix for full attention is often sparse.
 - (b) Using LSH, we can sort the keys and queries to be aligned according to their hash buckets.
-- (c) Set $$ \mathbf{Q} = \mathbf{K} $$ (precisely $$ \mathbf{k}\_j = \mathbf{q}\_j / \|\mathbf{q}\_j\| $$ ), so that there are equal numbers of keys and queries in one bucket, easier for batching. Interestingly, this "shared-QK" config does not affect the performance of the Transformer.
+- (c) Set $$ \mathbf{Q} = \mathbf{K} $$ (precisely $$ \mathbf{k}_j = \mathbf{q}_j / \|\mathbf{q}_j\| $$ ), so that there are equal numbers of keys and queries in one bucket, easier for batching. Interestingly, this "shared-QK" config does not affect the performance of the Transformer.
 - (d) Apply batching where chunks of $$ m $$ consecutive queries are grouped together.
 
 ![LSH attention](assets/images/transformer/LSH-attention.png)
