@@ -1,9 +1,9 @@
+import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
-import React from "react";
 
 const config: DocsThemeConfig = {
-  logo: <strong>MillionScope</strong>,
+  logo: <span >MillionScope</span>,
   banner: {
     key: "is comming",
     text: (
