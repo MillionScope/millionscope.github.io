@@ -1,4 +1,20 @@
 {
-  "swr-v2": "Announcing SWR 2.0",
-  "swr-v1": "Announcing SWR 1.0"
+  "index": {
+    "title": "Blogs",
+    "type": "page",
+    "display": "hidden"
+  },
+  "ai": "General AI",
+  "attention": "Attention",
+  "convolution": "Convolution",
+  "evolution": "Evolution",
+  "generative-ai": "Generative AI",
+  "gesture-generation": "Gesture Generati",
+  "language-model": "Language Model",
+  "meta-learning": "Meta Learning",
+  "neural-network": "Neural network",
+  "nlp": "Natural language processing",
+  "python": "Python",
+  "reinforcement-learning": "Reinforcement learing",
+  "unsupervised-learning": "Unsupervised Learning"
 }

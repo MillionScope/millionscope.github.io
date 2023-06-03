@@ -12,9 +12,9 @@ export const languageMap = {
 
 /** @type {Readonly<Record<Locale, string>>} */
 export const titleMap = {
-  "en-US": "React Hooks for Data Fetching",
-  "vi-VN": "React Hooks để lấy dữ liệu",
-  "zh-CN": "用于数据请求的 React Hooks 库",
+  "en-US": "Welcome to MillionScope's Blog",
+  "vi-VN": "Chào mừng đến với blog của MillionScope",
+  "zh-CN": "用于数据请求的 MillionScope 库",
 };
 
 /** @type {Readonly<Record<Locale, {lightweight:string;realtime?:string;suspense?:string;pagination?:string;backendAgnostic?:string;renderingStrategies?:string;typescript?:string;remoteLocal?:string;}>>} */

@@ -1,22 +1,23 @@
 {
-    "index": {
-      "title": "Introduction",
-      "type": "page",
-      "display": "hidden"
-    },
-    "docs": {
-      "title": "Docs",
-      "type": "page"
-    },
-    "examples": {
-      "title": "Examples",
-      "type": "page"
-    },
-    "blog": {
-      "title": "Blogs",
-      "type": "page",
-      "theme": {
-        "sidebar": false
-      }
+  "index": {
+    "title": "Introduction",
+    "type": "page",
+    "display": "hidden"
+  },
+  "docs": {
+    "title": "Docs",
+    "type": "page"
+  },
+  
+  "blog": {
+    "title": "Blogs",
+    "type": "page"
+  },
+  "about": {
+    "title": "About me",
+    "type": "page",
+    "theme": {
+      "sidebar": false
     }
   }
+}
