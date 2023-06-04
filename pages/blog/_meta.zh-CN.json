@@ -8,9 +8,6 @@
     }
   },
   "overview": "Overview",
-  "---": {
-    "type": "separator"
-  },
   "attention": "Attention",
   "convolution": "Convolution",
   "evolution": "Evolution",
@@ -24,5 +21,8 @@
   "python": "Python",
   "reinforcement-learning": "Reinforcement learing",
   "unsupervised-learning": "Unsupervised Learning",
-  "xai": "Explainable AI"
+  "xai": "Explainable AI",
+  "---": {
+    "type": "separator"
+  }
 }
