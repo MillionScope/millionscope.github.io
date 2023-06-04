@@ -2,7 +2,10 @@
   "index": {
     "title": "Blogs",
     "type": "page",
-    "display": "hidden"
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article"
+    }
   },
   "overview": "Overview",
   "attention": "Attention",

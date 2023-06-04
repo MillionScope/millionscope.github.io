@@ -25,3 +25,8 @@ blockquote::before {
 blockquote > a {
   color: #008ae6 !important;
 }
+
+article a:hover {
+  --tw-text-opacity: 0.85;
+  color: hsl(var(--nextra-primary-hue) 100% 45% / var(--tw-text-opacity));
+}

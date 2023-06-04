@@ -2,7 +2,10 @@
   "index": {
     "title": "Blogs",
     "type": "page",
-    "display": "hidden"
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article"
+    }
   },
   "overview": "Overview",
   "attention": "Attention",
@@ -13,7 +16,7 @@
   "language-model": "Language Model",
   "meta-learning": "Meta Learning",
   "neural-network": "Neural network",
-  "recurrent-neural-network":"Recurrent Neural Network",
+  "recurrent-neural-network": "Recurrent Neural Network",
   "information-theory": "Information Theory",
   "nlp": "Natural language processing",
   "python": "Python",
