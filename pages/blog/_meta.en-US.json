@@ -4,7 +4,6 @@
     "type": "page",
     "display": "hidden"
   },
-  "ai": "General AI",
   "attention": "Attention",
   "convolution": "Convolution",
   "evolution": "Evolution",
@@ -16,5 +15,7 @@
   "nlp": "Natural language processing",
   "python": "Python",
   "reinforcement-learning": "Reinforcement learing",
-  "unsupervised-learning": "Unsupervised Learning"
+  "unsupervised-learning": "Unsupervised Learning",
+  "ai": "General AI",
+  "xai": "Explainable AI"
 }
