@@ -1,0 +1,25 @@
+{
+  "index": {
+    "title": "Blogs",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article"
+    }
+  },
+  "overview": "Overview",
+  "attention": "Attention",
+  "convolution": "Convolution",
+  "evolution": "Evolution",
+  "generative-ai": "Generative AI",
+  "gesture-generation": "Gesture Generati",
+  "language-model": "Language Model",
+  "meta-learning": "Meta Learning",
+  "neural-network": "Neural network",
+  "information-theory": "Information Theory",
+  "nlp": "Natural language processing",
+  "python": "Python",
+  "reinforcement-learning": "Reinforcement learing",
+  "unsupervised-learning": "Unsupervised Learning",
+  "xai": "Explainable AI"
+}
