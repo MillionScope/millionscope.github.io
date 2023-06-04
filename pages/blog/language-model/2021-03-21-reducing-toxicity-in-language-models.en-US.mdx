@@ -7,9 +7,9 @@ author: Lilian Weng
 date: 2017-06-21
 ---
 
-Source : https://lilianweng.github.io/posts/2021-03-21-lm-toxicity
-
 # Reducing Toxicity in Language Models
+
+Source : https://lilianweng.github.io/posts/2021-03-21-lm-toxicity
 
 Large pretrained [language models](https://lilianweng.github.io/posts/2019-01-31-lm/) are trained over a sizable collection of online data. They unavoidably acquire certain toxic behavior and biases from the Internet. Pretrained language models are very powerful and have shown great success in many NLP tasks. However, to safely deploy them for practical real-world applications demands a strong safety control over the model generation process.
 
@@ -184,9 +184,9 @@ Fig. 7. Self-diagnosis abilities for identifying undesired attributes. The groun
 **Self-debiasing** ([Schick et al. 2021](https://arxiv.org/abs/2103.00453)) follows the similar idea as in [self-diagnosis](#prompt-based-detection). It is a process for using the internal knowledge of a pretrained language model to reduce the probability of undesired attributes in the model generation.
 
 ```yaml
-    ## Self-debiasing template, denoted as sdb(.)
-    The following text contains {undesired attribute s}:
-    {sample text x}
+## Self-debiasing template, denoted as sdb(.)
+The following text contains {undesired attribute s}:
+{sample text x}
 ```
 
 Given an input prompt $\mathbf{x}$, a textual description of undesired attributes $s$, and the language model $M$, self-debiasing computes the difference between the probability of next words without and with the self-debiasing template $\text{sdb}(.)$:
@@ -411,32 +411,18 @@ Or
 
 ## References
 
-[1] Vidgen, et al. ["Challenges and frontiers in abusive content detection."](https://www.aclweb.org/anthology/W19-3509/) Workshop on Abusive Language Online 2019.
-
-[2] Zampieri et al. ["Predicting the type and target of offensive posts in social media."](https://arxiv.org/abs/1902.09666) NAACL 2019.
-
-[3] Vidgen & Deczynski. ["Directions in abusive language training data, a systematic review: Garbage in, garbage out."](https://arxiv.org/abs/2004.01670) PLoS ONE 15(12): e0243300 (2020).
-
-[4] Davidson et al. ["Automated hate speech detection and the problem of offensive language."](https://arxiv.org/abs/1703.04009) ICWSM 2017.
-
-[5] Khatri et al. ["Detecting offensive content in open-domain conversations using two stage semi-supervision."](https://arxiv.org/abs/1811.12900) NeuriIPS CONVAI Workshop 2018.
-
-[6] Rosenthal et al. ["A Large-Scale Semi-Supervised Dataset for Offensive Language Identification"](https://arxiv.org/abs/2004.14454) arXiv:2004.14454 (2020).
-
-[7] Pavlopoulos et al. ["Toxicity Detection: Does Context Really Matter?"](https://arxiv.org/abs/2006.00998) arXiv:2006.00998 (2020).
-
-[8] Dinan et al. ["Build it, break it, fix it for dialogue safety: Robustness from adversarial human attack."](https://arxiv.org/abs/1908.06083) arXiv:1908.06083 (2019).
-
-[9] Kurita et al. ["Towards Robust Toxic Content Classification"](https://arxiv.org/abs/1912.06872) arXiv:1912.06872 (2019)
-
-[10] Santos et al. ["Fighting offensive language on social media with unsupervised text style transfer."](https://arxiv.org/abs/1805.07685) arXiv:1805.07685 (2018)
-
-[11] Dai et al. ["Style Transformer: Unpaired Text Style Transfer without Disentangled Latent Representation"](https://arxiv.org/abs/1905.05621) ACL 2019.
-
-[12] Laugier et al. ["Civil Rephrases Of Toxic Texts With Self-Supervised Transformers"](https://arxiv.org/abs/2102.05456) arXiv:2102.05456 (2021). [code](https://github.com/LeoLaugier/conditional-auto-encoder-text-to-text-transfer-transformer)
-
-[13] Schick et al. ["Self-Diagnosis and Self-Debiasing: A Proposal for Reducing Corpus-Based Bias in NLP"](https://arxiv.org/abs/2103.00453) arXiv:2103.00453 (2021).
-
-[14] Gehman et al. ["RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models"](https://arxiv.org/abs/2009.11462) EMNLP 2020.
-
-[15] Xu et al. ["Recipes for Safety in Open-domain Chatbots"](https://arxiv.org/abs/2010.07079) arXiv:2010.07079 (2020).
+1. Vidgen, et al. ["Challenges and frontiers in abusive content detection."](https://www.aclweb.org/anthology/W19-3509/) Workshop on Abusive Language Online 2019.
+2. Zampieri et al. ["Predicting the type and target of offensive posts in social media."](https://arxiv.org/abs/1902.09666) NAACL 2019.
+3. Vidgen & Deczynski. ["Directions in abusive language training data, a systematic review: Garbage in, garbage out."](https://arxiv.org/abs/2004.01670) PLoS ONE 15(12): e0243300 (2020).
+4. Davidson et al. ["Automated hate speech detection and the problem of offensive language."](https://arxiv.org/abs/1703.04009) ICWSM 2017.
+5. Khatri et al. ["Detecting offensive content in open-domain conversations using two stage semi-supervision."](https://arxiv.org/abs/1811.12900) NeuriIPS CONVAI Workshop 2018.
+6. Rosenthal et al. ["A Large-Scale Semi-Supervised Dataset for Offensive Language Identification"](https://arxiv.org/abs/2004.14454) arXiv:2004.14454 (2020).
+7. Pavlopoulos et al. ["Toxicity Detection: Does Context Really Matter?"](https://arxiv.org/abs/2006.00998) arXiv:2006.00998 (2020).
+8. Dinan et al. ["Build it, break it, fix it for dialogue safety: Robustness from adversarial human attack."](https://arxiv.org/abs/1908.06083) arXiv:1908.06083 (2019).
+9. Kurita et al. ["Towards Robust Toxic Content Classification"](https://arxiv.org/abs/1912.06872) arXiv:1912.06872 (2019)
+10. Santos et al. ["Fighting offensive language on social media with unsupervised text style transfer."](https://arxiv.org/abs/1805.07685) arXiv:1805.07685 (2018)
+11. Dai et al. ["Style Transformer: Unpaired Text Style Transfer without Disentangled Latent Representation"](https://arxiv.org/abs/1905.05621) ACL 2019.
+12. Laugier et al. ["Civil Rephrases Of Toxic Texts With Self-Supervised Transformers"](https://arxiv.org/abs/2102.05456) arXiv:2102.05456 (2021). [code](https://github.com/LeoLaugier/conditional-auto-encoder-text-to-text-transfer-transformer)
+13. Schick et al. ["Self-Diagnosis and Self-Debiasing: A Proposal for Reducing Corpus-Based Bias in NLP"](https://arxiv.org/abs/2103.00453) arXiv:2103.00453 (2021).
+14. Gehman et al. ["RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models"](https://arxiv.org/abs/2009.11462) EMNLP 2020.
+15. Xu et al. ["Recipes for Safety in Open-domain Chatbots"](https://arxiv.org/abs/2010.07079) arXiv:2010.07079 (2020).
