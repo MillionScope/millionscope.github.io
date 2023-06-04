@@ -1,6 +1,6 @@
 {
   "2017-06-21-an-overview-of-deep-learning-for-curious-people": "Overview",
-  "technique": "Technique",
+  "technique": "",
   "attention": "Attention",
   "convolution": "Convolution",
   "evolution": "Evolution",
@@ -16,8 +16,5 @@
   "graph": "Graph",
   "reinforcement-learning": "Reinforcement learing",
   "unsupervised-learning": "Unsupervised Learning",
-  "xai": "Explainable AI",
-  "---": {
-    "type": "separator"
-  }
+  "xai": "Explainable AI"
 }

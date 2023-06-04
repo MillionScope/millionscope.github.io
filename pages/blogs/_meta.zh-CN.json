@@ -1,6 +1,13 @@
 {
-  "2017-06-21-an-overview-of-deep-learning-for-curious-people": "Overview",
-  "technique": "",
+  "index": {
+    "title": "Blogs",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article"
+    }
+  },
+  "overview": "Overview",
   "attention": "Attention",
   "convolution": "Convolution",
   "evolution": "Evolution",
@@ -9,15 +16,10 @@
   "language-model": "Language Model",
   "meta-learning": "Meta Learning",
   "neural-network": "Neural network",
-  "recurrent-neural-network": "Recurrent Neural Network",
   "information-theory": "Information Theory",
   "nlp": "Natural language processing",
   "python": "Python",
-  "graph": "Graph",
   "reinforcement-learning": "Reinforcement learing",
   "unsupervised-learning": "Unsupervised Learning",
-  "xai": "Explainable AI",
-  "---": {
-    "type": "separator"
-  }
+  "xai": "Explainable AI"
 }
