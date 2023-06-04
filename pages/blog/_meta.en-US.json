@@ -16,6 +16,7 @@
   "information-theory": "Information Theory",
   "nlp": "Natural language processing",
   "python": "Python",
+  "graph": "Graph",
   "reinforcement-learning": "Reinforcement learing",
   "unsupervised-learning": "Unsupervised Learning",
   "xai": "Explainable AI"

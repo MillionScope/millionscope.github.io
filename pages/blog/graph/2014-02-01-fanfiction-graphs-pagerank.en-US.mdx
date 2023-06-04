@@ -8,6 +8,8 @@ tags: math, fanfiction, graphs, visualization
 
 # Fanfiction.net, Graphs, and PageRank: Oh My!
 
+Source : https://colah.github.io/posts/2014-02-Fanfiction-Graphs-PageRank/
+
 Have you ever wondered about the connections between stories on fanfiction.net, a website where people write derivative stories of works they like? (Unless you're weird like me, no, you probably haven't.) Clearly, there are different groups with different opinions about what stories are good. There's a more complicated structure than just a scale of quality of stories.
 
 Well, for some bizarre reason, I started analyzing fanfiction.net. To whet your appetite, here's a small visualization of Harry Potter stories on fanfiction.net as a graph:
@@ -62,16 +64,15 @@ There are lots of other possibilities, some resulting in directed graphs:
 - The probability that someone who favorites ($a$) favorites ($b$) times the probability that someone who favorites ($b$) favorites ($a$): $$W_{a,b} = \frac{|F_a \cap F_b|^2}{|F_a| * |F_b|}$$
 - The lesser of the probability that someone who favorites ($a$) favorites ($b$) and the probability that someone who favorites ($b$) favorites ($a$): $W_{a,b} = \min\left(\frac{|F_a \cap F_b|}{|F_a|}, \frac{|F_a \cap F_b|}{|F_b|} \right)$
 
-
 (It's worth noting that many of these could easily generalize to higher-dimensional edges for a weighted hyper-graph.)
 
-In our selected weight definition, \\(W\_{a, b} = \\frac{|F_a \\cap F_b|}{|F_a \\cup F_b|}\\), we give equal weight to the preferences of all users. But there's a lot of variance between users: some favorite everyting under the sun, while others very selectively favorite stories they really like. If we give the users who favorite thousands of stories the same weight as users who favorite ten, the users who favorite thousands dominate everything (and aren't a very good signal).
+In our selected weight definition, $$W\_{a, b} = \frac{|F_a \cap F_b|}{|F_a \cup F_b|}$$, we give equal weight to the preferences of all users. But there's a lot of variance between users: some favorite everyting under the sun, while others very selectively favorite stories they really like. If we give the users who favorite thousands of stories the same weight as users who favorite ten, the users who favorite thousands dominate everything (and aren't a very good signal).
 
-Instead, we give each user \\(u\\) a weight of \\(\\frac{1}{20+n(u)}\\) where \\(n(u)\\) denotes the number of stories \\(u\\) has favorited. This results in a measure on the space of users, \\(\\mu(S) = \\sum\_{u \\in S} \\frac{1}{20+n(u)}\\), and the equation for our weights becomes \\(W\_{a, b} = \\frac{\\mu(F_a \\cap F_b)}{\\mu(F_a \\cup F_b)}\\).
+Instead, we give each user $$u$$ a weight of $$\frac{1}{20+n(u)}$$ where $$n(u)$$ denotes the number of stories $$u$$ has favorited. This results in a measure on the space of users, $$\mu(S) = \sum\_{u \in S} \frac{1}{20+n(u)}$$, and the equation for our weights becomes $$W\_{a, b} = \frac{\mu(F_a \cap F_b)}{\mu(F_a \cup F_b)}$$.
 
 Applying these techniques to a couple of the top Harry Potter stories, we get the following graph (using [graphviz](http://www.graphviz.org/)):
 
-![Small labeled graph of top Harry Potter stories](img/HP-basic.png)
+![Small labeled graph of top Harry Potter stories](assets/images/2014-02-Fanfiction-Graphs-PageRank/HP-basic.png)
 
 Small labeled graph of top Harry Potter stories
 
@@ -81,7 +82,7 @@ With a small amount of investigation, it's easy to understand a lot of the graph
 
 A quick Google search reveals that this triangular clique consists of the “Dark Prince Trilogy” by Kurinoone. The stories are more strongly linked to their immediate predecessor/successor than the pair separated by a story are to eachother.
 
-## Large Graph ## visualizatio## ns for Harry Potter
+## Large Graph visualizatio for Harry Potter
 
 If we use different tools, we can visualize much larger graphs.
 
@@ -127,7 +128,7 @@ The predisposition of the French cluster towards slash stories is interesting, b
 
 You can also explore an [interactive graph of Harry Potter fanfiction](graphs/HP-ship/).
 
-## Large Graph ## Visualizatio## ns for Other Fandoms
+## Large Graph visualizations for Other Fandoms
 
 Of course, we can apply the exact same tricks to other fandoms.
 
@@ -220,11 +221,13 @@ There's something that's just begging to be done, at this point: story recommend
 
 This problem is called collaborative filtering, and is a well-established area. Unfortunately, it isn't something I'm terribly knowledgeable about, so I took a relatively naive approach: sum over the preferences of all users, weighted by how similar their preferences are to the user you are trying to predict.
 
-Specifically, we give each story, \\(s\\), a rank \\(R_u(s)\\), for a user \\(u\\). If the rank is high, we think \\(u\\) is likely to like \\(s\\).
+Specifically, we give each story, $$s$$, a rank $$R_u(s)$$, for a user $$u$$. If the rank is high, we think $$u$$ is likely to like $$s$$.
 
-\\\[R_u(s) = \\sum\_{v\\in F_s \\setminus \\{u\\}} \\left(\\frac{|S(u)\\cap S(v)|}{20+|S(v)|}\\right)^2\\\]
+$$
+R_u(s) = \sum\_{v\in F_s \setminus \{u\}} \left(\frac{|S(u)\cap S(v)|}{20+|S(v)|}\right)^2
+$$
 
-where \\(F_s\\) is the set of users who favorited \\(s\\) and \\(S(u)\\) is the stories favorited by the user \\(u\\).
+where $$F_s$$ is the set of users who favorited $$s$$ and $$S(u)$$ is the stories favorited by the user $$u$$.
 
 For example, we can make recommendations for S'TarKan, the author of the most favorited Harry Potter story on fanfiction.net:
 
@@ -246,7 +249,7 @@ A \* denotes that this is already one of the users favorite stories or one of th
 
 These are all very popular stories. It's not very useful to S'TarKan if we recommend them extremely popular stories that they've almost certainly seen before. As such, it is interesting to penalize the popularity of stories.
 
-Consider \\(\\frac{R_u(s)}{|F_s|^k}\\). When \\(k = 0\\), it's our original rank. When \\(k = 1\\), it full normalizes stories against popularity. And in between, it penalizes popularity to varying degrees. If we set k = 0.7, we get these recommendations:
+Consider $$\frac{R_u(s)}{|F_s|^k}$$. When $$k = 0$$, it's our original rank. When $$k = 1$$, it full normalizes stories against popularity. And in between, it penalizes popularity to varying degrees. If we set k = 0.7, we get these recommendations:
 
 - [Insanity](http://fanfiction.net/s/2114122) (0.034)
 - [Shadow of the Serpent](http://fanfiction.net/s/1995612) (0.032)
@@ -280,4 +283,3 @@ In light of all this, I'd like to reflect on a few things.
 **Resources**: In principle, I'd really like to share my code and make it easy for people to replicate the work I described here. However, I think that would be really rude to fanfiction.net because it could result in lots of people scraping their website, and it seems likely many would remove my rate limiter. An alternative would be to share my extracted metadata, but, again, I think it would be really rude to do that without fanfiction.net's permission, and possibly a violation of their terms of service. So, in the end, I'm not sharing any resources. That said, all of this can be done pretty easily.
 
 Built by [Oinkina](https://github.com/oinkina) with [Hakyll](http://jaspervdj.be/hakyll) using [Bootstrap](http://getbootstrap.com/), [MathJax](http://www.mathjax.org/), [Disqus](http://disqus.com/), [MathBox.js](https://github.com/unconed/MathBox.js), [Highlight.js](http://highlightjs.org/), and [Footnotes.js](http://ignorethecode.net/blog/2010/04/20/footnotes/).
-
