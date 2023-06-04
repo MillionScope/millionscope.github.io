@@ -4,6 +4,7 @@
     "type": "page",
     "display": "hidden"
   },
+  "Overview": "Overview",
   "attention": "Attention",
   "convolution": "Convolution",
   "evolution": "Evolution",
@@ -12,10 +13,10 @@
   "language-model": "Language Model",
   "meta-learning": "Meta Learning",
   "neural-network": "Neural network",
+  "information-theory": "Information Theory",
   "nlp": "Natural language processing",
   "python": "Python",
   "reinforcement-learning": "Reinforcement learing",
   "unsupervised-learning": "Unsupervised Learning",
-  "ai": "General AI",
   "xai": "Explainable AI"
 }
