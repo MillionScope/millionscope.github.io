@@ -17,7 +17,6 @@ import {
 } from "./translations/text";
 
 const config: DocsThemeConfig = {
-  // logo: <span>MillionScope</span>,
   docsRepositoryBase: "https://github.com/MillionScope/millionscope.github.io",
   faviconGlyph: "📚",
   project: {
