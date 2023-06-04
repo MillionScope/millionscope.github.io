@@ -201,7 +201,7 @@ const config: DocsThemeConfig = {
     },
     defaultMenuCollapseLevel: 1,
     toggleButton: true
-  },
+  }
 };
 
 export default config;
