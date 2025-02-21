@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@layer theme, base, components, utilities;
+@import "../styles/subheading-anchor.css";
+@import "../styles/scrollbar.css";
+@import "../styles/steps.css";
+@import "../styles/code-block.css";
+@import "../styles/utilities.css";
+@import "./fonts.css";
+
+/* @import "../styles/cards.css"; */
+/* @import "../styles/hamburger.css"; */
+/* @import "../styles/typesetting-article.css"; */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+@layer base {
+  :root {
+    --nextra-primary-hue: 212deg;
+    --nextra-primary-saturation: 100%;
+    --nextra-navbar-height: 3.5rem;
+    --nextra-menu-height: 3.75rem;
+    --nextra-banner-height: 2.5rem;
+    --nextra-bg: 255, 255, 255;
+    --nextra-primary-lightness: 45%;
+  }
+
+  .dark {
+    --nextra-primary-hue: 204deg;
+    --nextra-primary-saturation: 100%;
+    --nextra-bg: 1, 1, 1;
+  }
+
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+  }
+
+  html {
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "ss01" 1,
+      "ss06" 1 !important;
+    font-family:
+      "Segoe UI",
+      TTT,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      Noto Sans,
+      Ubuntu,
+      Cantarell,
+      Helvetica Neue,
+      Arial,
+      sans-serif,
+      Apple Color Emoji,
+      Segoe UI Emoji,
+      Segoe UI Symbol,
+      Noto Color Emoji;
+  }
+
+  html {
+    scroll-padding-top: 4rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "ss01" 1;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1rem;
+  }
+
+  html {
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    line-height: 1.5;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .dark:text-slate-200:where(.dark *) {
+    color: rgba(229, 231, 235);
+  }
+}
+
+@layer components {
+  @keyframes progress-ring-indeterminate {
+    0% {
+      stroke-dasharray: 0.01px 43.97px;
+      transform: rotate(0);
+    }
+
+    50% {
+      stroke-dasharray: 21.99px 21.99px;
+      transform: rotate(450deg);
+    }
+    100% {
+      stroke-dasharray: 0.01px 43.97px;
+      transform: rotate(3turn);
+    }
+  }
+
+  .ring-progress-rotate {
+    min-block-size: 16px;
+    min-inline-size: 16px;
+    outline: none;
+  }
+
+  .progress-ring.indeterminate.ring-progress-rotate circle.ring-progress-rotate {
+    animation: progress-ring-indeterminate 2s linear infinite;
+  }
+
+  .progress-ring.ring-progress-rotate circle.ring-progress-rotate {
+    fill: none;
+    stroke: currentColor;
+    /* hsl(209, 100%, 36%); */
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-dasharray: 43.97;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: all 0.25s linear;
+  }
+}
+
+@layer components {
+  @keyframes indeterminate {
+    0% {
+      inset-inline-start: -33%;
+    }
+    100% {
+      inset-inline-start: 100%;
+    }
+  }
+
+  .animate-gradient {
+    animation-name: indeterminate;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@theme {
+  --color-primary-50: hsl(212deg 100% calc(45% + 52%));
+  --color-primary-100: hsl(212deg 100% calc(45% + 49%));
+  --color-primary-200: hsl(212deg 100% calc(45% + 41%));
+  --color-primary-300: hsl(212deg 100% calc(45% + 32%));
+  --color-primary-400: hsl(212deg 100% calc(45% + 21%));
+  --color-primary-500: hsl(212deg 100% calc(45% + 5%));
+  --color-primary-600: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) var(--nextra-primary-lightness));
+  --color-primary-700: hsl(212deg 100% calc(45% - 6%));
+  --color-primary-800: hsl(212deg 100% calc(45% - 13%));
+  --color-primary-900: hsl(212deg 100% calc(45% - 21%));
+
+  --color-dark: #111;
+}

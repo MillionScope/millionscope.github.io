@@ -1,0 +1,63 @@
+{
+  "name": "genea",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "prettier": "prettier --write \"**/*.{js, jsx}\"",
+    "build": "next build",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@next/mdx": "^15.1.7",
+    "@popperjs/core": "^2.11.8",
+    "@shikijs/twoslash": "^3.0.0",
+    "@tailwindcss/postcss": "^4.0.8",
+    "axios": "^1.7.9",
+    "clsx": "^2.1.1",
+    "estree-util-value-to-estree": "^3.3.2",
+    "framer-motion": "^12.4.7",
+    "github-slugger": "^2.0.0",
+    "hast-util-to-estree": "^3.1.2",
+    "highcharts": "^12.1.2",
+    "highcharts-react-official": "^3.2.1",
+    "intersection-observer": "^0.12.2",
+    "next": "^15.1.7",
+    "next-themes": "^0.4.4",
+    "papaparse": "^5.5.2",
+    "postcss": "^8.5.3",
+    "postcss-lightningcss": "^1.0.1",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-dropzone": "^14.3.5",
+    "rehype-katex": "^7.0.1",
+    "rehype-raw": "^7.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-embed-images": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.1",
+    "scroll-into-view-if-needed": "^3.1.0",
+    "swr": "^2.3.2",
+    "tailwindcss": "^4.0.8",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0",
+    "uuid": "^11.1.0",
+    "yaml": "^2.7.0"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.9.4",
+    "@shikijs/rehype": "^3.0.0",
+    "daisyui": "^4.12.23",
+    "eslint": "9.20.1",
+    "eslint-config-next": "15.1.7",
+    "lightningcss": "^1.29.1",
+    "prettier": "^3.5.1",
+    "shiki": "^3.0.0"
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "optionalDependencies": {
+    "@tailwindcss/oxide-linux-x64-gnu": "^4.0.8"
+  }
+}
