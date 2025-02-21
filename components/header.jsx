@@ -1,10 +1,10 @@
 import React from "react"
-import Github from "../icons/github"
-import Twitter from "../icons/twitter"
 import Navbar from "./navbar"
 import AuthButton from "@/components/auth/auth-button"
 import Image from "next/image"
 import Link from "next/link"
+import TwitterIcon from "@/icons/twitter"
+import Github from "@/icons/github"
 
 export default function Header() {
   return (
@@ -18,19 +18,19 @@ export default function Header() {
         href="/"
       >
         <Image
-          src="/logo.png"
-          width={200}
-          height={20}
-          style={{ height: "20px", width: "auto" }}
-          className="h-5 w-auto"
+          src="/logo.svg"
+          width={25}
+          height={25}
+          style={{ height: "25px", width: "auto" }}
+          className="w-auto"
           alt="logo"
         />
-        {/* <span
+        <span
           className="max-md:hidden select-none font-extrabold ltr:ml-2 rtl:mr-2"
-          title="GENEA: Gesture Generation Research Community"
+          title="MillionScope: Research Community"
         >
-          GENEA
-        </span> */}
+          MillionScope
+        </span>
       </Link>
       {/* <a className="text-sm contrast-more:text-gray-700 contrast-more:dark:text-gray-100 max-md:hidden whitespace-nowrap font-medium subpixel-antialiased" aria-current="true" href="/docs/getting-started">Docs</a> */}
       {/* <div className="relative" data-headlessui-state="">
@@ -82,7 +82,7 @@ export default function Header() {
         target="blank"
         rel="noreferrer"
       >
-        <Twitter />
+        <TwitterIcon />
       </Link>
     </Navbar>
     //     </nav>

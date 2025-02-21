@@ -31,23 +31,17 @@ export default function Footer() {
       </div>
       <hr className="dark:border-neutral-800" />
       <div className="mx-auto flex max-w-[90rem] justify-center py-12 text-gray-600 dark:text-gray-400 md:justify-end pl-[max(env(safe-area-inset-left),1.5rem)] pr-[max(env(safe-area-inset-right),1.5rem)]">
-        <a
-          className="focus-visible:nextra-focus flex flex-col  items-start gap-2"
-          target="_blank"
-          rel="noreferrer"
-          title="genea leaderboard"
-        >
+        <a className="focus-visible:nextra-focus flex flex-col  items-start gap-2" target="_blank" rel="noreferrer" title="MillionScope">
           <div className="flex w-full justify-between">
             <span className="font-semibold">Powered by</span>
             <span>© 2025</span>
           </div>
-          <Image
-            src="/logo.png"
-            width={192}
-            height={24}
-            className="h-7 w-48"
-            alt="logo"
-          />
+          <div className="flex">
+            <Image src="/logo.svg" width={25} height={25} className="h-7 w-7" alt="logo" />
+            <span className="max-md:hidden select-none font-extrabold ltr:ml-2 rtl:mr-2" title="MillionScope">
+              MillionScope
+            </span>
+          </div>
         </a>
       </div>
     </footer>

@@ -1,8 +1,6 @@
 import React from "react"
 import HomePage from "./homepage.mdx"
-import Twitter from "@/components/twitter"
 import Body from "@/components/body"
-// const Twitter = dynamic(() => import("../components/twitter"), { ssr: false })
 
 export default function Page() {
   return (
@@ -13,9 +11,7 @@ export default function Page() {
             <HomePage />
           </div>
 
-          <div className="w-full">
-            <Twitter />
-          </div>
+          <div className="w-full"></div>
         </div>
       </main>
     </Body>
