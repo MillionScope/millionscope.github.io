@@ -30,7 +30,7 @@ class ErrorBoundary extends Component {
                 <div className="container py-2">
                   <p className="mb-4">
                     Please visit{" "}
-                    <a className="text-blue-500 underline" href="https://genealeaderboard.github.io">
+                    <a className="text-blue-500 underline" href="https://millionscope.github.io">
                       HomePage
                     </a>{" "}
                     to get access again
