@@ -18,7 +18,7 @@ import Leaderboard from "@/icons/leaderboard"
 export const OnFocusItemContext = createContext(null)
 OnFocusItemContext.displayName = "OnFocusItem"
 
-export default function Sidebar() {
+export default function LeftMenuBar() {
   const { menu, setMenu } = useMenu()
   const [focused, setFocused] = useState(null)
   const [showSidebar, setSidebar] = useState(true)
