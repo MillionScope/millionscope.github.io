@@ -1,5 +1,5 @@
 import { ErrorBoundary } from "@/components/ErrorBoundary"
-import Sidebar from "@/components/sidebar"
+import Sidebar from "@/components/layout/sidebar"
 import { Callout } from "@/nextra"
 import { File } from "@/nextra/sidebar"
 // import { Sidebar } from "@/nextra/sidebar"

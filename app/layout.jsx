@@ -1,10 +1,10 @@
 import "./globals.css"
 // import "../styles/custom.css"
 import { ThemeProvider } from "next-themes"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
 import { AuthProvider } from "@/contexts/auth"
 import ErrorBoundary from "@/components/ErrorBoundary"
+import Header from "@/components/layout/header"
+import Footer from "@/components/layout/footer"
 // import { NextAuthProviders } from "@/components/auth/auth-provider"
 // import { AuthProvider } from "@/contexts/auth"
 // import { useThemeConfig } from "@/contexts/theme";
