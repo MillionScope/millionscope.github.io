@@ -1,4 +1,4 @@
-import { ErrorBoundary } from "@/components/ErrorBoundary"
+import { ErrorBoundary } from "@/components/error-boundary"
 import Sidebar from "@/components/layout/sidebar"
 import { Callout } from "@/nextra"
 import { File } from "@/nextra/sidebar"
