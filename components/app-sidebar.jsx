@@ -6,9 +6,10 @@ import { PlusIcon } from "@/components/icons"
 import { SidebarHistory } from "@/components/sidebar-history"
 import { SidebarUserNav } from "@/components/sidebar-user-nav"
 import { Button } from "@/components/ui/button"
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, useSidebar } from "@/components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu } from "@/components/ui/sidebar"
 import Link from "next/link"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import { useSidebar } from "@/contexts/sidebar"
 
 export function AppSidebar({ user }) {
   const router = useRouter()

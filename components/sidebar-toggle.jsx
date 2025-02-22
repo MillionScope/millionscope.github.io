@@ -1,8 +1,8 @@
-import { useSidebar } from "@/components/ui/sidebar"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 import { SidebarLeftIcon } from "./icons"
 import { Button } from "./ui/button"
+import { useSidebar } from "@/contexts/sidebar"
 
 export function SidebarToggle({ className }) {
   const { toggleSidebar } = useSidebar()

@@ -10,7 +10,6 @@ import { VersionFooter } from "./version-footer"
 import { ArtifactActions } from "./artifact-actions"
 import { ArtifactCloseButton } from "./artifact-close-button"
 import { ArtifactMessages } from "./artifact-messages"
-import { useSidebar } from "./ui/sidebar"
 // import { useArtifact } from "@/utils/hooks/use-artifact"
 import { useArtifact } from "@/utils/hooks/use-artifact"
 // import { imageArtifact } from "@/artifacts/image/client"
@@ -19,6 +18,7 @@ import { sheetArtifact } from "@/artifacts/sheet/client"
 import { textArtifact } from "@/artifacts/text/client"
 import equal from "fast-deep-equal"
 import { imageArtifact } from "@/artifacts/image/client"
+import { useSidebar } from "@/contexts/sidebar"
 
 export const artifactDefinitions = [textArtifact, codeArtifact, imageArtifact, sheetArtifact]
 

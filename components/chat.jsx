@@ -13,6 +13,7 @@ import { VisibilityType } from "./visibility-selector"
 import { useArtifactSelector } from "@/utils/hooks/use-artifact"
 import { toast } from "sonner"
 import { ChatHeader } from "@/components/chat-header"
+import { apiFetcher } from "@/utils/fetcher"
 
 // {
 //   id: string;
@@ -39,7 +40,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
     },
   })
 
-  const { data: votes } = useSWR(`/api/vote?chatId=${id}`, fetcher)
+  const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcher)
 
   const [attachments, setAttachments] = useState([])
   const isArtifactVisible = useArtifactSelector((state) => state.isVisible)
@@ -47,7 +48,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   return (
     <>
       <div className="flex flex-col min-w-0 h-dvh bg-background">
-        <ChatHeader chatId={id} selectedModelId={selectedChatModel} selectedVisibilityType={selectedVisibilityType} isReadonly={isReadonly} />
+        {/* <ChatHeader chatId={id} selectedModelId={selectedChatModel} selectedVisibilityType={selectedVisibilityType} isReadonly={isReadonly} /> */}
 
         <Messages
           chatId={id}
