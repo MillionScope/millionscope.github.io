@@ -1,10 +1,12 @@
 import "./globals.css"
+
 // import "../styles/custom.css"
 import { ThemeProvider } from "next-themes"
 import { AuthProvider } from "@/contexts/auth"
 import ErrorBoundary from "@/components/error-boundary"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
+import { Toaster } from "sonner"
 // import { NextAuthProviders } from "@/components/auth/auth-provider"
 // import { AuthProvider } from "@/contexts/auth"
 // import { useThemeConfig } from "@/contexts/theme";
@@ -31,9 +33,10 @@ The GENEA Leaderboard is the evolution of the GENEA challenge, which was held at
         <meta name="author" content="GENEA Leaderboard" />
         <title>GENEA Leaderboard Submission Page</title>
       </head>
-      <body className="nextra-banner-hidden">
+      <body className="nextra-banner-hidden antialiased">
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+            <Toaster position="top-center" />
             <AuthProvider>
               <div dir="ltr">
                 <Header />

@@ -1,38 +1,34 @@
 "use client"
 
-import { useState } from "react"
+import { Chat } from "@/components/chat"
+import { DataStreamHandler } from "@/components/data-stream-handler"
+import { getCookie } from "@/utils/cookies"
+import { useEffect, useState } from "react"
 
 export default function Page() {
-  const [input, setInput] = useState("")
-  const [output, setOutput] = useState("")
+  const id = generateUUID()
+  const [modelId, setModelId] = useState(null)
 
-  const handleStream = async () => {
-    const response = await fetch("https://your-cloudflare-worker-url", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ prompt: input }),
-    })
+  // const cookieStore = await cookies();
+  // const modelIdFromCookie = cookieStore.get('chat-model');
+  useEffect(() => {
+    const storedModelId = getCookie("chat-model")
+    setModelId(storedModelId)
+  }, [])
 
-    const reader = response.body.getReader()
-    const decoder = new TextDecoder()
-    let result = ""
-
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
-      result += decoder.decode(value, { stream: true })
-      setOutput(result)
-    }
+  if (!modelId) {
+    return (
+      <>
+        <Chat key={id} id={id} initialMessages={[]} selectedChatModel={DEFAULT_CHAT_MODEL} selectedVisibilityType="private" isReadonly={false} />
+        <DataStreamHandler id={id} />
+      </>
+    )
   }
 
   return (
-    <div>
-      <h1>Stream Text with Cloudflare Worker</h1>
-      <input type="text" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter your prompt" />
-      <button onClick={handleStream}>Stream</button>
-      <pre>{output}</pre>
-    </div>
+    <>
+      <Chat key={id} id={id} initialMessages={[]} selectedChatModel={modelIdFromCookie.value} selectedVisibilityType="private" isReadonly={false} />
+      <DataStreamHandler id={id} />
+    </>
   )
 }
