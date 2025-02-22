@@ -2,6 +2,8 @@
 
 import { Chat } from "@/components/chat"
 import { DataStreamHandler } from "@/components/data-stream-handler"
+import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models"
+import { generateUUID } from "@/lib/utils"
 import { getCookie } from "@/utils/cookies"
 import { useEffect, useState } from "react"
 

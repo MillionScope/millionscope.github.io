@@ -1,14 +1,14 @@
 "use client"
 
 import { startTransition, useMemo, useOptimistic, useState } from "react"
-
-import { saveChatModelAsCookie } from "@/app/(chat)/actions"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { chatModels } from "@/lib/ai/models"
-import { cn } from "@/lib/utils"
-
 import { CheckCircleFillIcon, ChevronDownIcon } from "./icons"
+import { chatModels } from "@/lib/ai/models"
+
+// import { saveChatModelAsCookie } from "@/app/(chat)/actions"
+// import { chatModels } from "@/lib/ai/models"
 
 export function ModelSelector({ selectedModelId, className }) {
   const [open, setOpen] = useState(false)
@@ -36,7 +36,7 @@ export function ModelSelector({ selectedModelId, className }) {
 
                 startTransition(() => {
                   setOptimisticModelId(id)
-                  saveChatModelAsCookie(id)
+                  // saveChatModelAsCookie(id)
                 })
               }}
               className="gap-4 group/item flex flex-row justify-between items-center"

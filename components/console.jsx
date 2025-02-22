@@ -2,7 +2,7 @@ import { TerminalWindowIcon, LoaderIcon, CrossSmallIcon } from "./icons"
 import { Button } from "./ui/button"
 import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-import { useArtifactSelector } from "@/hooks/use-artifact"
+import { useArtifactSelector } from "@/utils/hooks/use-artifact"
 
 // export interface ConsoleOutputContent {
 //   type: 'text' | 'image';

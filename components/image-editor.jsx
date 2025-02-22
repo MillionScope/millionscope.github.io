@@ -1,5 +1,6 @@
+import { cn } from "@/lib/utils"
 import { LoaderIcon } from "./icons"
-import cn from "classnames"
+// import cn from "classnames"
 
 // interface ImageEditorProps {
 //   title: string;

@@ -11,7 +11,7 @@ import { sanitizeUIMessages } from "@/lib/utils"
 import { ArrowUpIcon, CodeIcon, LogsIcon, MessageIcon, PenIcon, SparklesIcon, StopIcon, SummarizeIcon } from "./icons"
 import { artifactDefinitions, ArtifactKind } from "./artifact"
 import { ArtifactToolbarItem } from "./create-artifact"
-import { UseChatHelpers } from "ai/react"
+import { UseChatHelpers } from "@ai-sdk/react"
 
 // type ToolProps = {
 //   description: string;

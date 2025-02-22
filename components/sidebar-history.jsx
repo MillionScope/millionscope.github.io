@@ -31,7 +31,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar"
 import { fetcher } from "@/lib/utils"
-import { useChatVisibility } from "@/hooks/use-chat-visibility"
+import { useChatVisibility } from "@/utils/hooks/use-chat-visibility"
 
 // type GroupedChats = {
 //   today: Chat[];

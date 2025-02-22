@@ -1,6 +1,6 @@
 "use client"
 
-import { useChat } from "ai/react"
+import { useChat } from "@ai-sdk/react"
 import { useState } from "react"
 import useSWR, { useSWRConfig } from "swr"
 
@@ -11,7 +11,7 @@ import { Artifact } from "./artifact"
 import { MultimodalInput } from "./multimodal-input"
 import { Messages } from "./messages"
 import { VisibilityType } from "./visibility-selector"
-import { useArtifactSelector } from "@/hooks/use-artifact"
+import { useArtifactSelector } from "@/utils/hooks/use-artifact"
 import { toast } from "sonner"
 
 // {

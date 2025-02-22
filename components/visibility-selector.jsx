@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { cn } from "@/lib/utils"
 
 import { CheckCircleFillIcon, ChevronDownIcon, GlobeIcon, LockIcon } from "./icons"
-import { useChatVisibility } from "@/hooks/use-chat-visibility"
+import { useChatVisibility } from "@/utils/hooks/use-chat-visibility"
 
 // export type VisibilityType = 'private' | 'public';
 

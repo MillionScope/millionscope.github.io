@@ -1,12 +1,11 @@
 "use client"
 
+import React, { memo, useEffect, useRef } from "react"
 import { EditorView } from "@codemirror/view"
 import { EditorState, Transaction } from "@codemirror/state"
 import { python } from "@codemirror/lang-python"
 import { oneDark } from "@codemirror/theme-one-dark"
 import { basicSetup } from "codemirror"
-import React, { memo, useEffect, useRef } from "react"
-import { Suggestion } from "@/lib/db/schema"
 
 // type EditorProps = {
 //   content: string;

@@ -1,7 +1,7 @@
 import { memo } from "react"
 import { CrossIcon } from "./icons"
 import { Button } from "./ui/button"
-import { initialArtifactData, useArtifact } from "@/hooks/use-artifact"
+import { initialArtifactData, useArtifact } from "@/utils/hooks/use-artifact"
 
 function PureArtifactCloseButton() {
   const { setArtifact } = useArtifact()

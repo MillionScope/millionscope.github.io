@@ -38,10 +38,11 @@ The GENEA Leaderboard is the evolution of the GENEA challenge, which was held at
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <Toaster position="top-center" />
             <AuthProvider>
+            
               <div dir="ltr">
-                <Header />
+                {/* <Header /> */}
                 {children}
-                <Footer />
+                {/* <Footer /> */}
               </div>
             </AuthProvider>
           </ThemeProvider>

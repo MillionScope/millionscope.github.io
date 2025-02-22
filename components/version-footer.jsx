@@ -10,7 +10,7 @@ import { getDocumentTimestampByIndex } from "@/lib/utils"
 
 import { LoaderIcon } from "./icons"
 import { Button } from "./ui/button"
-import { useArtifact } from "@/hooks/use-artifact"
+import { useArtifact } from "@/utils/hooks/use-artifact"
 
 // interface VersionFooterProps {
 //   handleVersionChange: (type: 'next' | 'prev' | 'toggle' | 'latest') => void;

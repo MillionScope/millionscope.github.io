@@ -2,7 +2,7 @@ import { memo } from "react"
 
 import { FileIcon, LoaderIcon, MessageIcon, PencilEditIcon } from "./icons"
 import { toast } from "sonner"
-import { useArtifact } from "@/hooks/use-artifact"
+import { useArtifact } from "@/utils/hooks/use-artifact"
 
 const getActionText = (
   type, // 'create' | 'update' | 'request-suggestions'
