@@ -37,12 +37,7 @@ export default async function RootLayout({ children }) {
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <Toaster position="top-center" />
             <AuthProvider>
-            
-              <div dir="ltr">
-                {/* <Header /> */}
                 {children}
-                {/* <Footer /> */}
-              </div>
             </AuthProvider>
           </ThemeProvider>
         </ErrorBoundary>

@@ -402,7 +402,6 @@ export {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,

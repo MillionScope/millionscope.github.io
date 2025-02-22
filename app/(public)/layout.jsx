@@ -4,6 +4,7 @@ import React from "react"
 import { useState } from "react"
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider } from "@/contexts/sidebar"
+import { SidebarInset } from "@/components/ui/sidebar"
 
 export default function Layout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -17,8 +18,8 @@ export default function Layout({ children }) {
   return (
     <>
       <SidebarProvider defaultOpen={!isCollapsed}>
-      {/* <AppSidebar user={user} /> */}
-      {children}
+        <AppSidebar user={user} />
+        <SidebarInset>{children}</SidebarInset>
       </SidebarProvider>
     </>
   )
