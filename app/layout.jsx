@@ -1,7 +1,6 @@
 import "./globals.css"
 // import "../styles/custom.css"
 import { ThemeProvider } from "next-themes"
-import Body from "@/components/body"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 import { AuthProvider } from "@/contexts/auth"

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState, memo } from "react"
-import { Loading } from "@/components/loading/loading"
 import BoardIcon from "../../icons/board"
 import Image from "next/image"
 import { clsx as cn } from "clsx"
@@ -9,6 +8,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react"
 import { ArrowRightIcon } from "@/nextra/icons"
 import Link from "next/link"
 import { useAuth } from "@/contexts/auth"
+import { Loading } from "../loading/loading"
 
 // githubName
 const AuthButton = memo(function AuthButton() {
