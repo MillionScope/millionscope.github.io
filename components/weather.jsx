@@ -235,7 +235,7 @@ export function Weather({ weatherAtLocation = SAMPLE }) {
               }
             )}
           />
-          <div className="text-4xl font-medium text-blue-50">
+          <div className="text-4xl font-bold text-blue-50">
             {n(weatherAtLocation.current.temperature_2m)}
             {weatherAtLocation.current_units.temperature_2m}
           </div>

@@ -4,7 +4,6 @@ import { useChat } from "@ai-sdk/react"
 import { useState } from "react"
 import useSWR, { useSWRConfig } from "swr"
 
-import { ChatHeader } from "@/components/chat-header"
 import { fetcher, generateUUID } from "@/lib/utils"
 
 import { Artifact } from "./artifact"
@@ -13,6 +12,7 @@ import { Messages } from "./messages"
 import { VisibilityType } from "./visibility-selector"
 import { useArtifactSelector } from "@/utils/hooks/use-artifact"
 import { toast } from "sonner"
+// import { ChatHeader } from "@/components/chat-header"
 
 // {
 //   id: string;
@@ -47,7 +47,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   return (
     <>
       <div className="flex flex-col min-w-0 h-dvh bg-background">
-        <ChatHeader chatId={id} selectedModelId={selectedChatModel} selectedVisibilityType={selectedVisibilityType} isReadonly={isReadonly} />
+        {/* <ChatHeader chatId={id} selectedModelId={selectedChatModel} selectedVisibilityType={selectedVisibilityType} isReadonly={isReadonly} /> */}
 
         <Messages
           chatId={id}
@@ -79,7 +79,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
         </form>
       </div>
 
-      <Artifact
+      {/* <Artifact
         chatId={id}
         input={input}
         setInput={setInput}
@@ -94,7 +94,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
         reload={reload}
         votes={votes}
         isReadonly={isReadonly}
-      />
+      /> */}
     </>
   )
 }

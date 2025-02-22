@@ -375,7 +375,7 @@ function PureArtifact({ chatId, input, setInput, handleSubmit, isLoading, stop, 
                 <ArtifactCloseButton />
 
                 <div className="flex flex-col">
-                  <div className="font-medium">{artifact.title}</div>
+                  <div className="font-bold">{artifact.title}</div>
 
                   {isContentDirty ? (
                     <div className="text-sm text-muted-foreground">Saving changes...</div>

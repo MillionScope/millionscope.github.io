@@ -122,14 +122,9 @@ export function SidebarHistory({ user }) {
     data: history,
     isLoading,
     mutate,
-  } = useSWR <
-  Array <
-  Chat >>
-    (user ? "/api/history" : null,
-    fetcher,
-    {
-      fallbackData: [],
-    })
+  } = useSWR(user ? "/api/history" : null, fetcher, {
+    fallbackData: [],
+  })
 
   useEffect(() => {
     mutate()

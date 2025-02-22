@@ -1,14 +1,20 @@
 "use client"
 import { ChevronUp } from "lucide-react"
 import Image from "next/image"
-import { signOut } from "next-auth/react"
-import { useTheme } from "next-themes"
+// import { signOut } from "next-auth/react"
+// import { useTheme } from "next-themes"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
+import { useState } from "react"
+
+const signOut = function (){
+  console.log("signOut")
+} 
 
 export function SidebarUserNav({ user }) {
-  const { setTheme, theme } = useTheme()
+  // const { setTheme, theme } = useTheme()
+  const [theme, setTheme] = useState("light")
 
   return (
     <SidebarMenu>

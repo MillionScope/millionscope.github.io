@@ -17,7 +17,7 @@ export function ThemeSwitch({ lite, className }) {
   return (
     // <button
     //   title="Change theme"
-    //   className="h-7 rounded-md px-2 text-left text-xs font-medium text-gray-600 transition-colors dark:text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-primary-100/5 dark:hover:text-gray-50"
+    //   className="h-7 rounded-md px-2 text-left text-xs font-bold text-gray-600 transition-colors dark:text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-primary-100/5 dark:hover:text-gray-50"
     //   id="headlessui-listbox-button-:Rkt6:"
     //   type="button"
     //   aria-haspopup="listbox"

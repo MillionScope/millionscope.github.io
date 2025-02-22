@@ -30,14 +30,14 @@ export function MessageReasoning({
     <div className="flex flex-col">
       {isLoading ? (
         <div className="flex flex-row gap-2 items-center">
-          <div className="font-medium">Reasoning</div>
+          <div className="font-bold">Reasoning</div>
           <div className="animate-spin">
             <LoaderIcon />
           </div>
         </div>
       ) : (
         <div className="flex flex-row gap-2 items-center">
-          <div className="font-medium">Reasoned for a few seconds</div>
+          <div className="font-bold">Reasoned for a few seconds</div>
           <div
             className="cursor-pointer"
             onClick={() => {

@@ -18,19 +18,19 @@ export default function Page() {
     setModelId(storedModelId)
   }, [])
 
-  if (!modelId) {
-    return (
-      <>
-        <Chat key={id} id={id} initialMessages={[]} selectedChatModel={DEFAULT_CHAT_MODEL} selectedVisibilityType="private" isReadonly={false} />
-        <DataStreamHandler id={id} />
-      </>
-    )
-  }
+  // if (!modelId) {
+  //   return (
+  //     <>
+  //       <Chat key={id} id={id} initialMessages={[]} selectedChatModel={DEFAULT_CHAT_MODEL} selectedVisibilityType="private" isReadonly={false} />
+  //       {/* <DataStreamHandler id={id} /> */}
+  //     </>
+  //   )
+  // }
 
   return (
     <>
-      <Chat key={id} id={id} initialMessages={[]} selectedChatModel={modelIdFromCookie.value} selectedVisibilityType="private" isReadonly={false} />
-      <DataStreamHandler id={id} />
+      <Chat key={id} id={id} initialMessages={[]} selectedChatModel={modelId} selectedVisibilityType="private" isReadonly={false} />
+      {/* <DataStreamHandler id={id} /> */}
     </>
   )
 }
