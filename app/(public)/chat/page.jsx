@@ -18,14 +18,16 @@ export default function Page() {
     setModelId(storedModelId)
   }, [])
 
-  // if (!modelId) {
-  //   return (
-  //     <>
-  //       <Chat key={id} id={id} initialMessages={[]} selectedChatModel={DEFAULT_CHAT_MODEL} selectedVisibilityType="private" isReadonly={false} />
-  //       {/* <DataStreamHandler id={id} /> */}
-  //     </>
-  //   )
-  // }
+  if (!modelId) {
+    console.log("go here")
+    return (
+      <>
+        <Chat key={id} id={id} initialMessages={[]} selectedChatModel={DEFAULT_CHAT_MODEL} selectedVisibilityType="private" isReadonly={false} />
+        {/* <DataStreamHandler id={id} /> */}
+      </>
+    )
+  }
+  console.log("ddddd", modelId)
 
   return (
     <>

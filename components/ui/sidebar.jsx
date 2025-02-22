@@ -20,7 +20,15 @@ const SIDEBAR_WIDTH_MOBILE = "18rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
-const SidebarContext = createContext(null)
+const SidebarContext = createContext({
+  state: "expanded", //  'expanded' | 'collapsed';
+  open: true,
+  setOpen: (open) => {},
+  openMobile: false,
+  setOpenMobile: (open) => {},
+  isMobile: false,
+  toggleSidebar: () => {},
+})
 
 function useSidebar() {
   const context = useContext(SidebarContext)

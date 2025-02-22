@@ -3,7 +3,7 @@
 import React from "react"
 import { useState } from "react"
 import { SidebarProvider } from "@/components/ui/sidebar"
-// import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
 
 export default function Layout({ children }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -16,10 +16,10 @@ export default function Layout({ children }) {
 
   return (
     <>
-      {/* <SidebarProvider defaultOpen={!isCollapsed}> */}
-      {/* <AppSidebar user={user} /> */}
+      <SidebarProvider defaultOpen={!isCollapsed}>
+      <AppSidebar user={user} />
       {children}
-      {/* </SidebarProvider> */}
+      </SidebarProvider>
     </>
   )
 }
