@@ -17,7 +17,6 @@ export function SidebarUserNav() {
   // const { setTheme, theme } = useTheme()
   const [theme, setTheme] = useState("light")
   const { user, logout } = useAuth()
-  console.log("user", user)
 
   if (!user) {
     return <></>

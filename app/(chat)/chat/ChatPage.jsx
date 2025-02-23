@@ -71,7 +71,7 @@ export default function ChatPage() {
         initialMessages={convertToUIMessages(messagesFromDb)}
         selectedChatModel={selectedChatModel}
         selectedVisibilityType={chat.visibility}
-        isReadonly={false} // Adjust this based on your logic
+        isReadonly={false}
       />
       <DataStreamHandler id={id} />
     </>

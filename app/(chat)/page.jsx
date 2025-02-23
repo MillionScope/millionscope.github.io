@@ -27,12 +27,12 @@ export default function Page() {
       </>
     )
   }
-  console.log("ddddd", modelId)
+  // console.log("ddddd", modelId)
 
   return (
     <>
       <Chat key={id} id={id} initialMessages={[]} selectedChatModel={modelId} selectedVisibilityType="private" isReadonly={false} />
-      {/* <DataStreamHandler id={id} /> */}
+      <DataStreamHandler id={id} />
     </>
   )
 }

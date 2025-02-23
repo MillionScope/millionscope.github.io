@@ -238,7 +238,6 @@ export function SidebarHistory() {
     )
   }
 
-  console.log("history", history)
   return (
     <>
       <SidebarGroup>

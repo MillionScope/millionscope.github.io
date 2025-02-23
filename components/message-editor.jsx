@@ -23,18 +23,18 @@ export function MessageEditor({ message, setMode, setMessages, reload }) {
   const [draftContent, setDraftContent] = useState(message.content)
   const textareaRef = useRef(null)
 
-  useEffect(() => {
-    if (textareaRef.current) {
-      adjustHeight()
-    }
-  }, [textareaRef, adjustHeight])
-
   const adjustHeight = useCallback(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto"
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight + 2}px`
     }
   }, [])
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      adjustHeight()
+    }
+  }, [textareaRef])
 
   const handleInput = (event) => {
     setDraftContent(event.target.value)

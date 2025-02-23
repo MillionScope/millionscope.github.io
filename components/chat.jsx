@@ -14,6 +14,7 @@ import { useArtifactSelector } from "@/utils/hooks/use-artifact"
 import { toast } from "sonner"
 import { ChatHeader } from "@/components/chat-header"
 import { apiFetcher } from "@/utils/fetcher"
+import { API_ENDPOINT } from "@/config/constants"
 
 // {
 //   id: string;
@@ -26,13 +27,13 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   const { mutate } = useSWRConfig()
 
   const { messages, setMessages, handleSubmit, input, setInput, append, isLoading, stop, reload } = useChat({
-    api: "http://localhost:8033/chat",
+    api: `${API_ENDPOINT}/chat`,
     id,
     body: { id, selectedChatModel: selectedChatModel },
-    initialMessages,
-    experimental_throttle: 100,
-    sendExtraMessageFields: true,
-    generateId: generateUUID,
+    // initialMessages,
+    // experimental_throttle: 100,
+    // sendExtraMessageFields: true,
+    // generateId: generateUUID,
     // onFinish: () => {
     //   mutate("/api/history")
     // },
@@ -40,6 +41,8 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
       toast.error("An error occured, please try again!")
     },
   })
+
+  // console.log("id", id)
 
   // const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcher)
   const votes = []
