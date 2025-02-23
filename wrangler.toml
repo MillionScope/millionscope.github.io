@@ -13,10 +13,10 @@ compatibility_flags = ["nodejs_compat"]
 # - https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
 # Note: Use secrets to store sensitive data.
 # - https://developers.cloudflare.com/workers/configuration/secrets/
-# [vars]
-# MY_VARIABLE = "production_value"
 [vars]
 ENVIRONMENT = "production"
+NEXT_PUBLIC_API_ENDPOINT="https://api.millionscope.workers.dev"
+NEXT_PUBLIC_GITHUB_CLIENT_ID="Ov23liaP7osUAakZI87r"
 NODE_VERSION = "22.14.0"
 
 # Bind the Workers AI model catalog. Run machine learning models, powered by serverless GPUs, on Cloudflare’s global network
