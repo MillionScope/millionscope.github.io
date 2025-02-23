@@ -21,6 +21,9 @@ export const initialArtifactData = {
 export function useArtifactSelector(selector) {
   const { data: localArtifact } = useSWR("artifact", null, {
     fallbackData: initialArtifactData,
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
   })
 
   const selectedValue = useMemo(() => {
@@ -34,6 +37,9 @@ export function useArtifactSelector(selector) {
 export function useArtifact() {
   const { data: localArtifact, mutate: setLocalArtifact } = useSWR("artifact", null, {
     fallbackData: initialArtifactData,
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
   })
 
   const artifact = useMemo(() => {
@@ -58,6 +64,9 @@ export function useArtifact() {
 
   const { data: localArtifactMetadata, mutate: setLocalArtifactMetadata } = useSWR(() => (artifact.documentId ? `artifact-metadata-${artifact.documentId}` : null), null, {
     fallbackData: null,
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
   })
 
   return useMemo(

@@ -128,6 +128,9 @@ export function SidebarHistory() {
     mutate,
   } = useSWR("/api/chat-by-userid?userid=607d5fcf2184db9d190df0d9d5e43469", apiFetcherData, {
     fallbackData: [],
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
   })
 
   useEffect(() => {
@@ -161,7 +164,6 @@ export function SidebarHistory() {
       router.push("/")
     }
   }
-
 
   if (!user) {
     return (

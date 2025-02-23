@@ -10,6 +10,9 @@ export function useChatVisibility({ chatId, initialVisibility }) {
 
   const { data: localVisibility, mutate: setLocalVisibility } = useSWR(`${chatId}-visibility`, null, {
     fallbackData: initialVisibility,
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
   })
 
   const visibilityType = useMemo(() => {
