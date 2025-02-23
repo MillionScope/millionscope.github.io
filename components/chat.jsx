@@ -26,21 +26,23 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   const { mutate } = useSWRConfig()
 
   const { messages, setMessages, handleSubmit, input, setInput, append, isLoading, stop, reload } = useChat({
+    api: "http://localhost:8033/chat",
     id,
     body: { id, selectedChatModel: selectedChatModel },
     initialMessages,
     experimental_throttle: 100,
     sendExtraMessageFields: true,
     generateId: generateUUID,
-    onFinish: () => {
-      mutate("/api/history")
-    },
+    // onFinish: () => {
+    //   mutate("/api/history")
+    // },
     onError: (error) => {
       toast.error("An error occured, please try again!")
     },
   })
 
-  const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcher)
+  // const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcher)
+  const votes = []
 
   const [attachments, setAttachments] = useState([])
   const isArtifactVisible = useArtifactSelector((state) => state.isVisible)

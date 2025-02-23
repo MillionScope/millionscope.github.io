@@ -33,6 +33,7 @@ import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuAction, Side
 import { fetcher } from "@/lib/utils"
 import { useChatVisibility } from "@/utils/hooks/use-chat-visibility"
 import { useSidebar } from "@/contexts/sidebar"
+import { apiFetcher } from "@/utils/fetcher"
 
 // type GroupedChats = {
 //   today: Chat[];
@@ -123,7 +124,7 @@ export function SidebarHistory({ user }) {
     data: history,
     isLoading,
     mutate,
-  } = useSWR(user ? "/api/history" : null, fetcher, {
+  } = useSWR(user ? "/api/history" : null, apiFetcher, {
     fallbackData: [],
   })
 
