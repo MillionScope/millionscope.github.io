@@ -7,14 +7,20 @@ import Image from "next/image"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { useState } from "react"
+import { useAuth } from "@/contexts/auth"
 
-const signOut = function (){
+const signOut = function () {
   console.log("signOut")
-} 
+}
 
-export function SidebarUserNav({ user }) {
+export function SidebarUserNav() {
   // const { setTheme, theme } = useTheme()
   const [theme, setTheme] = useState("light")
+  const { user, logout } = useAuth()
+
+  if (!user) {
+    return <></>
+  }
 
   return (
     <SidebarMenu>
@@ -37,9 +43,7 @@ export function SidebarUserNav({ user }) {
                 type="button"
                 className="w-full cursor-pointer"
                 onClick={() => {
-                  signOut({
-                    redirectTo: "/",
-                  })
+                  logout()
                 }}
               >
                 Sign out

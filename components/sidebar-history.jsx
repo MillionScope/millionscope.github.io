@@ -34,6 +34,7 @@ import { fetcher } from "@/lib/utils"
 import { useChatVisibility } from "@/utils/hooks/use-chat-visibility"
 import { useSidebar } from "@/contexts/sidebar"
 import { apiFetcher, apiFetcherData } from "@/utils/fetcher"
+import { useAuth } from "@/contexts/auth"
 
 // type GroupedChats = {
 //   today: Chat[];
@@ -116,10 +117,11 @@ export const ChatItem = memo(PureChatItem, (prevProps, nextProps) => {
   return true
 })
 
-export function SidebarHistory({ user }) {
+export function SidebarHistory() {
   const { setOpenMobile } = useSidebar()
   const { id } = useParams()
   const pathname = usePathname()
+  const { user } = useAuth()
   const {
     data: history,
     isLoading,
@@ -159,6 +161,7 @@ export function SidebarHistory({ user }) {
       router.push("/")
     }
   }
+
 
   if (!user) {
     return (
