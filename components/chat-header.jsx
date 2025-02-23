@@ -44,7 +44,7 @@ function PureChatHeader({ chatId, selectedModelId, selectedVisibilityType, isRea
 
       {!isReadonly && <ModelSelector selectedModelId={selectedModelId} className="order-1 md:order-2" />}
 
-      {!isReadonly && <VisibilitySelector chatId={chatId} selectedVisibilityType={selectedVisibilityType} className="order-1 md:order-3" />}
+      {/* {!isReadonly && <VisibilitySelector chatId={chatId} selectedVisibilityType={selectedVisibilityType} className="order-1 md:order-3" />} */}
 
     </header>
   )

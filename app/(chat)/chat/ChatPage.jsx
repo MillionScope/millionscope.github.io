@@ -57,10 +57,6 @@ export default function ChatPage() {
     return <div>Error: {error}</div>
   }
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
   if (!chat) {
     return <div>Chat not found</div>
   }

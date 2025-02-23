@@ -17,6 +17,7 @@ export function SidebarUserNav() {
   // const { setTheme, theme } = useTheme()
   const [theme, setTheme] = useState("light")
   const { user, logout } = useAuth()
+  console.log("user", user)
 
   if (!user) {
     return <></>
@@ -28,8 +29,8 @@ export function SidebarUserNav() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton className="data-[state=open]:bg-sidebar-accent bg-background data-[state=open]:text-sidebar-accent-foreground h-10">
-              <Image src={`https://avatar.vercel.sh/${user.email}`} alt={user.email ?? "User Avatar"} width={24} height={24} className="rounded-full" />
-              <span className="truncate">{user?.email}</span>
+              <Image src={user ? user.avatar : ""} alt={user.email ?? "User Avatar"} width={24} height={24} className="rounded-full" />
+              <span className="truncate">{user ? (user.email ? user.email : "sample@gmail.com") : "sample@gmail.com"}</span>
               <ChevronUp className="ml-auto" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
