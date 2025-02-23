@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/fireworks": "^0.1.11",
     "@ai-sdk/react": "^1.1.17",
     "@cloudflare/pages-plugin-hcaptcha": "^1.0.4",
     "@codemirror/lang-javascript": "^6.2.3",

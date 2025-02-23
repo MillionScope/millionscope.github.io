@@ -4,6 +4,7 @@ import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models"
 import { convertToUIMessages } from "@/lib/utils"
 import { getCookie } from "@/utils/cookies"
 import { useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
 // import { getChatById, getMessagesByChatId } from "@/lib/db/queries"
 
 export default function ChatPage() {

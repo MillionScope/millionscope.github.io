@@ -80,7 +80,6 @@ export default function ChatComponent() {
   const [pending, setPending] = useState(false)
 
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: 'http://localhost:8033/chat/api', // Your Cloudflare Worker endpoint
     onResponse: (response) => {
       // Optional: Handle the response
       setPending(false)
