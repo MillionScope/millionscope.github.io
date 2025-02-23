@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@layer theme, base, components, utilities;
 @import "../styles/subheading-anchor.css";
 @import "../styles/scrollbar.css";
 /* @import "../styles/steps.css"; */
@@ -60,6 +59,8 @@
     --sidebar-accent-foreground: 222 47% 11%;
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 221 83% 53%;
+
+    /* Custom */
   }
 
   .dark {

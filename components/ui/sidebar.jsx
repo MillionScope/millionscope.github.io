@@ -14,6 +14,7 @@ import { forwardRef, useCallback, useContext, useEffect, useMemo, useState } fro
 import { useIsMobile } from "@/utils/hooks/use-mobile"
 import { useSidebar } from "@/contexts/sidebar"
 
+const SIDEBAR_WIDTH_MOBILE = "18rem"
 
 const Sidebar = forwardRef(({ side = "left", variant = "sidebar", collapsible = "offcanvas", className, children, ...props }, ref) => {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
