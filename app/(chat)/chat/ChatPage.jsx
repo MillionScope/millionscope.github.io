@@ -3,6 +3,7 @@ import { DataStreamHandler } from "@/components/data-stream-handler"
 import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models"
 import { convertToUIMessages } from "@/lib/utils"
 import { getCookie } from "@/utils/cookies"
+import { apiFetcher } from "@/utils/fetcher"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 // import { getChatById, getMessagesByChatId } from "@/lib/db/queries"
@@ -17,8 +18,10 @@ export default function ChatPage() {
 
   const [chatModelFromCookies, setChatModelFromCookies] = useState(null)
 
-  function getChatById() {
-    console.log("getChatById")
+  console.log("id", id)
+
+  async function getChatById() {
+    apiFetcher(`/api/chat/${id}`)
   }
 
   function getMessagesByChatId() {

@@ -13,7 +13,7 @@ import { VisibilityType } from "./visibility-selector"
 import { useArtifactSelector } from "@/utils/hooks/use-artifact"
 import { toast } from "sonner"
 import { ChatHeader } from "@/components/chat-header"
-import { apiFetcher } from "@/utils/fetcher"
+import { apiFetcherData } from "@/utils/fetcher"
 import { API_ENDPOINT } from "@/config/constants"
 
 // {
@@ -30,13 +30,13 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
     api: `${API_ENDPOINT}/chat`,
     id,
     body: { id, selectedChatModel: selectedChatModel },
-    // initialMessages,
-    // experimental_throttle: 100,
-    // sendExtraMessageFields: true,
-    // generateId: generateUUID,
-    // onFinish: () => {
-    //   mutate("/api/history")
-    // },
+    initialMessages,
+    experimental_throttle: 100,
+    sendExtraMessageFields: true,
+    generateId: generateUUID,
+    onFinish: () => {
+      mutate(`${API_ENDPOINT}/api/history`)
+    },
     onError: (error) => {
       toast.error("An error occured, please try again!")
     },
@@ -44,7 +44,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
 
   // console.log("id", id)
 
-  // const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcher)
+  // const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcherData)
   const votes = []
 
   const [attachments, setAttachments] = useState([])

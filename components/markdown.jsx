@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm"
 import { CodeBlock } from "./code-block"
 
 const components = {
-  // @ts-expect-error
+  p: (props) => <p className="mt-6 leading-7 first:mt-0" {...props} />,
   code: CodeBlock,
   pre: ({ children }) => <>{children}</>,
   ol: ({ node, children, ...props }) => {

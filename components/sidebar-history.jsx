@@ -33,7 +33,7 @@ import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuAction, Side
 import { fetcher } from "@/lib/utils"
 import { useChatVisibility } from "@/utils/hooks/use-chat-visibility"
 import { useSidebar } from "@/contexts/sidebar"
-import { apiFetcher, apiFetcherData } from "@/utils/fetcher"
+import { apiFetcherData } from "@/utils/fetcher"
 import { useAuth } from "@/contexts/auth"
 
 // type GroupedChats = {

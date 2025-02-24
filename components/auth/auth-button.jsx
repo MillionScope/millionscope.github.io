@@ -36,7 +36,7 @@ const AuthButton = memo(function AuthButton() {
         </Link>
         <Menu>
           <MenuButton className="cursor-pointer flex py-1 px-2 hover:bg-gray-200 rounded-md items-center gap-1">
-            <span className="text-sm flex items-center gap-2  font-bold subpixel-antialiased contrast-more:text-gray-700 contrast-more:dark:text-gray-100" aria-current="true">
+            <span className="text-sm flex items-center gap-2  font-medium subpixel-antialiased contrast-more:text-gray-700 contrast-more:dark:text-gray-100" aria-current="true">
               {/* {session.user.name || "User"} */}
               {user.name || "User"}
               {/* {session?.user ? (
@@ -105,7 +105,7 @@ const AuthButton = memo(function AuthButton() {
         </Menu>
         {/* <div className="flex items-center gap-4">
       <span
-        className="text-sm flex items-center gap-2  font-bold subpixel-antialiased contrast-more:text-gray-700 contrast-more:dark:text-gray-100"
+        className="text-sm flex items-center gap-2  font-medium subpixel-antialiased contrast-more:text-gray-700 contrast-more:dark:text-gray-100"
         aria-current="true"
       >
         {session.user.name || "User"}

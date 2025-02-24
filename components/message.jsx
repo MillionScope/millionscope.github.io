@@ -19,7 +19,8 @@ import { DocumentPreview } from "./document-preview"
 import { MessageReasoning } from "./message-reasoning"
 
 const PurePreviewMessage = ({ chatId, message, vote, isLoading, setMessages, reload, isReadonly }) => {
-  const [mode, setMode] = useState('view');
+  const [mode, setMode] = useState("view")
+  // console.log("PurePreviewMessage", JSON.stringify(message))
 
   return (
     <AnimatePresence>

@@ -11,23 +11,20 @@ export default function Page() {
   const id = generateUUID()
   const [modelId, setModelId] = useState(null)
 
-  // const cookieStore = await cookies();
-  // const modelIdFromCookie = cookieStore.get('chat-model');
   useEffect(() => {
     const storedModelId = getCookie("chat-model")
+    console.log("storedModelId", storedModelId)
     setModelId(storedModelId)
   }, [])
 
   if (!modelId) {
-    console.log("go here")
     return (
       <>
         <Chat key={id} id={id} initialMessages={[]} selectedChatModel={DEFAULT_CHAT_MODEL} selectedVisibilityType="private" isReadonly={false} />
-        {/* <DataStreamHandler id={id} /> */}
+        <DataStreamHandler id={id} />
       </>
     )
   }
-  // console.log("ddddd", modelId)
 
   return (
     <>

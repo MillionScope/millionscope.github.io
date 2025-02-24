@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
 
   const checkUser = async () => {
     try {
-      const cachedSession = localStorage.getItem("genea-session-authenicated")
+      const cachedSession = localStorage.getItem("session-authenicated")
 
       if (!cachedSession) {
         return
@@ -47,17 +47,17 @@ export function AuthProvider({ children }) {
           const resJSON = await res.json()
           console.log("resJSON", resJSON)
           setUser(resJSON.data)
-          localStorage.setItem("genea-session-authenicated", JSON.stringify({ status: "authenticated", user: resJSON.data })) // Cache user
+          localStorage.setItem("session-authenicated", JSON.stringify({ status: "authenticated", user: resJSON.data })) // Cache user
           setAuthStatus("authenticated")
         } else {
           console.log("Login failed")
-          localStorage.removeItem("genea-session-authenicated") // Remove cache if session is invalid
+          localStorage.removeItem("session-authenicated") // Remove cache if session is invalid
           setAuthStatus("unauthenticated")
         }
       }
     } catch (error) {
       console.error("Error checking user session:", error)
-      localStorage.removeItem("genea-session-authenicated")
+      localStorage.removeItem("session-authenicated")
       setAuthStatus("unauthenticated")
     } finally {
       setLoading(false)
@@ -67,7 +67,7 @@ export function AuthProvider({ children }) {
   const login = () => {
     const redirectURI = encodeURIComponent(GITHUB_REDIRECT_URI)
     console.log("redirectURI", redirectURI)
-    localStorage.setItem("genea-session-authenicated", JSON.stringify({ status: "unauthenticated", user: null }))
+    localStorage.setItem("session-authenicated", JSON.stringify({ status: "unauthenticated", user: null }))
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${redirectURI}&scope=read:user user:email`
     window.location.href = githubAuthUrl
   }
@@ -82,7 +82,7 @@ export function AuthProvider({ children }) {
       console.error("Error during logout:", error)
     } finally {
       setUser(null)
-      localStorage.removeItem("genea-session-authenicated")
+      localStorage.removeItem("session-authenicated")
       router.push("/")
     }
   }
