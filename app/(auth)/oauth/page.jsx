@@ -8,6 +8,7 @@ import { toast } from "sonner"
 import { SubmitButton } from "@/components/submit-button"
 import { AuthForm } from "@/components/auth-form"
 import { apiPost } from "@/utils/fetcher"
+import { useAuth } from "@/contexts/auth"
 
 // import { login, type LoginActionState } from '../actions';
 
@@ -19,6 +20,7 @@ export default function Page() {
 
   // status: 'idle' | 'in_progress' | 'success' | 'failed' | 'invalid_data';
   const [state, setState] = useState({ status: "idle" })
+  const {login} = useAuth()
 
   useEffect(() => {
     if (state.status === "failed") {
@@ -61,6 +63,7 @@ export default function Page() {
               <button
                 className="oauth-provider flex w-full items-center gap-2  cursor-pointer dark:bg-[#161b22] dark:hover:bg-gray-900 text-black dark:text-white transition-all"
                 tabIndex="2"
+                onClick={login}
               >
                 <span className="mix-blend-luminosity flex-grow text-left">Sign in with Github</span>
                 <img loading="lazy" className="w-6 h-6" src="/img/oauth-provider/github.svg" alt="Github logo" />

@@ -32,7 +32,7 @@ export default async function RootLayout({ children }) {
         <meta name="author" content="MillionScope" />
         <title>MillionScope</title>
       </head>
-      <body className="nextra-banner-hidden antialiased">
+      <body className="nextra-banner-hidden antialiased h-screen">
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <Toaster position="top-center" />
