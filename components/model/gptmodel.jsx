@@ -1,9 +1,10 @@
 import { GPTMainContent } from "./GPTMainContent";
+import { GPTPopup } from "./GPTPopup";
 import { GPTSidebar } from "./GPTSidebar";
 
 export function GPTModel() {
   return (
-    <div className="flex h-full w-full flex-col">
+    <><div className="flex h-full w-full flex-col">
       <div className="relative flex h-full w-full flex-1 overflow-hidden transition-colors z-0">
         <div className="relative flex h-full w-full flex-row overflow-hidden">
           <div className="z-[21] flex-shrink-0 overflow-x-hidden bg-token-sidebar-surface-primary max-md:!w-0" style={{ width: "260px" }}>
@@ -167,7 +168,6 @@ export function GPTModel() {
             </div>
           </div>
 
-          {/* Main content area */}
           <GPTMainContent/>
           
         </div>
@@ -178,5 +178,7 @@ export function GPTModel() {
           </div>
       </div>
     </div>
+    <GPTPopup/>
+    </>
   )
 }
