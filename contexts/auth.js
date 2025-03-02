@@ -6,6 +6,7 @@ import { API_ENDPOINT, GITHUB_CLIENT_ID, GITHUB_REDIRECT_URI } from "@/config/co
 
 const AuthContext = createContext({
   user: null,
+  provider:"google",
   status: "loading",
   loading: false,
   login: () => {},

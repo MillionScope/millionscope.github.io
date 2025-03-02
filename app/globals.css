@@ -170,6 +170,10 @@
     transform-origin: 50% 50%;
     transition: all 0.25s linear;
   }
+
+  .oauth-provider {
+    @apply bg-gray-50 rounded-lg px-8 py-2 border-gray-200 border hover:bg-gray-300 cursor-pointer font-semibold;
+  }
 }
 
 @layer components {

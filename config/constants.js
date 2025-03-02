@@ -6,3 +6,7 @@ export const DEFAULT_THEME = {
 export const API_ENDPOINT = process.env.NEXT_PUBLIC_API_ENDPOINT
 export const GITHUB_CLIENT_ID = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
 export const GITHUB_REDIRECT_URI = `${API_ENDPOINT}/auth/callback/github`
+
+export const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+
+console.log("GOOGLE_CLIENT_ID", GOOGLE_CLIENT_ID)
