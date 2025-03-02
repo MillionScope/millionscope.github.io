@@ -29,7 +29,7 @@ export default function Page() {
       setIsSuccessful(true)
       router.refresh()
     }
-  }, [router])
+  }, [router, state.status])
 
   const handleSubmit = async (formData) => {
     setEmail(formData.get("email"))

@@ -9,6 +9,7 @@ import { SubmitButton } from "@/components/submit-button"
 import { AuthForm } from "@/components/auth-form"
 import { apiPost } from "@/utils/fetcher"
 import { useAuth } from "@/contexts/auth"
+import Image from "next/image"
 
 // import { login, type LoginActionState } from '../actions';
 
@@ -31,7 +32,7 @@ export default function Page() {
       setIsSuccessful(true)
       router.refresh()
     }
-  }, [router])
+  }, [router, state.status])
 
   const handleSubmit = async (formData) => {
     setEmail(formData.get("email"))
@@ -66,7 +67,7 @@ export default function Page() {
                 onClick={login}
               >
                 <span className="mix-blend-luminosity flex-grow text-left">Sign in with Github</span>
-                <img loading="lazy" className="w-6 h-6" src="/img/oauth-provider/github.svg" alt="Github logo" />
+                <Image loading="lazy" className="w-6 h-6" src="/img/oauth-provider/github.svg" alt="Github logo" />
               </button>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GPTMainContent } from "./GPTMainContent";
 import { GPTPopup } from "./GPTPopup";
 import { GPTSidebar } from "./GPTSidebar";
@@ -90,7 +91,7 @@ export function GPTModel() {
                         <div className="bg-token-sidebar-surface-primary pt-0">
                           <span className="flex w-full items-center" data-state="closed">
                             <div className="flex-1" tabIndex="0">
-                              <a
+                              <Link
                                 title="ChatGPT"
                                 className="no-draggable group rounded-lg active:opacity-90 bg-[var(--item-background-color)] h-9 text-sm flex items-center gap-2.5 p-2 screen-arch:relative screen-arch:bg-transparent screen-arch:py-[7px]"
                                 href="/"
@@ -115,13 +116,13 @@ export function GPTModel() {
                                   </div>
                                 </div>
                                 <div className="grow overflow-hidden text-ellipsis whitespace-nowrap text-sm text-token-text-primary">ChatGPT</div>
-                              </a>
+                              </Link>
                             </div>
                           </span>
                         </div>
                         <div>
                           <div tabIndex="0">
-                            <a href="/gpts" data-discover="true">
+                            <Link href="/gpt" data-discover="true">
                               <button
                                 data-testid="explore-gpts-button"
                                 className="flex h-9 w-full items-center gap-2.5 rounded-lg px-2 text-token-text-primary hover:bg-token-sidebar-surface-secondary"
@@ -156,7 +157,7 @@ export function GPTModel() {
                                 </div>
                                 <span className="text-sm">Explore GPTs</span>
                               </button>
-                            </a>
+                            </Link>
                           </div>
                         </div>
                         <GPTSidebar/>
