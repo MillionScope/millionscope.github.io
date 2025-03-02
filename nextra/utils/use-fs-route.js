@@ -13,9 +13,7 @@ export const useFSRoute = () => {
 
     const { pathname } = new URL(clientRoute, template)
 
-    const cleanedPath = locale
-      ? pathname.replace(new RegExp(`\\.${locale}(\\/|$)`), "$1")
-      : pathname
+    const cleanedPath = locale ? pathname.replace(new RegExp(`\\.${locale}(\\/|$)`), "$1") : pathname
 
     return (
       cleanedPath

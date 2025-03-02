@@ -20,8 +20,7 @@ SlugsContext.displayName = "Slugs"
 export const useActiveAnchor = () => useContext(ActiveAnchorContext)
 export const useSetActiveAnchor = () => useContext(SetActiveAnchorContext)
 
-export const useIntersectionObserver = () =>
-  useContext(IntersectionObserverContext)
+export const useIntersectionObserver = () => useContext(IntersectionObserverContext)
 export const useSlugs = () => useContext(SlugsContext)
 
 export const ActiveAnchorProvider = ({ children }) => {

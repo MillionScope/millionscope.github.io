@@ -7,6 +7,7 @@ import { toast } from "sonner"
 
 // import { AuthForm } from "@/components/auth-form"
 import { SubmitButton } from "@/components/submit-button"
+import { AuthForm } from "@/components/auth-form"
 
 // import { register } from "../actions"
 
