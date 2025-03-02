@@ -85,6 +85,7 @@ export function AuthProvider({ children }) {
     const googleClientID = GOOGLE_CLIENT_ID
 
     const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientID}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=${scope}&access_type=${accessType}&prompt=${prompt}`
+    console.log("googleAuthUrl", googleAuthUrl)
 
     window.location.href = googleAuthUrl
   }

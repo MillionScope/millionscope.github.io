@@ -67,7 +67,7 @@ export default function Page() {
                 onClick={login}
               >
                 <span className="mix-blend-luminosity flex-grow text-left">Sign in with Github</span>
-                <Image loading="lazy" className="w-6 h-6" src="/img/oauth-provider/github.svg" alt="Github logo" />
+                <Image loading="lazy" className="w-6 h-6" width={24} height={24} src="/img/oauth-provider/github.svg" alt="Github logo" />
               </button>
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function Page() {
                 onClick={loginWithGoogle}
               >
                 <span className="mix-blend-luminosity flex-grow text-left">Sign in with Google</span>
-                <img loading="lazy" className="w-6 h-6" src="/img/oauth-provider/google.svg" alt="Google logo" />
+                <img loading="lazy" className="w-6 h-6"   width={24} height={24} src="/img/oauth-provider/google.svg" alt="Google logo" />
               </button>
             </div>
           </div>
