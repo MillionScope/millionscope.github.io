@@ -11,10 +11,10 @@ function PureAuthButton() {
 
   return (
     <Link href="/oauth"
-      className="cursor-pointer bg-black text-center hover:bg-white border-black px-8 font-semibold h-8 py-1 text-white hover:text-black border rounded-full text-sm transition-all order-4 md:ml-auto mr-4"
+      className="cursor-pointer bg-black text-center hover:bg-white border-black px-8 font-semibold py-2 text-white hover:text-black border rounded-full text-sm transition-all order-4 md:ml-auto mr-4"
       // onClick={login}
     >
-      Login in
+      Log in
     </Link>
   )
 }

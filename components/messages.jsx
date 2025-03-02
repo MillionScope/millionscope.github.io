@@ -23,7 +23,7 @@ function PureMessages({ chatId, isLoading, votes, messages, setMessages, reload,
   const [messagesContainerRef, messagesEndRef] = useScrollToBottom()
 
   return (
-    <div ref={messagesContainerRef} className="h-screen flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4">
+    <div ref={messagesContainerRef} className="custom-scrollbar [scrollbar-gutter:stable] h-screen flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4">
       {messages.length === 0 && <Overview />}
 
       {messages.map((message, index) => (
