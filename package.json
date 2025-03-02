@@ -5,6 +5,7 @@
     "dev": "next dev",
     "prettier": "prettier --write \"**/*.{js, jsx}\"",
     "build": "next build",
+    "https-dev": "local-ssl-proxy --source 3001 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "lint": "next lint"
   },
   "dependencies": {
@@ -86,6 +87,7 @@
     "eslint": "9.21.0",
     "eslint-config-next": "15.2.0",
     "lightningcss": "^1.29.1",
+    "local-ssl-proxy": "^2.0.5",
     "prettier": "^3.5.2",
     "shiki": "^3.1.0"
   },

@@ -20,7 +20,7 @@ export default function Page() {
 
   // status: 'idle' | 'in_progress' | 'success' | 'failed' | 'invalid_data';
   const [state, setState] = useState({ status: "idle" })
-  const {login} = useAuth()
+  const {login, loginWithGoogle} = useAuth()
 
   useEffect(() => {
     if (state.status === "failed") {
@@ -75,6 +75,7 @@ export default function Page() {
               <button
                 className="oauth-provider flex w-full items-center gap-2  cursor-pointer dark:bg-[#161b22] dark:hover:bg-gray-900 text-black dark:text-white transition-all"
                 tabIndex="2"
+                onClick={loginWithGoogle}
               >
                 <span className="mix-blend-luminosity flex-grow text-left">Sign in with Google</span>
                 <img loading="lazy" className="w-6 h-6" src="/img/oauth-provider/google.svg" alt="Google logo" />

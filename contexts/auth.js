@@ -2,15 +2,16 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { API_ENDPOINT, GITHUB_CLIENT_ID, GITHUB_REDIRECT_URI } from "@/config/constants"
+import { API_ENDPOINT, GITHUB_CLIENT_ID, GITHUB_REDIRECT_URI, GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI } from "@/config/constants"
 
 const AuthContext = createContext({
   user: null,
-  provider:"google",
+  provider: "google",
   status: "loading",
   loading: false,
   login: () => {},
   logout: () => {},
+  loginWithGoogle: () => {},
 })
 
 export function AuthProvider({ children }) {
@@ -73,6 +74,21 @@ export function AuthProvider({ children }) {
     window.location.href = githubAuthUrl
   }
 
+  const loginWithGoogle = () => {
+    const redirectURI = encodeURIComponent(GOOGLE_REDIRECT_URI)
+    console.log("redirectURI", redirectURI)
+    localStorage.setItem("session-authenicated", JSON.stringify({ status: "unauthenticated", user: null }))
+    const scope = encodeURIComponent("email profile")
+    const responseType = "code"
+    const accessType = "offline"
+    const prompt = "consent"
+    const googleClientID = GOOGLE_CLIENT_ID
+
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientID}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=${scope}&access_type=${accessType}&prompt=${prompt}`
+
+    window.location.href = googleAuthUrl
+  }
+
   const logout = async () => {
     try {
       const res = await fetch(`${API_ENDPOINT}/auth/logout`, {
@@ -88,7 +104,7 @@ export function AuthProvider({ children }) {
     }
   }
 
-  return <AuthContext.Provider value={{ user, loading, status: authStatus, login, logout }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, loading, status: authStatus, login, logout, loginWithGoogle }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => {
