@@ -74,6 +74,7 @@ jobs:
         run: |
           echo "NEXT_PUBLIC_GITHUB_CLIENT_ID=${{ vars.NEXT_PUBLIC_GITHUB_CLIENT_ID }}"
           echo "NEXT_PUBLIC_API_ENDPOINT=${{ vars.NEXT_PUBLIC_API_ENDPOINT }}"
+          echo "NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ vars.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}"
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
