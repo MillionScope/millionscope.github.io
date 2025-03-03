@@ -12,24 +12,25 @@ export default function ChatPage() {
   const searchParams = useSearchParams()
   const id = searchParams.get("id") // Extract the `id` from the URL query params
   const [chat, setChat] = useState(null)
-  const [messagesFromDb, setMessagesFromDb] = useState([])
+  const [messages, setMessages] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
   const [chatModelFromCookies, setChatModelFromCookies] = useState(null)
 
   async function getChatById({ chatid }) {
-    console.log("chatid", chatid)
-    const resp = await apiFetcher(`/chat?id=${chatid}`)
+    const resp = await apiFetcher(`/chat/${chatid}`)
     console.log("resp", resp)
     return resp
   }
 
-  function getMessagesByChatId({ chatid }) {
+  async function getMessagesByChatId({ chatid }) {
+    const resp = await apiFetcher(`/chats/${chatid}/messages`)
+
     console.log("getMessagesByChatId")
-    console.log("chatid")
-    // await apiFetcher(`/chat?id=${chatid}`)
-    return []
+    console.log("resp", resp)
+
+    return resp
   }
 
   useEffect(() => {
@@ -43,13 +44,17 @@ export default function ChatPage() {
     const fetchData = async () => {
       try {
         const chatData = await getChatById({ chatid: id })
+        console.log('chatData', chatData)
         if (!chatData) {
           throw new Error("Chat not found")
         }
         setChat(chatData)
 
         const messagesData = await getMessagesByChatId({ chatid: id })
-        setMessagesFromDb(messagesData)
+        if (!messagesData) {
+          throw new Error("Messages not found")
+        }
+        setMessages(messagesData.data)
       } catch (err) {
         setError(err.message)
       } finally {
@@ -75,9 +80,11 @@ export default function ChatPage() {
   // Since we can't use cookies in a static context, we assume a default chat model
   const selectedChatModel = chatModelFromCookies ? chatModelFromCookies : DEFAULT_CHAT_MODEL
 
+  console.log("messages", messages)
+
   return (
     <>
-      <Chat id={chat.id} initialMessages={convertToUIMessages(messagesFromDb)} selectedChatModel={selectedChatModel} selectedVisibilityType={chat.visibility} isReadonly={false} />
+      <Chat id={chat.id} initialMessages={convertToUIMessages(messages)} selectedChatModel={selectedChatModel} selectedVisibilityType={chat.visibility} isReadonly={false} />
       <DataStreamHandler id={id} />
     </>
   )

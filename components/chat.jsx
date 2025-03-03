@@ -27,9 +27,9 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   const { mutate } = useSWRConfig()
 
   const { messages, setMessages, handleSubmit, input, setInput, append, isLoading, stop, reload } = useChat({
-    api: `${API_ENDPOINT}/chat`,
+    api: `${API_ENDPOINT}/chat/${id}`,
     id,
-    body: { id, selectedChatModel: selectedChatModel },
+    body: { id, selectedChatModel },
     initialMessages,
     experimental_throttle: 100,
     sendExtraMessageFields: true,
@@ -43,13 +43,13 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   })
 
   // console.log("id", id)
+  console.log("messages", messages)
 
   // const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcherData)
   const votes = []
 
   const [attachments, setAttachments] = useState([])
   const isArtifactVisible = useArtifactSelector((state) => state.isVisible)
-
   return (
     <>
       <div className="flex flex-col min-w-0 h-dvh bg-background">

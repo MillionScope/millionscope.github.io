@@ -141,7 +141,7 @@ export function SidebarHistory() {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const router = useRouter()
   const handleDelete = async () => {
-    const deletePromise = fetch(`/api/chat?id=${deleteId}`, {
+    const deletePromise = fetch(`/api/chats/${deleteId}`, {
       method: "DELETE",
     })
 
