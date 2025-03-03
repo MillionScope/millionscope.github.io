@@ -1,6 +1,6 @@
 import { API_ENDPOINT } from "@/config/constants"
 
-export const apiFetcher = (...args) => fetch(`${API_ENDPOINT}${args[0]}`, ...args, { credentials: "include" }).then((res) => res.json())
+export const apiFetcher = (...args) => fetch(`${API_ENDPOINT}${args[0]}`, { credentials: "include" }, ...args).then((res) => res.json())
 
 export const apiFetcherData = (...args) => fetch(`${API_ENDPOINT}${args[0]}`, { credentials: "include" }, ...args).then((res) => res.json().then((data) => data.data))
 

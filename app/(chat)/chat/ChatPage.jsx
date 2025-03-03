@@ -18,14 +18,18 @@ export default function ChatPage() {
 
   const [chatModelFromCookies, setChatModelFromCookies] = useState(null)
 
-  console.log("id", id)
-
-  async function getChatById() {
-    await apiFetcher(`/api/chat?${id}`)
+  async function getChatById({ chatid }) {
+    console.log("chatid", chatid)
+    const resp = await apiFetcher(`/chat?id=${chatid}`)
+    console.log("resp", resp)
+    return resp
   }
 
-  function getMessagesByChatId() {
+  function getMessagesByChatId({ chatid }) {
     console.log("getMessagesByChatId")
+    console.log("chatid")
+    // await apiFetcher(`/chat?id=${chatid}`)
+    return []
   }
 
   useEffect(() => {
@@ -38,13 +42,13 @@ export default function ChatPage() {
 
     const fetchData = async () => {
       try {
-        const chatData = await getChatById({ id })
+        const chatData = await getChatById({ chatid: id })
         if (!chatData) {
           throw new Error("Chat not found")
         }
         setChat(chatData)
 
-        const messagesData = await getMessagesByChatId({ id })
+        const messagesData = await getMessagesByChatId({ chatid: id })
         setMessagesFromDb(messagesData)
       } catch (err) {
         setError(err.message)
@@ -60,8 +64,12 @@ export default function ChatPage() {
     return <div>Error: {error}</div>
   }
 
-  if (!chat) {
-    return <div>Chat not found</div>
+  // if (!chat) {
+  //   return <div>Chat not found</div>
+  // }
+  if (isLoading) {
+    return <></>
+    // <div>Loading...</div>
   }
 
   // Since we can't use cookies in a static context, we assume a default chat model
@@ -69,13 +77,7 @@ export default function ChatPage() {
 
   return (
     <>
-      <Chat
-        id={chat.id}
-        initialMessages={convertToUIMessages(messagesFromDb)}
-        selectedChatModel={selectedChatModel}
-        selectedVisibilityType={chat.visibility}
-        isReadonly={false}
-      />
+      <Chat id={chat.id} initialMessages={convertToUIMessages(messagesFromDb)} selectedChatModel={selectedChatModel} selectedVisibilityType={chat.visibility} isReadonly={false} />
       <DataStreamHandler id={id} />
     </>
   )
