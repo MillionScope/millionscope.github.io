@@ -26,7 +26,7 @@ export function AuthProvider({ children }) {
 
   const checkUser = async () => {
     try {
-      const cachedSession = localStorage.getItem("session-authenicated")
+      const cachedSession = localStorage.getItem("session-authenticated")
 
       if (!cachedSession) {
         return
@@ -49,17 +49,17 @@ export function AuthProvider({ children }) {
           const resJSON = await res.json()
           console.log("resJSON", resJSON)
           setUser(resJSON.data)
-          localStorage.setItem("session-authenicated", JSON.stringify({ status: "authenticated", user: resJSON.data })) // Cache user
+          localStorage.setItem("session-authenticated", JSON.stringify({ status: "authenticated", user: resJSON.data })) // Cache user
           setAuthStatus("authenticated")
         } else {
           console.log("Login failed")
-          localStorage.removeItem("session-authenicated") // Remove cache if session is invalid
+          localStorage.removeItem("session-authenticated") // Remove cache if session is invalid
           setAuthStatus("unauthenticated")
         }
       }
     } catch (error) {
       console.error("Error checking user session:", error)
-      localStorage.removeItem("session-authenicated")
+      localStorage.removeItem("session-authenticated")
       setAuthStatus("unauthenticated")
     } finally {
       setLoading(false)
@@ -69,7 +69,7 @@ export function AuthProvider({ children }) {
   const login = () => {
     const redirectURI = encodeURIComponent(GITHUB_REDIRECT_URI)
     console.log("redirectURI", redirectURI)
-    localStorage.setItem("session-authenicated", JSON.stringify({ status: "unauthenticated", user: null }))
+    localStorage.setItem("session-authenticated", JSON.stringify({ status: "unauthenticated", user: null }))
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${redirectURI}&scope=read:user user:email`
     window.location.href = githubAuthUrl
   }
@@ -77,7 +77,7 @@ export function AuthProvider({ children }) {
   const loginWithGoogle = () => {
     const redirectURI = encodeURIComponent(GOOGLE_REDIRECT_URI)
     console.log("redirectURI", redirectURI)
-    localStorage.setItem("session-authenicated", JSON.stringify({ status: "unauthenticated", user: null }))
+    localStorage.setItem("session-authenticated", JSON.stringify({ status: "unauthenticated", user: null }))
     const scope = encodeURIComponent("email profile")
     const responseType = "code"
     const accessType = "offline"
@@ -100,7 +100,7 @@ export function AuthProvider({ children }) {
       console.error("Error during logout:", error)
     } finally {
       setUser(null)
-      localStorage.removeItem("session-authenicated")
+      localStorage.removeItem("session-authenticated")
       router.push("/")
     }
   }
