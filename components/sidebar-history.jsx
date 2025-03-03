@@ -126,7 +126,7 @@ export function SidebarHistory() {
     data: history,
     isLoading,
     mutate,
-  } = useSWR(`/api/chat-by-userid?userid=607d5fcf2184db9d190df0d9d5e43469`, apiFetcherData, {
+  } = useSWR(`/chats?userid=5553a32b2fa51b29575dbe28bd6b36cd`, apiFetcherData, {
     fallbackData: [],
     revalidateIfStale: false,
     revalidateOnFocus: false,
