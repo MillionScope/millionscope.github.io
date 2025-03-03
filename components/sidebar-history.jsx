@@ -53,7 +53,7 @@ const PureChatItem = ({ chat, isActive, onDelete, setOpenMobile }) => {
   return (
     <SidebarMenuItem>
       <SidebarMenuButton asChild isActive={isActive}>
-        <Link href={`/chat/${chat.id}`} onClick={() => setOpenMobile(false)}>
+        <Link href={`/chat?id=${chat.id}`} onClick={() => setOpenMobile(false)}>
           <span>{chat.title}</span>
         </Link>
       </SidebarMenuButton>
@@ -126,7 +126,7 @@ export function SidebarHistory() {
     data: history,
     isLoading,
     mutate,
-  } = useSWR("/api/chat-by-userid?userid=607d5fcf2184db9d190df0d9d5e43469", apiFetcherData, {
+  } = useSWR(`/api/chat-by-userid?userid=607d5fcf2184db9d190df0d9d5e43469`, apiFetcherData, {
     fallbackData: [],
     revalidateIfStale: false,
     revalidateOnFocus: false,

@@ -21,7 +21,7 @@ export default function ChatPage() {
   console.log("id", id)
 
   async function getChatById() {
-    apiFetcher(`/api/chat/${id}`)
+    await apiFetcher(`/api/chat?${id}`)
   }
 
   function getMessagesByChatId() {
