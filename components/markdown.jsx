@@ -5,9 +5,19 @@ import remarkGfm from "remark-gfm"
 import { CodeBlock } from "./code-block"
 
 const components = {
-  p: (props) => <p className="mt-6 leading-7 first:mt-0" {...props} />,
   code: CodeBlock,
-  pre: ({ children }) => <>{children}</>,
+  p: ({ children }) => {
+    const isPreTag = Array.isArray(children) && children.length > 0 && (children[0])?.type === "pre";
+    if (isPreTag) {
+      return <>{children}</>;
+    }
+    return <p className="leading-6">{children}</p>;
+  },
+  pre: ({ children }) => (
+    <pre className="overflow-x-auto p-4 bg-zinc-900 text-white rounded-lg">
+      {children}
+    </pre>
+  ),
   ol: ({ node, children, ...props }) => {
     return (
       <ol className="list-decimal list-outside ml-4" {...props}>

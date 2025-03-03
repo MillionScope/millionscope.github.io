@@ -1,3 +1,4 @@
+import Image from "next/image";
 import EditableDiv from "./EditableDiv";
 
 export function GPTMainContent() {
@@ -111,7 +112,7 @@ export function GPTMainContent() {
                         <div className="flex items-center justify-center overflow-hidden rounded-full">
                           <div className="relative">
                             <div className="relative flex">
-                              <img
+                              <Image
                                 alt="User"
                                 width="32"
                                 height="32"
@@ -129,7 +130,7 @@ export function GPTMainContent() {
               </div>
               <div className="flex h-full flex-col items-center justify-center text-token-text-primary">
                 <div className="h-full w-full @lg/thread:py-[18px]">
-                  <div className="m-auto text-base px-3 md:px-4 w-full md:px-5 lg:px-4 xl:px-5 h-full">
+                  <div className="m-auto text-base px-3 md:px-4 w-full lg:px-4 xl:px-5 h-full">
                     <div className="mx-auto flex h-full w-full flex-col text-base @lg/thread:justify-center @md/thread:max-w-3xl @lg/thread:max-w-[40rem] @xl/thread:max-w-[48rem] relative">
                       <div className="hidden text-center mb-7 @lg/thread:block">
                         <div className="relative inline-flex justify-center text-center text-2xl font-semibold leading-9">
@@ -156,7 +157,7 @@ export function GPTMainContent() {
                       </div>
                       <div className="w-full">
                         <div className="flex justify-center empty:hidden"></div>
-                        <form className="w-full" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:Rf799t9jaklj5:" data-state="closed">
+                        <form className="w-full" type="button">
                           <div className="relative z-[1] flex h-full max-w-full flex-1 flex-col">
                             <div className="group relative z-[1] flex w-full items-center" style={{forceHideLabel: "block"}}>
                               <div className="w-full">
