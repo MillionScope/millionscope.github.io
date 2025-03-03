@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
         setAuthStatus("loading")
         // Fetch from the API if no cached user
         const res = await fetch(`${API_ENDPOINT}/auth/user`, {
-          credentials: "include", // Important for sending cookies
+          credentials: "include", // Important for sendiwng cookies
         })
 
         if (res.ok) {
