@@ -1,0 +1,224 @@
+# Project Rules and Guidelines for Millionscope.com
+
+This document outlines the rules, configurations, and best practices for the `millionscope.com` project, a ChatGPT clone built with Next.js, Cloudflare Workers, and various other technologies.
+
+---
+
+## **Project Overview**
+- **Project Name**: Millionscope.com
+- **Frontend**: Next.js (App Router) with Static Site Generation (SSG) using JavaScript.
+- **Backend**: Cloudflare Workers with JavaScript.
+- **AI Integration**: 
+  - Frontend: Vercel AI SDK (`useChat`) for chat functionality.
+  - Backend: Cloudflare AI SDK with the `deepseek-r1-distill-qwen-32b` model, using `createDataStreamResponse` and `streamText`.
+- **Markdown Rendering**: ProseMirror Markdown for rendering chat results.
+- **Authentication**: GitHub and Google OAuth with JWT cookies for login and verification.
+- **Styling**: Tailwind CSS v4 (latest) for styling.
+- **Next.js Version**: 15.2 (latest).
+- **Deployment**:
+  - Frontend: Built and pushed to GitHub Pages (`https://millionscope.github.io`).
+  - Backend: Hosted on Cloudflare Workers (`https://api.millionscope.worker.dev`).
+
+---
+
+## **Project Structure**
+### **Frontend (Next.js)**
+- **Pages**:
+  - `/index`: Homepage.
+  - `/chat/<chatid>`: Chat page with dynamic routing.
+- **Configuration**:
+  - `jsconfig.json` is used with `@/` as the root alias.
+  - Tailwind CSS v4 is configured with PostCSS and LightningCSS.
+- **Build and Deployment**:
+  - The project is built and deployed to GitHub Pages (`https://millionscope.github.io`).
+
+### **Backend (Cloudflare Workers)**
+- **AI Integration**:
+  - Cloudflare AI SDK with the `deepseek-r1-distill-qwen-32b` model.
+  - Uses `createDataStreamResponse` and `streamText` for streaming responses.
+- **Authentication**:
+  - GitHub and Google OAuth with JWT cookies for secure login and verification.
+- **Deployment**:
+  - Hosted on Cloudflare Workers (`https://api.millionscope.worker.dev`).
+
+---
+
+## **Development Guidelines**
+### **Frontend**
+1. **Next.js**:
+   - Use the App Router for routing.
+   - Leverage Static Site Generation (SSG) for performance optimization.
+   - Use the latest Next.js version (15.2).
+2. **Styling**:
+   - Use Tailwind CSS v4 for styling.
+   - Ensure consistency by using `tailwind-merge` and `class-variance-authority` for dynamic class management.
+3. **Markdown Rendering**:
+   - Use ProseMirror Markdown for rendering chat results.
+4. **AI Integration**:
+   - Use Vercel AI SDK (`@ai-sdk/react`) with `useChat` for chat functionality.
+5. **Authentication**:
+   - Implement GitHub and Google OAuth with JWT cookies for secure login and verification.
+
+### **Backend**
+1. **Cloudflare Workers**:
+   - Use Cloudflare AI SDK with the `deepseek-r1-distill-qwen-32b` model.
+   - Implement `createDataStreamResponse` and `streamText` for streaming responses.
+2. **Authentication**:
+   - Validate JWT cookies for secure access to backend endpoints.
+
+---
+
+## **Dependencies**
+### **Frontend**
+- **Core**:
+  - `next`, `react`, `react-dom`, `tailwindcss`, `postcss`, `postcss-lightningcss`
+- **AI**:
+  - `@ai-sdk/react`, `@ai-sdk/fireworks`
+- **UI**:
+  - `@headlessui/react`, `@radix-ui/*`, `lucide-react`, `sonner`
+- **Markdown**:
+  - `prosemirror-*`, `react-markdown`, `remark-*`, `rehype-*`
+- **Utilities**:
+  - `clsx`, `tailwind-merge`, `class-variance-authority`, `usehooks-ts`, `uuid`
+
+### **Backend**
+- **Core**:
+  - `@cloudflare/pages-plugin-hcaptcha`, `ai`
+- **Utilities**:
+  - `fast-deep-equal`, `date-fns`, `yaml`
+
+---
+
+## **Deployment**
+### **Frontend**
+- Build the Next.js project and push it to GitHub Pages.
+- The output website will be hosted at `https://millionscope.github.io`.
+
+### **Backend**
+- Deploy the Cloudflare Workers project to `https://api.millionscope.worker.dev`.
+
+---
+
+## **Best Practices**
+1. **Code Quality**:
+   - Use ESLint and Prettier for consistent code formatting.
+   - Write modular and reusable components.
+2. **Performance**:
+   - Optimize images and assets for faster loading.
+   - Use SSG for static pages to improve performance.
+3. **Security**:
+   - Validate all user inputs to prevent XSS and other attacks.
+   - Use JWT cookies securely with proper expiration and validation.
+4. **Documentation**:
+   - Document all major components and functions.
+   - Keep the README file updated with project setup instructions.
+
+---
+
+## **Additional Notes**
+- Ensure all dependencies are kept up-to-date.
+- Regularly test the project for bugs and performance issues.
+- Follow semantic versioning for all packages.
+
+---
+
+## Project Overview
+- **Project Name**: Millionscope.com
+- **Description**: ChatGPT clone project
+- **Frontend**: Next.js App Router using SSG (JavaScript)
+- **Backend**: Cloudflare Worker (JavaScript)
+- **AI Integration**:  
+  - Frontend: ProseMirror Markdown for rendering, Vercel AI SDK (`useChat`) for responses  
+  - Backend: Cloudflare AI SDK with `deepseek-r1-distill-qwen-32b`, using `createDataStreamResponse` and `streamText`  
+
+## Authentication
+- GitHub and Google OAuth
+- JWT Cookies for session verification
+
+## Project Structure
+- **Frontend Pages**:  
+  - `/index`  
+  - `/chat/<chatid>`  
+- **Frontend Build Output**: `https://millionscope.github.io`
+- **Backend API**: `https://api.millionscope.worker.dev`
+
+## Configuration
+- **Module Resolution**: `jsconfig` with alias `@/`
+- **Styling**: TailwindCSS v4
+- **Next.js Version**: 15.2 (latest)
+
+## Dependencies
+```json
+{
+  "packages": [
+    "@ai-sdk/fireworks",
+    "@ai-sdk/react",
+    "@cloudflare/pages-plugin-hcaptcha",
+    "@codemirror/lang-javascript",
+    "@codemirror/lang-python",
+    "@codemirror/state",
+    "@codemirror/theme-one-dark",
+    "@codemirror/view",
+    "@headlessui/react",
+    "@next/mdx",
+    "@popperjs/core",
+    "@radix-ui/react-alert-dialog",
+    "@radix-ui/react-dropdown-menu",
+    "@radix-ui/react-label",
+    "@radix-ui/react-select",
+    "@radix-ui/react-separator",
+    "@radix-ui/react-tooltip",
+    "@shikijs/twoslash",
+    "@tailwindcss/postcss",
+    "ai",
+    "class-variance-authority",
+    "classnames",
+    "clsx",
+    "codemirror",
+    "date-fns",
+    "estree-util-value-to-estree",
+    "fast-deep-equal",
+    "framer-motion",
+    "github-slugger",
+    "hast-util-to-estree",
+    "intersection-observer",
+    "lucide-react",
+    "next",
+    "next-themes",
+    "papaparse",
+    "postcss",
+    "postcss-lightningcss",
+    "prosemirror-example-setup",
+    "prosemirror-inputrules",
+    "prosemirror-markdown",
+    "prosemirror-model",
+    "prosemirror-schema-basic",
+    "prosemirror-schema-list",
+    "prosemirror-state",
+    "prosemirror-view",
+    "react",
+    "react-data-grid",
+    "react-dom",
+    "react-dropzone",
+    "react-markdown",
+    "rehype-katex",
+    "rehype-raw",
+    "rehype-stringify",
+    "remark-embed-images",
+    "remark-gfm",
+    "remark-math",
+    "remark-parse",
+    "remark-rehype",
+    "scroll-into-view-if-needed",
+    "slash",
+    "sonner",
+    "swr",
+    "tailwind-merge",
+    "tailwindcss",
+    "unified",
+    "unist-util-visit",
+    "usehooks-ts",
+    "uuid",
+    "yaml"
+  ]
+}

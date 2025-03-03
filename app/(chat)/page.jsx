@@ -13,7 +13,7 @@ export default function Page() {
 
   useEffect(() => {
     const storedModelId = getCookie("chat-model")
-    console.log("storedModelId", storedModelId)
+    // console.log("storedModelId", storedModelId)
     setModelId(storedModelId)
   }, [])
 

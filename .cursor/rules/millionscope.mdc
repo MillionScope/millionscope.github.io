@@ -1,0 +1,107 @@
+---
+description: Cursor IDE Rules for Millionscope.com
+globs: *.jsx, *.js
+alwaysApply: false
+---
+# Cursor IDE Rules for Millionscope.com
+
+## Project Overview
+- **Project Name**: Millionscope.com
+- **Description**: ChatGPT clone project
+- **Frontend**: Next.js App Router using SSG (JavaScript)
+- **Backend**: Cloudflare Worker (JavaScript)
+- **AI Integration**:  
+  - Frontend: ProseMirror Markdown for rendering, Vercel AI SDK (`useChat`) for responses  
+  - Backend: Cloudflare AI SDK with `deepseek-r1-distill-qwen-32b`, using `createDataStreamResponse` and `streamText`  
+
+## Authentication
+- GitHub and Google OAuth
+- JWT Cookies for session verification
+
+## Project Structure
+- **Frontend Pages**:  
+  - `/index`  
+  - `/chat/<chatid>`  
+- **Frontend Build Output**: `https://millionscope.github.io`
+- **Backend API**: `https://api.millionscope.worker.dev`
+
+## Configuration
+- **Module Resolution**: `jsconfig` with alias `@/`
+- **Styling**: TailwindCSS v4
+- **Next.js Version**: 15.2 (latest)
+
+## Dependencies
+```json
+{
+  "packages": [
+    "@ai-sdk/fireworks",
+    "@ai-sdk/react",
+    "@cloudflare/pages-plugin-hcaptcha",
+    "@codemirror/lang-javascript",
+    "@codemirror/lang-python",
+    "@codemirror/state",
+    "@codemirror/theme-one-dark",
+    "@codemirror/view",
+    "@headlessui/react",
+    "@next/mdx",
+    "@popperjs/core",
+    "@radix-ui/react-alert-dialog",
+    "@radix-ui/react-dropdown-menu",
+    "@radix-ui/react-label",
+    "@radix-ui/react-select",
+    "@radix-ui/react-separator",
+    "@radix-ui/react-tooltip",
+    "@shikijs/twoslash",
+    "@tailwindcss/postcss",
+    "ai",
+    "class-variance-authority",
+    "classnames",
+    "clsx",
+    "codemirror",
+    "date-fns",
+    "estree-util-value-to-estree",
+    "fast-deep-equal",
+    "framer-motion",
+    "github-slugger",
+    "hast-util-to-estree",
+    "intersection-observer",
+    "lucide-react",
+    "next",
+    "next-themes",
+    "papaparse",
+    "postcss",
+    "postcss-lightningcss",
+    "prosemirror-example-setup",
+    "prosemirror-inputrules",
+    "prosemirror-markdown",
+    "prosemirror-model",
+    "prosemirror-schema-basic",
+    "prosemirror-schema-list",
+    "prosemirror-state",
+    "prosemirror-view",
+    "react",
+    "react-data-grid",
+    "react-dom",
+    "react-dropzone",
+    "react-markdown",
+    "rehype-katex",
+    "rehype-raw",
+    "rehype-stringify",
+    "remark-embed-images",
+    "remark-gfm",
+    "remark-math",
+    "remark-parse",
+    "remark-rehype",
+    "scroll-into-view-if-needed",
+    "slash",
+    "sonner",
+    "swr",
+    "tailwind-merge",
+    "tailwindcss",
+    "unified",
+    "unist-util-visit",
+    "usehooks-ts",
+    "uuid",
+    "yaml"
+  ]
+}
