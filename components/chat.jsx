@@ -43,7 +43,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   })
 
   // console.log("id", id)
-  console.log("messages", messages)
+  console.log("isLoading", isLoading)
 
   // const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcherData)
   const votes = []

@@ -63,7 +63,7 @@ export default function ChatPage() {
     }
 
     fetchData()
-  }, [id])
+  }, [id, searchParams])
 
   if (error) {
     return <div>Error: {error}</div>

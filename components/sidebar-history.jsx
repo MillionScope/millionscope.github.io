@@ -35,6 +35,7 @@ import { useChatVisibility } from "@/utils/hooks/use-chat-visibility"
 import { useSidebar } from "@/contexts/sidebar"
 import { apiFetcherData } from "@/utils/fetcher"
 import { useAuth } from "@/contexts/auth"
+import { DEFAULT_USER_ID } from "@/config/constants"
 
 // type GroupedChats = {
 //   today: Chat[];
@@ -126,7 +127,7 @@ export function SidebarHistory() {
     data: history,
     isLoading,
     mutate,
-  } = useSWR(`/chats?userid=5553a32b2fa51b29575dbe28bd6b36cd`, apiFetcherData, {
+  } = useSWR(`/chats?userid=${DEFAULT_USER_ID}`, apiFetcherData, {
     fallbackData: [],
     revalidateIfStale: false,
     revalidateOnFocus: false,

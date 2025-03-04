@@ -11,3 +11,5 @@ export const GITHUB_REDIRECT_URI = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth
 
 export const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
 export const GOOGLE_REDIRECT_URI = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth/callback/google`
+
+export const DEFAULT_USER_ID = "5553a32b2fa51b29575dbe28bd6b36cd"
