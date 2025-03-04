@@ -19,16 +19,16 @@ export default function ChatPage() {
   const [chatModelFromCookies, setChatModelFromCookies] = useState(null)
 
   async function getChatById({ chatid }) {
-    const resp = await apiFetcher(`/chat/${chatid}`)
-    console.log("resp", resp)
-    return resp
+    const resp = await apiFetcher(`/chats/${chatid}`)
+    // console.log("resp", resp)
+    return resp.data
   }
 
   async function getMessagesByChatId({ chatid }) {
     const resp = await apiFetcher(`/chats/${chatid}/messages`)
 
-    console.log("getMessagesByChatId")
-    console.log("resp", resp)
+    // console.log("getMessagesByChatId")
+    // console.log("resp", resp)
 
     return resp
   }
@@ -44,7 +44,7 @@ export default function ChatPage() {
     const fetchData = async () => {
       try {
         const chatData = await getChatById({ chatid: id })
-        console.log('chatData', chatData)
+        // console.log('chatData', chatData)
         if (!chatData) {
           throw new Error("Chat not found")
         }
@@ -72,7 +72,7 @@ export default function ChatPage() {
   // if (!chat) {
   //   return <div>Chat not found</div>
   // }
-  if (isLoading) {
+  if (isLoading || !id) {
     return <></>
     // <div>Loading...</div>
   }
@@ -80,11 +80,11 @@ export default function ChatPage() {
   // Since we can't use cookies in a static context, we assume a default chat model
   const selectedChatModel = chatModelFromCookies ? chatModelFromCookies : DEFAULT_CHAT_MODEL
 
-  console.log("messages", messages)
+  // console.log("messages", messages)
 
   return (
     <>
-      <Chat id={chat.id} initialMessages={convertToUIMessages(messages)} selectedChatModel={selectedChatModel} selectedVisibilityType={chat.visibility} isReadonly={false} />
+      <Chat id={id} initialMessages={convertToUIMessages(messages)} selectedChatModel={selectedChatModel} selectedVisibilityType={chat.visibility} isReadonly={false} />
       <DataStreamHandler id={id} />
     </>
   )

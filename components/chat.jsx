@@ -25,12 +25,13 @@ import { API_ENDPOINT } from "@/config/constants"
 // }
 export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilityType, isReadonly }) {
   const { mutate } = useSWRConfig()
-
+  // messages: JSON.stringify(initialMessages), 
   const { messages, setMessages, handleSubmit, input, setInput, append, isLoading, stop, reload } = useChat({
     api: `${API_ENDPOINT}/chat/${id}`,
     id,
-    body: { id, selectedChatModel },
+    body: { id:id, selectedChatModel:selectedChatModel },
     initialMessages,
+    credentials: "include",
     experimental_throttle: 100,
     sendExtraMessageFields: true,
     generateId: generateUUID,
@@ -43,7 +44,6 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
   })
 
   // console.log("id", id)
-  console.log("isLoading", isLoading)
 
   // const { data: votes } = useSWR(`/api/vote?chatId=${id}`, apiFetcherData)
   const votes = []

@@ -39,7 +39,7 @@ function PureMessages({ chatId, isLoading, votes, messages, setMessages, reload,
         />
       ))}
 
-      {isLoading && messages.length > 0 && messages[messages.length - 1].role === "user" && <ThinkingMessage />}
+      {/* {isLoading && messages.length > 0 && messages[messages.length - 1].role === "user" && <ThinkingMessage />} */}
 
       <div ref={messagesEndRef} className="shrink-0 min-w-[24px] min-h-[24px]" />
     </div>

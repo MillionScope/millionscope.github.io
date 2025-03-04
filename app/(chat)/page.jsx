@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 export default function Page() {
   const id = generateUUID()
   const [modelId, setModelId] = useState(null)
+  console.log("useState go here")
 
   useEffect(() => {
     const storedModelId = getCookie("chat-model")
