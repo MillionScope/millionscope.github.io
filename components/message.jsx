@@ -50,7 +50,7 @@ const PurePreviewMessage = ({ chatId, message, vote, isLoading, setMessages, rel
             {message.reasoning && <MessageReasoning isLoading={isLoading} reasoning={message.reasoning} />}
 
             {(message.content || message.reasoning) && mode === "view" && (
-              <div className="flex flex-row gap-2 items-start">
+              <div className="flex flex-row gap-2 items-center">
                 {message.role === "user" && !isReadonly && (
                   <Tooltip>
                     <TooltipTrigger asChild>
@@ -79,9 +79,8 @@ const PurePreviewMessage = ({ chatId, message, vote, isLoading, setMessages, rel
             )}
 
             {message.content && mode === "edit" && (
-              <div className="flex flex-row gap-2 items-start">
+              <div className="flex flex-row gap-2 items-center">
                 <div className="size-8" />
-
                 <MessageEditor key={message.id} message={message} setMode={setMode} setMessages={setMessages} reload={reload} />
               </div>
             )}
