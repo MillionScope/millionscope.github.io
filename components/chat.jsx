@@ -36,7 +36,7 @@ export function Chat({ id, initialMessages, selectedChatModel, selectedVisibilit
     sendExtraMessageFields: true,
     generateId: generateUUID,
     onFinish: () => {
-      mutate(`${API_ENDPOINT}/api/history`)
+      mutate(`${API_ENDPOINT}/history`)
     },
     onError: (error) => {
       toast.error("An error occured, please try again!")
