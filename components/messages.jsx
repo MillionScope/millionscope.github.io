@@ -21,6 +21,7 @@ import equal from "fast-deep-equal"
 
 function PureMessages({ chatId, isLoading, votes, messages, setMessages, reload, isReadonly }) {
   const [messagesContainerRef, messagesEndRef] = useScrollToBottom()
+  // console.log("messages", messages)
 
   return (
     <div ref={messagesContainerRef} className="custom-scrollbar [scrollbar-gutter:stable] h-screen flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4">
@@ -39,7 +40,7 @@ function PureMessages({ chatId, isLoading, votes, messages, setMessages, reload,
         />
       ))}
 
-      {/* {isLoading && messages.length > 0 && messages[messages.length - 1].role === "user" && <ThinkingMessage />} */}
+      {isLoading && messages.length > 0 && messages[messages.length - 1].role === "user" && <ThinkingMessage />}
 
       <div ref={messagesEndRef} className="shrink-0 min-w-[24px] min-h-[24px]" />
     </div>

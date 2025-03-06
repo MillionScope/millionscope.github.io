@@ -20,8 +20,9 @@ import { MessageReasoning } from "./message-reasoning"
 
 const PurePreviewMessage = ({ chatId, message, vote, isLoading, setMessages, reload, isReadonly }) => {
   const [mode, setMode] = useState("view")
-  console.log("PurePreviewMessage.message", JSON.stringify(message))
-  // console.log("toolInvocations", message.toolInvocations)
+  console.log("PurePreviewMessage.message22", message)
+  // console.log("reasoning", message.reasoning)
+  console.log("toolInvocations", message.toolInvocations)
 
   return (
     <AnimatePresence>
