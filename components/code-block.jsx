@@ -41,8 +41,9 @@ export function CodeBlock({ node, inline, className, children, ...props }) {
         //   }
         //   html += "\n"
         // }
-
-        setHighlightedCode(html)
+        const strippedHtml = html.replace(/<pre[^>]*>|<\/pre>/g, '')
+        setHighlightedCode(strippedHtml)
+        // setHighlightedCode(html)
         setIsLoading(false)
       } catch (error) {
         console.error("Failed to load Shiki highlighter:", error)
@@ -55,15 +56,13 @@ export function CodeBlock({ node, inline, className, children, ...props }) {
 
   if (!inline) {
     return match ? (
-      // <pre className="">
-        <code className={`whitespace-pre-wrap break-words language-${match[1]}`} dangerouslySetInnerHTML={{ __html: highlightedCode }} />
-      // </pre>
+      <code className={`whitespace-pre-wrap break-words language-${match[1]} bg-transparent`} dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     ) : (
-      <code className="whitespace-pre-wrap break-words px-1 py-0.5 dark:bg-gray-800 rounded-md">{children}</code>
+      <code className="whitespace-pre-wrap break-words px-1 py-0.5 bg-transparent rounded-md">{children}</code>
     )
   } else {
     return (
-      <code className={`${className} text-sm bg-zinc-100 dark:bg-zinc-800 py-0.5 px-1 rounded-md`} {...props}>
+      <code className={`${className} text-sm bg-transparent py-0.5 px-1 rounded-md`} {...props}>
         {children}
       </code>
     )

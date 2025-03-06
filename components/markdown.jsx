@@ -14,7 +14,7 @@ const components = {
     return <p className="leading-6">{children}</p>;
   },
   pre: ({ children }) => (
-    <pre className="overflow-x-auto p-4 dark:bg-zinc-900 border border-zinc-200 rounded-lg">
+    <pre className="bg-primary-700/5 mb-4 overflow-x-auto rounded-xl subpixel-antialiased dark:bg-primary-300/10 text-[.9em] contrast-more:border contrast-more:border-primary-900/20 contrast-more:contrast-150 contrast-more:dark:border-primary-100/40 py-4">
       {children}
     </pre>
   ),

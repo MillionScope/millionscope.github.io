@@ -15,10 +15,10 @@ code:not([class*="twoslash-"]) {
     "calt" 1,
     "ss01" 1;
 
-  :not(pre) > & {
+  /* :not(pre) > & {
     @apply border-black/3 bg-black/3 break-words rounded-md border py-0.5 px-[.25em] text-[.9em];
     @apply dark:border-white/10 dark:bg-white/10;
-  }
+  } */
 }
 
 pre code:not([class*="twoslash-"]) {
@@ -67,6 +67,7 @@ pre code:not([class*="twoslash-"]) {
 
 /* ===== Basic ===== */
 :root {
+  --shiki-background: transparent;
   --twoslash-border-color: #8888;
   --twoslash-underline-color: currentColor;
   --twoslash-highlighted-border: #c37d0d50;
@@ -75,7 +76,6 @@ pre code:not([class*="twoslash-"]) {
   --twoslash-popup-color: inherit;
   --twoslash-popup-shadow: rgba(0, 0, 0.08) 0px 1px 4px;
   --twoslash-docs-color: #888;
-  --twoslash-docs-font: sans-serif;
   --twoslash-code-font: inherit;
   --twoslash-code-font-size: 1em;
   --twoslash-matched-color: inherit;
