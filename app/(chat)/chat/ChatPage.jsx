@@ -84,7 +84,14 @@ export default function ChatPage() {
 
   return (
     <>
-      <Chat id={id} initialMessages={convertToUIMessages(messages)} selectedChatModel={selectedChatModel} selectedVisibilityType={chat.visibility} isReadonly={false} />
+      <Chat 
+        key={id} 
+        id={id} 
+        initialMessages={convertToUIMessages(messages)} 
+        selectedChatModel={selectedChatModel} 
+        selectedVisibilityType={chat.visibility} 
+        isReadonly={false} 
+      />
       <DataStreamHandler id={id} />
     </>
   )
