@@ -131,7 +131,9 @@
   }
 
   * {
-    scrollbar-color: #ececec transparent;
+    scrollbar-color: lab(48.438% 0 0/.4) transparent;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
   }
 }
 

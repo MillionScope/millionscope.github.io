@@ -1,12 +1,63 @@
 "use client"
 
+import { useEffect, useState } from "react"
+// import { getHighlighter } from 'shiki';
+import { codeToHtml } from "shiki"
+
 export function CodeBlock({ node, inline, className, children, ...props }) {
   const match = /language-(\w+)/.exec(className || "")
+  const language = match ? match[1] : "text"
+
+  const [highlightedCode, setHighlightedCode] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Skip for inline code
+    if (inline) return
+
+    const loadHighlighter = async () => {
+      try {
+        // const highlighter = await getHighlighter({
+        //   theme: "github-dark",
+        //   langs: ["javascript", "jsx", "typescript", "python", "css", "html", "text"],
+        // })
+
+        // Get the code content from children
+        const code = String(children).replace(/\n$/, "")
+        console.log("lang", language)
+
+        // Generate HTML without pre tags - we'll add our own
+        // const tokens = highlighter.codeToThemedTokens(code, language)
+        const html = await codeToHtml(code, {
+          lang: language,
+          theme: "github-light",
+        })
+        // const bg = highlighter.getTheme().bg || "#1e1e1e"
+
+        // let html = ""
+        // for (const line of tokens) {
+        //   for (const token of line) {
+        //     html += `<span style="color: ${token.color || "inherit"}">${escapeHtml(token.content)}</span>`
+        //   }
+        //   html += "\n"
+        // }
+
+        setHighlightedCode(html)
+        setIsLoading(false)
+      } catch (error) {
+        console.error("Failed to load Shiki highlighter:", error)
+        setIsLoading(false)
+      }
+    }
+    console.log("loadHighlighter")
+    loadHighlighter()
+  }, [children, language, inline])
+
   if (!inline) {
     return match ? (
-      <pre className="">
-        <code className={`whitespace-pre-wrap break-words language-${match[1]}`}>{children}</code>
-      </pre>
+      // <pre className="">
+        <code className={`whitespace-pre-wrap break-words language-${match[1]}`} dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+      // </pre>
     ) : (
       <code className="whitespace-pre-wrap break-words px-1 py-0.5 dark:bg-gray-800 rounded-md">{children}</code>
     )
