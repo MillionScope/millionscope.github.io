@@ -161,7 +161,7 @@ const SidebarInput = forwardRef(({ className, ...props }, ref) => {
 SidebarInput.displayName = "SidebarInput"
 
 const SidebarHeader = forwardRef(({ className, ...props }, ref) => {
-  return <div ref={ref} data-sidebar="header" className={cn("flex flex-col gap-2 p-2", className)} {...props} />
+  return <div ref={ref} data-sidebar="header" className={cn("flex flex-col gap-2 p-3 pl-0", className)} {...props} />
 })
 SidebarHeader.displayName = "SidebarHeader"
 

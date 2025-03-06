@@ -10,7 +10,7 @@ export function SidebarToggle({ className }) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Button onClick={toggleSidebar} variant="outline" className="md:px-2 md:h-fit">
+        <Button onClick={toggleSidebar} variant="outline" className="cursor-pointer md:px-2 md:h-fit">
           <SidebarLeftIcon size={16} />
         </Button>
       </TooltipTrigger>

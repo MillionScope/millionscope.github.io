@@ -10,6 +10,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu } fr
 import Link from "next/link"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import { useSidebar } from "@/contexts/sidebar"
+import Image from "next/image"
 
 export function AppSidebar() {
   const router = useRouter()
@@ -27,14 +28,17 @@ export function AppSidebar() {
               }}
               className="flex flex-row gap-3 items-center"
             >
-              <span className="text-lg font-bold px-2 hover:bg-muted rounded-md cursor-pointer">MillionScope</span>
+              <div className="flex gap-2 px-4">
+                <Image src="/logo.svg" width={24} height={24} alt="Logo" />
+                <span className="select-none text-lg font-bold  rounded-md cursor-pointer">MillionScope</span>
+              </div>
             </Link>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="ghost"
                   type="button"
-                  className="p-2 h-fit"
+                  className="p-2 h-fit cursor-pointer"
                   onClick={() => {
                     setOpenMobile(false)
                     router.push("/")
@@ -52,7 +56,9 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarHistory />
       </SidebarContent>
-      <SidebarFooter><SidebarUserNav /></SidebarFooter>
+      <SidebarFooter>
+        <SidebarUserNav />
+      </SidebarFooter>
     </Sidebar>
   )
 }

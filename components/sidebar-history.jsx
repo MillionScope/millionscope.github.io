@@ -170,7 +170,7 @@ export function SidebarHistory() {
     return (
       <SidebarGroup>
         <SidebarGroupContent>
-          <div className="px-2 text-zinc-500 w-full flex flex-row justify-center items-center text-sm gap-2">Login to save and revisit previous chats!</div>
+          <div className="px-2 text-zinc-500 w-full flex flex-row justify-center items-center text-sm gap-2">Login to load chat history!</div>
         </SidebarGroupContent>
       </SidebarGroup>
     )
