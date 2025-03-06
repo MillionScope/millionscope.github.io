@@ -58,7 +58,7 @@ export function CodeBlock({ node, inline, className, children, ...props }) {
     return match ? (
       <code className={`whitespace-pre-wrap break-words language-${match[1]} bg-transparent`} dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     ) : (
-      <code className="whitespace-pre-wrap break-words px-1 py-0.5 bg-transparent rounded-md">{children}</code>
+      <code className="bg-primary-700/5 border-opacity-[0.04] bg-opacity-[0.03] break-words rounded-md border py-0.5 px-[.25em] text-[.9em] dark:border-white/10 dark:bg-white/10">{children}</code>
     )
   } else {
     return (
