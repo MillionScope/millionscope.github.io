@@ -5,6 +5,7 @@
     "dev": "next dev",
     "prettier": "prettier --write \"**/*.{js, jsx}\"",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "https-dev": "local-ssl-proxy --source 3001 --target 3000 --cert localhost.pem --key localhost-key.pem",
     "lint": "next lint"
   },
@@ -15,6 +16,7 @@
     "@codemirror/lang-javascript": "^6.2.3",
     "@codemirror/lang-python": "^6.1.7",
     "@codemirror/state": "^6.5.2",
+    "next-sitemap": "^4.2.3",
     "@codemirror/theme-one-dark": "^6.1.2",
     "@codemirror/view": "^6.36.4",
     "@headlessui/react": "^2.2.0",
