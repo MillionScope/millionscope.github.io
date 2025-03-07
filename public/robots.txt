@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://openhuman.ai
+Host: https://millionscope.com
 
 # Sitemaps
-Sitemap: https://openhuman.ai/sitemap.xml
+Sitemap: https://millionscope.com/sitemap.xml

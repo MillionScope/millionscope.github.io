@@ -1,14 +1,10 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://openhuman.ai',
+  siteUrl: 'https://millionscope.com',
   generateRobotsTxt: true,
   changefreq: 'daily',
   priority: 0.7,
   sitemapSize: 5000,
-  exclude: [
-    '/api/*',
-    '/admin/*',
-  ],
   robotsTxtOptions: {
     policies: [
       {
