@@ -1,12 +1,23 @@
+/* ===== Core Framework ===== */
 @import "tailwindcss";
+
+/* ===== Variables and Base Styles ===== */
+@import "../styles/variables.css";
+@import "./fonts.css";
+
+/* ===== Layout Components ===== */
 @import "../styles/subheading-anchor.css";
 @import "../styles/scrollbar.css";
-/* @import "../styles/steps.css"; */
+@import "../styles/steps.css";
+
+/* ===== Content Components ===== */
 @import "../styles/code-block.css";
 @import "../styles/utilities.css";
-@import "./fonts.css";
+
+/* ===== Custom Overrides ===== */
 @import "./custom.css";
 
+/* ===== Commented Out - Remove if not needed ===== */
 /* @import "../styles/cards.css"; */
 /* @import "../styles/hamburger.css"; */
 /* @import "../styles/typesetting-article.css"; */

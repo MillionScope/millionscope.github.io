@@ -1,23 +1,40 @@
+// Core Next.js and MDX imports
 import nextMDX from "@next/mdx"
+
+// Remark plugins (Markdown processing)
 import remarkGfm from "remark-gfm"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
+import remarkMath from "remark-math"
+
+// Rehype plugins (HTML processing)
 import rehypeStringify from "rehype-stringify"
 import rehypeKatex from "rehype-katex"
-import remarkMath from "remark-math"
+
+// Shiki syntax highlighting
 import { rendererRich, transformerTwoslash } from "@shikijs/twoslash"
-// import rehypeShiki from "@shikijs/rehype"
+
+// Custom plugins - Remark
 import remarkMdxDisableExplicitJsx from "./plugins/remark-mdx-disable-explicit-jsx.mjs"
 import { remarkCustomHeadingId } from "./plugins/remark-custom-heading-id.mjs"
 import { remarkHeadings } from "./plugins/remark-headings.mjs"
 import { remarkLinkRewrite } from "./plugins/remark-link-rewrite.mjs"
 import { remarkMdxFrontMatter } from "./plugins/remark-mdx-frontmatter.mjs"
-// import { remarkMdxTitle } from './plugins/remark-mdx-title.mjs'
 import { remarkStaticImage } from "./plugins/remark-static-image.mjs"
 import { remarkStructurize } from "./plugins/remark-structurize.mjs"
-import { DEFAULT_REHYPE_PRETTY_CODE_OPTIONS, rehypeAttachCodeMeta, rehypeParseCodeMeta } from "./plugins/rehype.mjs"
+
+// Custom plugins - Rehype
+import { 
+  DEFAULT_REHYPE_PRETTY_CODE_OPTIONS, 
+  rehypeAttachCodeMeta, 
+  rehypeParseCodeMeta 
+} from "./plugins/rehype.mjs"
 import { rehypeExtractTocContent } from "./plugins/rehype-extract-toc-content.mjs"
 import { rehypeIcon } from "./plugins/rehype-icon.mjs"
+
+// Commented out plugins - remove if not needed
+// import rehypeShiki from "@shikijs/rehype"
+// import { remarkMdxTitle } from './plugins/remark-mdx-title.mjs'
 // import { recmaRewriteJsx } from './plugins/recma-rewrite-jsx.mjs'
 // import { recmaRewriteFunctionBody } from './plugins/recma-rewrite-function-body.mjs'
 

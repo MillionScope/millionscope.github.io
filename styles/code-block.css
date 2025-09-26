@@ -1,8 +1,11 @@
+/* ===== Code Block Theme Variables ===== */
 :root {
   --shiki-dark-bg: #2e3440ff;
-  --shiki-dark: #d8dee9 --shiki-light: #2e3440;
+  --shiki-dark: #d8dee9;
+  --shiki-light: #2e3440;
 }
 
+/* ===== Code Block Base Styles ===== */
 .nextra-code span {
   @apply bg-[--shiki-light-bg] text-[:state(shiki-light)];
   @apply dark:bg-[--shiki-dark-bg] dark:text-[:state(shiki-dark)];
