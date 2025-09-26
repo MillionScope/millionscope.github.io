@@ -34,7 +34,7 @@ export function MessageEditor({ message, setMode, setMessages, reload }) {
     if (textareaRef.current) {
       adjustHeight()
     }
-  }, [textareaRef])
+  }, [adjustHeight])
 
   const handleInput = (event) => {
     setDraftContent(event.target.value)

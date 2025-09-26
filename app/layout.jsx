@@ -37,7 +37,11 @@ export default async function RootLayout({ children }) {
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <Toaster position="top-center" />
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <div className="flex h-full w-full flex-col">
+                {children}
+              </div>
+            </AuthProvider>
           </ThemeProvider>
         </ErrorBoundary>
       </body>

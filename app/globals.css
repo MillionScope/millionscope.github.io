@@ -1,6 +1,20 @@
 /* ===== Core Framework ===== */
 @import "tailwindcss";
 
+@theme {
+  --color-token-bg-primary: var(--token-bg-primary);
+  --color-token-bg-elevated-secondary: var(--token-bg-elevated-secondary);
+  --color-token-text-primary: var(--token-text-primary);
+  --color-token-text-secondary: var(--token-text-secondary);
+  --color-token-text-tertiary: var(--token-text-tertiary);
+  --color-token-text-quaternary: var(--token-text-quaternary);
+  --color-token-surface-hover: var(--token-surface-hover);
+  --color-token-border-default: var(--token-border-default);
+  --color-token-main-surface-primary: var(--token-main-surface-primary);
+  --color-token-main-surface-secondary: var(--token-main-surface-secondary);
+  --color-token-main-surface-tertiary: var(--token-main-surface-tertiary);
+}
+
 /* ===== Variables and Base Styles ===== */
 @import "../styles/variables.css";
 @import "./fonts.css";
@@ -16,6 +30,192 @@
 
 /* ===== Custom Overrides ===== */
 @import "./custom.css";
+
+/* ===== ChatGPT Components ===== */
+@layer components {
+  /* ChatGPT Menu Item */
+  .__menu-item {
+    @apply flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-2 text-sm transition-colors;
+    @apply hover:bg-token-surface-hover focus-visible:bg-token-surface-hover;
+    @apply text-token-text-primary;
+  }
+
+  .__menu-item.hoverable:hover {
+    @apply bg-token-surface-hover;
+  }
+
+  .__menu-item-trailing-btn {
+    @apply flex h-6 w-6 items-center justify-center rounded-md;
+    @apply hover:bg-token-surface-hover;
+  }
+
+  .__menu-label {
+    @apply px-2 py-1 text-xs font-semibold text-token-text-secondary uppercase tracking-wide;
+  }
+
+  /* ChatGPT Composer */
+  .composer-btn {
+    @apply flex h-8 w-8 items-center justify-center rounded-full;
+    @apply text-token-text-primary;
+    @apply hover:bg-token-surface-hover;
+    @apply transition-colors;
+  }
+
+  .composer-secondary-button-color {
+    @apply bg-token-main-surface-primary text-white;
+    @apply hover:bg-token-main-surface-secondary;
+  }
+
+  /* ChatGPT Prosemirror styles */
+  ._prosemirror-parent_4ajk2_2 {
+    @apply relative;
+  }
+
+  ._fallbackTextarea_4ajk2_2 {
+    @apply absolute inset-0 resize-none border-0 bg-transparent outline-none;
+  }
+
+  .ProseMirror {
+    @apply min-h-6 outline-none;
+  }
+
+  .ProseMirror p.placeholder::before {
+    content: attr(data-placeholder);
+    @apply text-token-text-secondary pointer-events-none float-left h-0;
+  }
+
+  .ProseMirror-trailingBreak {
+    display: none;
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-token-surface-hover:hover {
+      background-color: var(--surface-hover);
+    }
+  }
+
+  /* Icon sizing */
+  .icon {
+    @apply h-5 w-5;
+  }
+
+  .icon-sm {
+    @apply h-4 w-4;
+  }
+
+  .icon-lg {
+    @apply h-6 w-6;
+  }
+
+  /* Shadow utilities */
+  .shadow-short {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-xxs {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Custom layout utilities */
+  .h-header-height {
+    height: var(--header-height);
+  }
+
+  .transition-width {
+    transition-property: width;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Text page header */
+  .text-page-header {
+    @apply text-2xl font-semibold text-token-text-primary;
+  }
+
+  /* Custom responsive utilities */
+  .thread-sm\:[--thread-content-margin\:--spacing\(6\)] {
+    --thread-content-margin: 1.5rem;
+  }
+
+  .thread-lg\:[--thread-content-max-width\:48rem] {
+    --thread-content-max-width: 48rem;
+  }
+
+  .thread-lg\:[--thread-content-margin\:--spacing\(16\)] {
+    --thread-content-margin: 4rem;
+  }
+
+  /* Container query utilities */
+  @container thread (min-width: 48rem) {
+    .thread-lg\:[--thread-content-max-width\:48rem] {
+      --thread-content-max-width: 48rem;
+    }
+  }
+
+  /* Focus ring utilities */
+  .keyboard-focused\:focus-ring:focus-visible {
+    @apply ring-2 ring-blue-500 ring-offset-2;
+  }
+
+  /* Custom button styles */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-medium;
+    @apply transition-colors focus-visible:outline-none focus-visible:ring-2;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-token-surface-hover;
+  }
+
+  /* Vertical scroll fade mask */
+  .vertical-scroll-fade-mask {
+    mask-image: linear-gradient(to bottom, transparent 0, black 8px, black calc(100% - 8px), transparent);
+  }
+
+  /* Default browser scrollbar */
+  .default-browser {
+    scrollbar-width: thin;
+  }
+
+  /* Touch utilities */
+  .touch\:h-10 {
+    @media (pointer: coarse) {
+      height: 2.5rem;
+    }
+  }
+
+  .touch\:w-10 {
+    @media (pointer: coarse) {
+      width: 2.5rem;
+    }
+  }
+
+  .touch\:min-h-10 {
+    @media (pointer: coarse) {
+      min-height: 2.5rem;
+    }
+  }
+
+  .touch\:px-1\.5 {
+    @media (pointer: coarse) {
+      padding-left: 0.375rem;
+      padding-right: 0.375rem;
+    }
+  }
+
+  .touch\:p-2\.5 {
+    @media (pointer: coarse) {
+      padding: 0.625rem;
+    }
+  }
+
+  .touch\:hidden {
+    @media (pointer: coarse) {
+      display: none;
+    }
+  }
+}
 
 /* ===== Commented Out - Remove if not needed ===== */
 /* @import "../styles/cards.css"; */
@@ -71,6 +271,40 @@
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 221 83% 53%;
 
+    /* ChatGPT Custom Properties */
+    --sidebar-width: 260px;
+    --sidebar-rail-width: 40px;
+    --header-height: 60px;
+    --bg-elevated-secondary: #f9f9f9;
+    --token-bg-primary: #ffffff;
+    --token-bg-elevated-secondary: #f9f9f9;
+    --token-text-primary: #000000;
+    --token-text-secondary: #6b7280;
+    --token-text-tertiary: #9ca3af;
+    --token-text-quaternary: #d1d5db;
+    --token-surface-hover: #f3f4f6;
+    --token-border-default: #e5e7eb;
+    --token-main-surface-primary: #0d9488;
+    --token-main-surface-secondary: #0f766e;
+    --token-main-surface-tertiary: #134e4a;
+    --sidebar-section-first-margin-top: 1rem;
+    --sidebar-section-margin-top: 2rem;
+    --sharp-edge-top-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+    --sharp-edge-bottom-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+    --sharp-edge-top-shadow-placeholder: 0 1px 0 0 transparent;
+    --spacing: 1rem;
+    --thread-content-margin: 1rem;
+    --thread-content-max-width: 40rem;
+    --composer-container-height: 100%;
+    --composer-container-flex: 1;
+    --vt-page-header: page-header;
+    --vt-composer: composer;
+    --vt-composer-speech-button: composer-speech-button;
+    --vt-thread-model-switcher: thread-model-switcher;
+    --vt-splash-screen-headline: splash-screen-headline;
+    --screen-optical-compact-offset-amount: 0px;
+    --display-hidden-until-loaded: flex;
+
     /* Custom */
   }
 
@@ -78,6 +312,20 @@
     --nextra-primary-hue: 204deg;
     --nextra-primary-saturation: 100%;
     --nextra-bg: 1, 1, 1;
+
+    /* ChatGPT Dark Mode Properties */
+    --bg-elevated-secondary: #2a2a2a;
+    --token-bg-primary: #1a1a1a;
+    --token-bg-elevated-secondary: #2a2a2a;
+    --token-text-primary: #ffffff;
+    --token-text-secondary: #a1a1aa;
+    --token-text-tertiary: #71717a;
+    --token-text-quaternary: #52525b;
+    --token-surface-hover: #374151;
+    --token-border-default: #374151;
+    --token-main-surface-primary: #10b981;
+    --token-main-surface-secondary: #059669;
+    --token-main-surface-tertiary: #047857;
   }
 
   *,
@@ -142,7 +390,7 @@
   }
 
   * {
-    scrollbar-color: lab(48.438% 0 0/.4) transparent;
+    scrollbar-color: lab(48.438% 0 0/0.4) transparent;
     scrollbar-width: thin;
     scrollbar-gutter: stable;
   }
@@ -213,8 +461,6 @@
 
 /* ************************** UTILITIES ************************** */
 @layer utilities {
-  
-
   .text-balance {
     text-wrap: balance;
   }
