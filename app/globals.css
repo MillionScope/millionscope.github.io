@@ -1,18 +1,185 @@
 /* ===== Core Framework ===== */
 @import "tailwindcss";
 
+/* ===== ChatGPT Spring Animations (from official source) ===== */
+:root {
+  --spring-fast-duration: 0.667s;
+  --spring-fast: linear(
+    0,
+    0.01942 1.83%,
+    0.07956 4.02%,
+    0.47488 13.851%,
+    0.65981 19.572%,
+    0.79653 25.733%,
+    0.84834 29.083%,
+    0.89048 32.693%,
+    0.9246 36.734%,
+    0.95081 41.254%,
+    0.97012 46.425%,
+    0.98361 52.535%,
+    0.99665 68.277%,
+    0.99988
+  );
+  --spring-common-duration: 0.667s;
+  --spring-common: linear(
+    0,
+    0.00506 1.18%,
+    0.02044 2.46%,
+    0.08322 5.391%,
+    0.46561 17.652%,
+    0.63901 24.342%,
+    0.76663 31.093%,
+    0.85981 38.454%,
+    0.89862 42.934%,
+    0.92965 47.845%,
+    0.95366 53.305%,
+    0.97154 59.516%,
+    0.99189 74.867%,
+    0.9991
+  );
+  --spring-standard: var(--spring-common);
+  --spring-slow-bounce-duration: 1.167s;
+  --spring-slow-bounce: linear(
+    0,
+    0.00172 0.51%,
+    0.00682 1.03%,
+    0.02721 2.12%,
+    0.06135 3.29%,
+    0.11043 4.58%,
+    0.21945 6.911%,
+    0.59552 14.171%,
+    0.70414 16.612%,
+    0.79359 18.962%,
+    0.86872 21.362%,
+    0.92924 23.822%,
+    0.97589 26.373%,
+    1.01 29.083%,
+    1.0264 31.043%,
+    1.03767 33.133%,
+    1.04411 35.404%,
+    1.04597 37.944%,
+    1.04058 42.454%,
+    1.01119 55.646%,
+    1.00137 63.716%,
+    0.99791 74.127%,
+    0.99988
+  );
+  --spring-bounce-duration: 0.833s;
+  --spring-bounce: linear(
+    0,
+    0.00541 1.29%,
+    0.02175 2.68%,
+    0.04923 4.19%,
+    0.08852 5.861%,
+    0.17388 8.851%,
+    0.48317 18.732%,
+    0.57693 22.162%,
+    0.65685 25.503%,
+    0.72432 28.793%,
+    0.78235 32.163%,
+    0.83182 35.664%,
+    0.87356 39.354%,
+    0.91132 43.714%,
+    0.94105 48.455%,
+    0.96361 53.705%,
+    0.97991 59.676%,
+    0.9903 66.247%,
+    0.99664 74.237%,
+    0.99988
+  );
+
+  /* Base spacing unit */
+  --spacing: 0.25rem;
+
+  /* Typography scale (from ChatGPT source) */
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.33333;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.42857;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.55556;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.33333;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 1.2;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1.11111;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 1;
+}
+
+/* ===== ChatGPT Composer Variables (from official source) ===== */
+.composer-parent {
+  --composer-footer_height: var(--composer-bar_footer-current-height, 32px);
+  --composer-bar_height: var(--composer-bar_current-height, 52px);
+  --composer-bar_width: var(--composer-bar_current-width, 768px);
+  --mask-fill: linear-gradient(180deg, #fff 0%, #fff);
+  --mask-erase: linear-gradient(180deg, #000 0%, #000);
+}
+
+/* ===== Custom Variants for Dark/Light Mode ===== */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
 @theme {
-  --color-token-bg-primary: var(--token-bg-primary);
-  --color-token-bg-elevated-secondary: var(--token-bg-elevated-secondary);
-  --color-token-text-primary: var(--token-text-primary);
-  --color-token-text-secondary: var(--token-text-secondary);
-  --color-token-text-tertiary: var(--token-text-tertiary);
-  --color-token-text-quaternary: var(--token-text-quaternary);
-  --color-token-surface-hover: var(--token-surface-hover);
-  --color-token-border-default: var(--token-border-default);
-  --color-token-main-surface-primary: var(--token-main-surface-primary);
-  --color-token-main-surface-secondary: var(--token-main-surface-secondary);
-  --color-token-main-surface-tertiary: var(--token-main-surface-tertiary);
+  --color-token-bg-primary: var(--main-surface-primary);
+  --color-token-bg-elevated-secondary: var(--main-surface-secondary);
+  --color-token-text-primary: var(--text-primary);
+  --color-token-text-secondary: var(--text-secondary);
+  --color-token-text-tertiary: var(--text-tertiary);
+  --color-token-text-quaternary: var(--text-quaternary);
+  --color-token-surface-hover: var(--surface-hover);
+  --color-token-border-default: var(--border-light);
+  --color-token-main-surface-primary: var(--main-surface-primary);
+  --color-token-main-surface-secondary: var(--main-surface-secondary);
+  --color-token-main-surface-tertiary: var(--main-surface-tertiary);
+}
+
+/* ===== ChatGPT Colors (from official source) ===== */
+:root {
+  --white: #fff;
+  --black: #000;
+  --gray-50: #f9f9f9;
+  --gray-100: #ececec;
+  --gray-200: #e3e3e3;
+  --gray-300: #cdcdcd;
+  --gray-400: #b4b4b4;
+  --gray-500: #9b9b9b;
+  --gray-600: #676767;
+  --gray-700: #424242;
+  --gray-750: #2f2f2f;
+  --gray-800: #212121;
+  --gray-900: #171717;
+  --gray-950: #0d0d0d;
+  --red-500: #e02e2a;
+  --red-700: #911e1b;
+  --brand-purple: #ab68ff;
+  --yellow-900: #4d3b00;
+}
+
+/* ===== Layout Variables (adapted from ChatGPT) ===== */
+:root {
+  --sidebar-rail-width: calc(var(--spacing) * 13);
+  --header-height: calc(var(--spacing) * 13);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --sidebar-rail-width: calc(var(--spacing) * 14);
+    --header-height: calc(var(--spacing) * 14);
+  }
 }
 
 /* ===== Variables and Base Styles ===== */
@@ -168,6 +335,39 @@
     @apply hover:bg-token-surface-hover;
   }
 
+  .icon,
+  .icon-sm {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  /* ChatGPT Menu Components */
+  .__menu-item {
+    padding-block: calc(var(--spacing) * 1.5);
+    padding-inline: calc(var(--spacing) * 2.5);
+    border-radius: calc(var(--spacing) * 2);
+    scroll-margin: calc(var(--spacing) * 1.5);
+  }
+
+  .__menu-item:hover {
+    background-color: var(--surface-hover);
+  }
+
+  /* Message and Content Styling */
+  .message-content {
+    color: var(--text-primary);
+  }
+
+  .message-content-secondary {
+    color: var(--text-secondary);
+  }
+
+  /* Composer styling */
+  .composer-surface {
+    background-color: var(--composer-surface);
+    border-radius: calc(var(--spacing) * 6);
+  }
+
   /* Vertical scroll fade mask */
   .vertical-scroll-fade-mask {
     mask-image: linear-gradient(to bottom, transparent 0, black 8px, black calc(100% - 8px), transparent);
@@ -271,22 +471,74 @@
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 221 83% 53%;
 
-    /* ChatGPT Custom Properties */
+    /* ChatGPT Light Mode Colors (from official source) */
+    --main-surface-background: #fffffff2;
+    --message-surface: #e9e9e980;
+    --composer-surface: var(--message-surface);
+    --composer-blue-bg: #daeeff;
+    --composer-blue-hover: #bddcf4;
+    --composer-blue-hover-tint: #0084ff24;
+    --composer-surface-primary: var(--main-surface-primary);
+    --dot-color: var(--black);
+    --text-primary: var(--gray-950);
+    --icon-surface: 13 13 13;
+    --text-primary-inverse: var(--gray-100);
+    --content-primary: #01172b;
+    --content-secondary: #44505b;
+    --text-secondary: #0009;
+    --text-tertiary: #0000004a;
+    --text-quaternary: #00000030;
+    --tag-blue: #08f;
+    --tag-blue-light: #0af;
+    --text-error: #f93a37;
+    --text-danger: var(--red-500);
+    --text-placeholder: #000000b3;
+    --surface-error: 249 58 55;
+    --border-xlight: #0000000d;
+    --border-light: #0000001a;
+    --border-medium: #00000026;
+    --border-heavy: #0003;
+    --border-xheavy: #00000040;
+    --hint-text: #08f;
+    --hint-bg: #b3dbff;
+    --border-sharp: #0000000d;
+    --icon-secondary: #676767;
+    --main-surface-primary: var(--white);
+    --main-surface-primary-inverse: var(--gray-800);
+    --main-surface-secondary: var(--gray-50);
+    --main-surface-secondary-selected: #0000001a;
+    --main-surface-tertiary: var(--gray-100);
+    --sidebar-surface-primary: var(--gray-50);
+    --sidebar-surface-secondary: var(--gray-100);
+    --sidebar-surface-tertiary: var(--gray-200);
+    --sidebar-title-primary: #28282880;
+    --sidebar-surface: #fcfcfc;
+    --sidebar-body-primary: #0d0d0d;
+    --sidebar-icon: #7d7d7d;
+    --surface-hover: #00000012;
+    --link: #2964aa;
+    --link-hover: #749ac8;
+    --selection: #007aff;
+    --scrollbar-color: #0000001a;
+    --scrollbar-color-hover: #0003;
+
+    /* Menu and component variables */
+    --menu-item-height: calc(var(--spacing) * 9);
+
+    /* Legacy Variables (for backward compatibility) */
     --sidebar-width: 260px;
-    --sidebar-rail-width: 40px;
-    --header-height: 60px;
-    --bg-elevated-secondary: #f9f9f9;
-    --token-bg-primary: #ffffff;
-    --token-bg-elevated-secondary: #f9f9f9;
-    --token-text-primary: #000000;
-    --token-text-secondary: #6b7280;
-    --token-text-tertiary: #9ca3af;
-    --token-text-quaternary: #d1d5db;
-    --token-surface-hover: #f3f4f6;
-    --token-border-default: #e5e7eb;
-    --token-main-surface-primary: #0d9488;
-    --token-main-surface-secondary: #0f766e;
-    --token-main-surface-tertiary: #134e4a;
+    --bg-elevated-secondary: var(--main-surface-secondary);
+    --token-bg-primary: var(--main-surface-primary);
+    --token-bg-elevated-secondary: var(--main-surface-secondary);
+    --token-text-primary: var(--text-primary);
+    --token-text-secondary: var(--text-secondary);
+    --token-text-tertiary: var(--text-tertiary);
+    --token-text-quaternary: var(--text-quaternary);
+    --token-surface-hover: var(--surface-hover);
+    --token-border-default: var(--border-light);
+    --token-main-surface-primary: var(--main-surface-primary);
+    --token-main-surface-secondary: var(--main-surface-secondary);
+    --token-main-surface-tertiary: var(--main-surface-tertiary);
     --sidebar-section-first-margin-top: 1rem;
     --sidebar-section-margin-top: 2rem;
     --sharp-edge-top-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
@@ -305,7 +557,9 @@
     --screen-optical-compact-offset-amount: 0px;
     --display-hidden-until-loaded: flex;
 
-    /* Custom */
+    /* MillionScope Custom Variables */
+    --thread-content-margin: 1rem;
+    --thread-content-max-width: 40rem;
   }
 
   .dark {
@@ -313,19 +567,65 @@
     --nextra-primary-saturation: 100%;
     --nextra-bg: 1, 1, 1;
 
-    /* ChatGPT Dark Mode Properties */
-    --bg-elevated-secondary: #2a2a2a;
-    --token-bg-primary: #1a1a1a;
-    --token-bg-elevated-secondary: #2a2a2a;
-    --token-text-primary: #ffffff;
-    --token-text-secondary: #a1a1aa;
-    --token-text-tertiary: #71717a;
-    --token-text-quaternary: #52525b;
-    --token-surface-hover: #374151;
-    --token-border-default: #374151;
-    --token-main-surface-primary: #10b981;
-    --token-main-surface-secondary: #059669;
-    --token-main-surface-tertiary: #047857;
+    /* ChatGPT Dark Mode Colors (from official source) */
+    --main-surface-background: #212121e6;
+    --message-surface: #323232d9;
+    --composer-blue-bg: #2a4a6d;
+    --composer-blue-hover: #1a416a;
+    --composer-blue-text: #48aaff;
+    --composer-surface-primary: #303030;
+    --dot-color: var(--white);
+    --text-primary: var(--gray-100);
+    --icon-surface: 240 240 240;
+    --text-primary-inverse: var(--gray-950);
+    --text-secondary: #ffffffb3;
+    --text-tertiary: #ffffff94;
+    --text-quaternary: #ffffff69;
+    --text-placeholder: #fffc;
+    --content-primary: #f2f6fa;
+    --content-secondary: #dbe2e8;
+    --text-error: #f93a37;
+    --border-xlight: #ffffff0d;
+    --border-light: #ffffff1a;
+    --border-medium: #ffffff26;
+    --border-heavy: #fff3;
+    --border-xheavy: #ffffff40;
+    --border-sharp: #ffffff0d;
+    --main-surface-primary: var(--gray-800);
+    --main-surface-primary-inverse: var(--white);
+    --main-surface-secondary: var(--gray-750);
+    --main-surface-secondary-selected: #ffffff26;
+    --main-surface-tertiary: var(--gray-700);
+    --sidebar-surface-primary: var(--gray-900);
+    --sidebar-surface-secondary: var(--gray-800);
+    --sidebar-surface-tertiary: var(--gray-750);
+    --sidebar-title-primary: #f0f0f080;
+    --sidebar-surface: #2b2b2b;
+    --sidebar-body-primary: #ededed;
+    --sidebar-icon: #a4a4a4;
+    --surface-hover: #ffffff26;
+    --link: #7ab7ff;
+    --link-hover: #5e83b3;
+    --surface-error: 249 58 55;
+    --scrollbar-color: #ffffff1a;
+    --scrollbar-color-hover: #fff3;
+
+    /* Menu and component variables */
+    --menu-item-height: calc(var(--spacing) * 10);
+
+    /* Legacy Variables (for backward compatibility) */
+    --bg-elevated-secondary: var(--main-surface-secondary);
+    --token-bg-primary: var(--main-surface-primary);
+    --token-bg-elevated-secondary: var(--main-surface-secondary);
+    --token-text-primary: var(--text-primary);
+    --token-text-secondary: var(--text-secondary);
+    --token-text-tertiary: var(--text-tertiary);
+    --token-text-quaternary: var(--text-quaternary);
+    --token-surface-hover: var(--surface-hover);
+    --token-border-default: var(--border-light);
+    --token-main-surface-primary: var(--main-surface-primary);
+    --token-main-surface-secondary: var(--main-surface-secondary);
+    --token-main-surface-tertiary: var(--main-surface-tertiary);
   }
 
   *,
