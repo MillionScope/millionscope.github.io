@@ -2,34 +2,47 @@
 
 import { Chat } from "@/components/chat"
 import { DataStreamHandler } from "@/components/data-stream-handler"
+import { LandingPage } from "@/components/landing-page"
+import { LoadingSpinner } from "@/components/loading-spinner"
 import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models"
 import { generateUUID } from "@/lib/utils"
 import { getCookie } from "@/utils/cookies"
+import { useAuth } from "@/contexts/auth"
 import { useEffect, useState } from "react"
 
 export default function Page() {
+  const { user, loading } = useAuth()
   const id = generateUUID()
   const [modelId, setModelId] = useState(null)
-  console.log("useState go here")
 
   useEffect(() => {
     const storedModelId = getCookie("chat-model")
-    // console.log("storedModelId", storedModelId)
     setModelId(storedModelId)
   }, [])
 
-  if (!modelId) {
-    return (
-      <>
-        <Chat key={id} id={id} initialMessages={[]} selectedChatModel={DEFAULT_CHAT_MODEL} selectedVisibilityType="private" isReadonly={false} />
-        <DataStreamHandler id={id} />
-      </>
-    )
+  // Show loading state while checking authentication
+  if (loading) {
+    return <LoadingSpinner />
   }
+
+  // Show landing page if user is not logged in
+  if (!user) {
+    return <LandingPage />
+  }
+
+  // Show chat interface if user is logged in
+  const selectedModel = modelId || DEFAULT_CHAT_MODEL
 
   return (
     <>
-      <Chat key={id} id={id} initialMessages={[]} selectedChatModel={modelId} selectedVisibilityType="private" isReadonly={false} />
+      <Chat 
+        key={id} 
+        id={id} 
+        initialMessages={[]} 
+        selectedChatModel={selectedModel} 
+        selectedVisibilityType="private" 
+        isReadonly={false} 
+      />
       <DataStreamHandler id={id} />
     </>
   )

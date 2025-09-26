@@ -856,3 +856,114 @@
 
   /* New custom theme variable */
 }
+
+/* ChatGPT-style button components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 150ms;
+  padding: 8px 16px;
+  min-height: 36px;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.btn-primary {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #15803d;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+  background-color: #f9fafb;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  min-height: 32px;
+}
+
+/* Token-based colors */
+.bg-token-bg-primary {
+  background-color: rgb(255, 255, 255);
+}
+
+.text-token-text-primary {
+  color: rgb(13, 13, 13);
+}
+
+.text-token-text-secondary {
+  color: rgb(102, 102, 102);
+}
+
+.text-token-text-tertiary {
+  color: rgb(142, 142, 160);
+}
+
+.hover\:bg-token-surface-hover:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.keyboard-focused\:bg-token-surface-hover:focus-visible {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hover\:bg-token-bg-tertiary:hover {
+  background-color: rgb(247, 247, 248);
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-token-bg-primary {
+    background-color: rgb(33, 33, 33);
+  }
+  
+  .text-token-text-primary {
+    color: rgb(236, 236, 241);
+  }
+  
+  .text-token-text-secondary {
+    color: rgb(172, 172, 190);
+  }
+  
+  .text-token-text-tertiary {
+    color: rgb(142, 142, 160);
+  }
+  
+  .hover\:bg-token-surface-hover:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .keyboard-focused\:bg-token-surface-hover:focus-visible {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .hover\:bg-token-bg-tertiary:hover {
+    background-color: rgb(64, 65, 79);
+  }
+}

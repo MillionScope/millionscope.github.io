@@ -21,7 +21,7 @@ export default function Page() {
 
   // status: 'idle' | 'in_progress' | 'success' | 'failed' | 'invalid_data';
   const [state, setState] = useState({ status: "idle" })
-  const {login, loginWithGoogle} = useAuth()
+  const { login, loginWithGoogle } = useAuth()
 
   useEffect(() => {
     if (state.status === "failed") {
@@ -79,7 +79,7 @@ export default function Page() {
                 onClick={loginWithGoogle}
               >
                 <span className="mix-blend-luminosity flex-grow text-left">Sign in with Google</span>
-                <img loading="lazy" className="w-6 h-6"   width={24} height={24} src="/img/oauth-provider/google.svg" alt="Google logo" />
+                <Image loading="lazy" className="w-6 h-6" width={24} height={24} src="/img/oauth-provider/google.svg" alt="Google logo" />
               </button>
             </div>
           </div>

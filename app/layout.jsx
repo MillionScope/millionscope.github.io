@@ -4,7 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import { AuthProvider } from "@/contexts/auth"
 import ErrorBoundary from "@/components/error-boundary"
-import Header from "@/components/layout/header"
+import ConditionalHeader from "@/components/layout/conditional-header"
 import Footer from "@/components/layout/footer"
 import { Toaster } from "sonner"
 // import { NextAuthProviders } from "@/components/auth/auth-provider"
@@ -39,6 +39,7 @@ export default async function RootLayout({ children }) {
             <Toaster position="top-center" />
             <AuthProvider>
               <div className="flex h-full w-full flex-col">
+                <ConditionalHeader />
                 {children}
               </div>
             </AuthProvider>

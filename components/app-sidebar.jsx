@@ -6,7 +6,19 @@ import { SidebarHistory } from "@/components/sidebar-history"
 import { SidebarUserNav } from "@/components/sidebar-user-nav"
 import Link from "next/link"
 import { useSidebar } from "@/contexts/sidebar"
+import { useAuth } from "@/contexts/auth"
 import Image from "next/image"
+
+function SidebarAuthSection() {
+  const { user } = useAuth()
+
+  if (user) {
+    return <SidebarUserNav />
+  }
+
+  // Don't show anything in sidebar when not logged in
+  return null
+}
 
 export function AppSidebar() {
   const router = useRouter()
@@ -227,8 +239,8 @@ export function AppSidebar() {
             <div className="grow"></div>
 
             {/* User Navigation */}
-            <div className="sticky bottom-0 z-30 empty:hidden bg-token-bg-elevated-secondary py-1.5 group-data-scrolled-from-end/scrollport:shadow-(--sharp-edge-bottom-shadow)">
-              <SidebarUserNav />
+            <div className="sticky bottom-0 z-30 bg-token-bg-elevated-secondary py-1.5 group-data-scrolled-from-end/scrollport:shadow-(--sharp-edge-bottom-shadow)">
+              <SidebarAuthSection />
             </div>
           </nav>
         </div>

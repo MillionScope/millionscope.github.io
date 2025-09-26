@@ -1,12 +1,14 @@
+"use client"
+
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
 import Navbar from "./navbar"
-import AuthButton from "@/components/auth/auth-button"
 import { cn } from "@/lib/utils"
 import TwitterIcon from "@/icons/twitter"
 import Github from "@/icons/github"
+import { useAuth } from "@/contexts/auth"
 
 const Logo = () => (
   <Link
@@ -37,11 +39,28 @@ const Logo = () => (
   </Link>
 )
 
+function HeaderAuth() {
+  const { user } = useAuth()
+
+  if (user) {
+    return null // Don't show anything in header when logged in
+  }
+
+  return (
+    <Link
+      href="/login"
+      className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:text-white transition-colors"
+    >
+      Login
+    </Link>
+  )
+}
+
 export default function Header() {
   return (
     <Navbar>
       <Logo />
-      <AuthButton />
+      <HeaderAuth />
       
       <Link
         href="https://genea-workshop.github.io/leaderboard"
