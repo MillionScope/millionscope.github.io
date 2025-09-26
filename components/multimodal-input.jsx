@@ -14,7 +14,7 @@ import { Textarea } from "./ui/textarea"
 import { SuggestedActions } from "./suggested-actions"
 import equal from "fast-deep-equal"
 
-function PureMultimodalInput({ chatId, input, setInput, isLoading, stop, attachments, setAttachments, messages, setMessages, append, handleSubmit, className }) {
+function PureMultimodalInput({ chatId, input = '', setInput, isLoading, stop, attachments = [], setAttachments, messages = [], setMessages, append, handleSubmit, className }) {
   const textareaRef = useRef(null)
   const { width } = useWindowSize()
 
@@ -41,7 +41,7 @@ function PureMultimodalInput({ chatId, input, setInput, isLoading, stop, attachm
   const [localStorageInput, setLocalStorageInput] = useLocalStorage("input", "")
 
   useEffect(() => {
-    if (textareaRef.current) {
+    if (textareaRef.current && setInput) {
       const domValue = textareaRef.current.value
       // Prefer DOM value over localStorage to handle hydration
       const finalValue = domValue || localStorageInput || ""
@@ -57,7 +57,9 @@ function PureMultimodalInput({ chatId, input, setInput, isLoading, stop, attachm
   }, [input, setLocalStorageInput])
 
   const handleInput = (event) => {
-    setInput(event.target.value)
+    if (setInput) {
+      setInput(event.target.value)
+    }
     adjustHeight()
   }
 
@@ -67,11 +69,15 @@ function PureMultimodalInput({ chatId, input, setInput, isLoading, stop, attachm
   const submitForm = useCallback(() => {
     // window.history.replaceState({}, "", `/chat?id=${chatId}`)
 
-    handleSubmit(undefined, {
-      experimental_attachments: attachments,
-    })
+    if (handleSubmit) {
+      handleSubmit(undefined, {
+        experimental_attachments: attachments,
+      })
+    }
 
-    setAttachments([])
+    if (setAttachments) {
+      setAttachments([])
+    }
     setLocalStorageInput("")
     resetHeight()
 
@@ -230,6 +236,14 @@ function PureStopButton({ stop, setMessages }) {
 const StopButton = memo(PureStopButton)
 
 function PureSendButton({ submitForm, input, uploadQueue }) {
+  if (!input) {
+    return (
+      <Button className="rounded-full p-1.5 h-fit border dark:border-zinc-600 opacity-50 cursor-not-allowed" disabled>
+        <ArrowUpIcon size={14} />
+      </Button>
+    )
+  }
+
   return (
     <Button
       className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
